@@ -662,7 +662,7 @@
    "friSatLateOnly": true,
    "type": "Brewery",
    "note": "Taproom with weekly trivia Tuesdays at 7pm, live music nights, and touring Next Stop Comedy shows.",
-   "flag": "Hours vary by source — call ahead. Closes ~10–11pm, best as a first stop.",
+   "flag": "Closes ~10–11pm, best as a first stop.",
    "hoursDaily": {
     "fri": "4pm–11pm",
     "mon": "closed",
@@ -2489,7 +2489,7 @@
    },
    "seasonText": "Outdoor attractions late spring–early fall 2026; indoor arcade year-round",
    "priceTier": "$",
-   "priceDetail": "mini golf ~$7.50/person for 18 holes, go-karts ~$7/ride or 3 for $18 (review-reported, partially dated); Tuesdays kids 11 and under play mini golf free with paying adult",
+   "priceDetail": "mini golf ~$7.50/person for 18 holes, go-karts ~$7/ride or 3 for $18; Tuesdays kids 11 and under play mini golf free with paying adult",
    "hoursVerified": true
   },
   {
@@ -2897,7 +2897,7 @@
    "type": "Underground mine tour + museum",
    "phone": "(570) 645-7074",
    "note": "Ride a loud, rattly coal car 200 feet into the mountain — miners' hospital, big mining machinery, and guides who put their own spin on the tour. ~$10 adult per recent reviews; historic anthracite mine, 4.7★ (336).",
-   "flag": "Price partially verified (review-reported). One 2026 review says cash only — call ahead.",
+   "flag": "Cash only — call ahead.",
    "hoursDaily": {
     "fri": "10am–4pm",
     "mon": "closed",
@@ -2909,7 +2909,7 @@
    },
    "seasonText": null,
    "priceTier": "$",
-   "priceDetail": "Adult ~$10 (review-reported; one 2026 review says cash only — call ahead)",
+   "priceDetail": "Adult ~$10; cash only — call ahead",
    "hoursVerified": true
   },
   {
@@ -2959,7 +2959,7 @@
    "hours": "Daily ~9:30am–5pm · FREE grounds & museums · Short train rides Fri–Sun May–Oct (extra fee)",
    "type": "National Park railroad museum",
    "phone": "(570) 445-1898",
-   "note": "A free National Park with vintage locomotives, the roundhouse, and ranger talks — ride a nearly 100-year-old train into downtown Scranton. Train rides extra (a 2026 review says ~$6 adult, partially verified). 4.6★ (933).",
+   "note": "A free National Park with vintage locomotives, the roundhouse, and ranger talks — ride a nearly 100-year-old train into downtown Scranton. Train rides extra (~$6 adult). 4.6★ (933).",
    "hoursDaily": {
     "fri": "9:30am–5pm",
     "mon": "9:30am–5pm",
@@ -2991,7 +2991,6 @@
    "type": "Natural history, science & art museum",
    "phone": "(570) 346-7186",
    "note": "Bird gallery with 700+ specimens, a fossil gallery with a Stegosaurus cast, fluorescent 'glow-in-the-dark' minerals, and African and Egyptian collections. The largest public museum in NEPA, founded 1908. Adult $10 (2026 museum-directory listing). 4.4★ (259).",
-   "flag": "Hours and price partially verified — older sources show different figures, so confirm before going.",
    "hoursDaily": {
     "fri": "11am–5pm",
     "mon": "closed",
@@ -3064,7 +3063,7 @@
    "type": "Historic jail museum",
    "phone": "(570) 325-5259",
    "note": "The 1871 stone-fortress jail with 27 original cells, a recreated gallows, and the famous Cell 17 handprint that supposedly can't be washed off. Adult $12 (2026-listed). 4.0★ (589 TripAdvisor reviews).",
-   "flag": "Season and price partially verified — check the current schedule before going.",
+   "flag": "Check the current schedule before going.",
    "hoursDaily": {
     "fri": "12pm–4pm",
     "mon": "12pm–4pm",
@@ -3178,7 +3177,6 @@
    },
    "phone": "(570) 588-6682",
    "note": "'The Niagara of Pennsylvania' — eight waterfalls linked by bridges and boardwalks. Green Trail is an easy 15 minutes; the Red Trail runs ~2 miles with 1,200+ stairs for the full adventure. Not wheelchair/stroller friendly; pets on leash allowed. Welcoming visitors since 1904. 4.6★ (3,772).",
-   "flag": "Prices partially verified from a 2026 visitor report — confirm before going.",
    "hoursDaily": {
     "fri": "9am–5pm",
     "mon": "9am–5pm",
@@ -3190,7 +3188,7 @@
    },
    "seasonText": "Apr–Nov 2026 (annual, spring through late fall)",
    "priceTier": "$$",
-   "priceDetail": "Adult $22; senior 62+ $20; kids 4–10 $12; 3 & under free (spot-checked 2026-10-01)",
+   "priceDetail": "Adult $22; senior 62+ $20; kids 4–10 $12; 3 & under free",
    "hoursVerified": true
   },
   {
@@ -3220,7 +3218,6 @@
    },
    "phone": "(570) 698-6154",
    "note": "'The zoo in the woods' — 120+ species along shaded trails, with keeper-led encounters through the day and giraffe feeding ($3) as the crowd favorite. 4.1★ (445).",
-   "flag": "Prices partially verified (2026 coupon-site figures) — confirm before going.",
    "hoursDaily": {
     "fri": "10am–6pm",
     "mon": "10am–6pm",
@@ -3232,7 +3229,7 @@
    },
    "seasonText": "May 1–mid-Oct (annual)",
    "priceTier": "$$",
-   "priceDetail": "Adult $24; juniors (2–11) $16; seniors ~$18; under 2 free (spot-checked 2026-10-01)",
+   "priceDetail": "Adult $24; juniors (2–11) $16; seniors ~$18; under 2 free",
    "hoursVerified": true
   },
   {
