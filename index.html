@@ -478,6 +478,171 @@ var VENUES = [{"cat": "bars", "name": "Beer Boys", "town": "Wilkes-Barre", "addr
 
 /* Toggle one value in a multi-select group; selecting every option collapses
    back to "all" (an empty array means no restriction). */
+function primeVenues(){
+  for (var i=0;i<VENUES.length;i++){
+    var v = VENUES[i];
+    v._hay = (v.name+" "+v.town+" "+v.type+" "+v.note+" "+v.hours).toLowerCase();
+  }
+  FRISAT_LATE_N = VENUES.reduce(function(n,v){ return n + (v.friSatLateOnly ? 1 : 0); }, 0);
+}
+
+/* -------- State -------- */
+var state = { q:"", cats:[], hours:[], openToday:false, season:"all", friSatLate:false, anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable" };
+
+var $ = function(id){ return document.getElementById(id); };
+
+/* Starting towns for drive times; keys match v.time */
+var ANCHORS = {
+  kingston:{label:"Kingston", full:"Kingston, PA"},
+  scranton:{label:"Scranton", full:"Scranton, PA"},
+  canadensis:{label:"Canadensis", full:"Canadensis, PA"}
+};
+function vtime(v){ return v.time[state.anchor]; }
+function driveLabel(m){
+  if (m <= 5) return "In town (~5 min)";
+  if (m < 60) return "~" + m + " min";
+  var hr = Math.floor(m/60), rest = m % 60;
+  return "~" + hr + " hr" + (rest ? " " + rest + " min" : "");
+}
+function esc(s){
+  return String(s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function mapsUrl(name, addr){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(name + ", " + addr);
+}
+var CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></svg>';
+var PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8.5 7H17v8.5"/></svg>';
+var PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>';
+var WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5L22 20H2z"/><line x1="12" y1="10" x2="12" y2="14.2"/><circle cx="12" cy="16.8" r=".4" fill="currentColor"/></svg>';
+var CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
+/* Copy icon (address row) */
+var COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>';
+
+function catTitle(id){
+  for (var i=0;i<CATS.length;i++) if (CATS[i].id===id) return CATS[i].title;
+  return "";
+}
+
+/* Seasonal venues carry season:{s:[m,d],e:[m,d]} — the calendar range they
+   come back for each year. The end can precede the start (Dec 1 -> Mar 31)
+   for winter spots. */
+var DOW = ["sun","mon","tue","wed","thu","fri","sat"];
+/* Open tonight: the venue lists hours for today's weekday (day granularity —
+   open at any point today counts) and, if seasonal, today is in its season. */
+function openTodayFn(v){
+  var d = DOW[new Date().getDay()];
+  var h = v.hoursDaily && v.hoursDaily[d];
+  if (!h || h === "closed") return false;
+  if (v.season && !seasonActive(v)) return false;
+  return true;
+}
+function seasonActive(v){
+  var s = v.season;
+  if (!s || !s.s || !s.e) return false;
+  var n = new Date(), curM = n.getMonth()+1, curD = n.getDate();
+  function cmp(m1,d1,m2,d2){ return m1===m2 ? d1-d2 : m1-m2; }
+  var afterStart = cmp(curM,curD,s.s[0],s.s[1]) >= 0;
+  var beforeEnd = cmp(curM,curD,s.e[0],s.e[1]) <= 0;
+  return cmp(s.e[0],s.e[1],s.s[0],s.s[1]) < 0 ? (afterStart || beforeEnd) : (afterStart && beforeEnd);
+}
+
+/* Compact drive label for the three town boxes. */
+function boxLabel(m){
+  if (m <= 5) return "In town";
+  if (m < 60) return "~" + m + " min";
+  var hr = Math.floor(m/60), rest = m % 60;
+  return "~" + hr + " hr" + (rest ? " " + rest + " min" : "");
+}
+
+/* Venues whose late-night hours (past 10pm) exist only on Fri/Sat are excluded
+   from every result while the toggle is off — including the header total. */
+var FRISAT_LATE_N = 0;
+
+/* OR within each filter group, AND across groups. */
+function hoursMatch(v){
+  if (!state.hours.length) return true;
+  for (var i=0;i<state.hours.length;i++){
+    if (v.hoursBuckets.indexOf(state.hours[i]) !== -1) return true;
+  }
+  return false;
+}
+function matches(v){
+  if (state.cats.length && state.cats.indexOf(v.cat) === -1) return false;
+  if (!hoursMatch(v)) return false;
+  if (state.season === "hide" && v.season) return false;
+  if (state.season === "now" && !(v.season && seasonActive(v))) return false;
+  if (!state.friSatLate && v.friSatLateOnly) return false;
+  if (state.openToday && !openTodayFn(v)) return false;
+  if (state.maxDrive && vtime(v) > state.maxDrive) return false;
+  if (state.q && v._hay.indexOf(state.q) === -1) return false;
+  return true;
+}
+function sortByDrive(a, b){
+  var ta = vtime(a), tb = vtime(b);
+  if (ta !== tb) return ta - tb;
+  return a.name.localeCompare(b.name);
+}
+function sortByName(a, b){ return a.name.localeCompare(b.name); }
+
+function townBox(v, key){
+  var sel = state.anchor === key ? ' sel' : '';
+  return '<div class="townbox'+sel+'"><span class="tb-name">'+ANCHORS[key].label+'</span>' +
+    '<span class="tb-time">'+esc(boxLabel(v.time[key]))+'</span></div>';
+}
+
+var ISSUES = "https://github.com/stainlesssteel770/nepa-date-nights/issues/new";
+function reportUrl(v){
+  return ISSUES + "?template=wrong-hours.yml" +
+    "&title=" + encodeURIComponent("[Wrong hours] " + v.name) +
+    "&body=" + encodeURIComponent("Venue: " + v.name + "\nTown: " + v.town +
+      "\n\nWhat's wrong:\n\nCorrect hours (if known):\n");
+}
+function cardHTML(v, flat){
+  var catTag = flat ? '<span class="type-tag">'+esc(catTitle(v.cat))+'</span>' : '';
+  /* Seasonal, open-late, and call-ahead notices merge into one compact line. */
+  var warns = [];
+  if (v.season) warns.push('Seasonal');
+  if (v.weeknight) warns.push('Open late weeknights');
+  if (v.hoursVerified === false) warns.push('Call ahead \u2014 hours vary');
+  if (v.flag) warns.push(v.flag);
+  var warnline = warns.length
+    ? '<p class="warnline">'+WARN+'<span>'+warns.map(esc).join(' &middot; ')+'</span></p>'
+    : '';
+  var phone = v.phone ? '<a class="phone-link" href="tel:+1'+v.phone.replace(/[^0-9]/g,"")+'">'+PHONE+esc(v.phone)+'</a>' : '';
+  var longNote = v.note.length > 150;
+  var noteCls = 'note' + (longNote ? ' clamp' : '');
+  var moreBtn = longNote ? '<button class="moreless" type="button" aria-expanded="false">Show more</button>' : '';
+  return '<article class="card">' +
+    '<div class="card-top"><span class="town">'+esc(v.town)+'</span><span class="drive">'+esc(driveLabel(vtime(v)))+'</span></div>' +
+    '<h3>'+esc(v.name)+'</h3>' +
+    '<div class="type-row">'+catTag+'<span class="type-tag">'+esc(v.type)+'</span></div>' +
+    '<div class="hours">'+CLOCK+'<span>'+esc(v.hours)+'</span></div>' +
+    (v.priceTier ? '<div class="price-row"><span class="price-tier">'+esc(v.priceTier)+'</span>'+(v.priceDetail ? '<span class="price-detail">'+esc(v.priceDetail)+'</span>' : '')+'</div>' : '') +
+    warnline +
+    '<div class="towns" aria-label="Drive times from each starting town">' +
+      townBox(v,"kingston") + townBox(v,"scranton") + townBox(v,"canadensis") + '</div>' +
+    '<div class="card-foot">' +
+      '<div class="addr">'+PIN+'<span class="addr-text">'+esc(v.addr)+'</span><button class="copy-btn" type="button" title="Copy address" aria-label="Copy address">'+COPY+'</button></div>' +
+      '<p class="'+noteCls+'">'+esc(v.note)+'</p>' + moreBtn +
+      '<div class="card-links"><a class="map-link" href="'+esc(mapsUrl(v.name, v.addr))+'" target="_blank" rel="noopener"><span class="map-ul">Open in Maps'+ARROW+'</span></a>'+phone+
+      '<a class="report-link" href="'+esc(reportUrl(v))+'" target="_blank" rel="noopener">Report wrong hours</a></div>' +
+    '</div>' +
+  '</article>';
+}
+
+/* ---------- Filter panel groups ---------- */
+var HOURS_META = [
+  {id:"midday", label:"Midday-afternoon", tip:"Open midday to afternoon"},
+  {id:"evening", label:"Evening", tip:"Open during 6\u201310pm"},
+  {id:"late", label:"Late night", tip:"Still open past 10pm"}
+];
+
+/* Toggle one value in a multi-select group; selecting every option collapses
+   back to "all" (an empty array means no restriction). */
 function toggleGroup(arr, val, optCount){
   if (val === "all"){ arr.length = 0; return; }
   var ix = arr.indexOf(val);
