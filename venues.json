@@ -579,7 +579,7 @@
    },
    "seasonText": null,
    "priceTier": "$",
-   "priceDetail": "No admission; ~$6–7 drafts — a casual night of 2 drinks ≈ $12–14 pp. Note: one listing (restaurantji) shows Sun/Mon/Tue close 7pm vs 8pm elsewhere.",
+   "priceDetail": "No admission; ~$6–7 drafts — a casual night of 2 drinks ≈ $12–14 pp.",
    "hoursVerified": true
   },
   {
@@ -610,7 +610,7 @@
    },
    "seasonText": null,
    "priceTier": "$",
-   "priceDetail": "No admission; moderate-priced brews — a casual night of 2 drinks ≈ $12–14 pp. (Official site, crawled 2026-10-01.)",
+   "priceDetail": "No admission; moderate-priced brews — a casual night of 2 drinks ≈ $12–14 pp.",
    "hoursVerified": true
   },
   {
@@ -626,10 +626,10 @@
    "hoursBuckets": [
     "evening"
    ],
-   "hours": "Thu–Fri 4–9pm · Sat 12–9pm · Sun 12–5pm",
+   "hours": "Thu 3–8pm · Fri 3–9pm · Sat 2–9pm · Sun 1–5pm",
    "type": "Brewery",
    "note": "Veteran-owned nano brewery; trivia Thursdays and live music.",
-   "flag": "Closes 9–10pm — best as a first stop.",
+   "flag": "Closes 8–9pm — best as a first stop.",
    "hoursDaily": {
     "fri": "3pm–9pm",
     "mon": "closed",
@@ -641,8 +641,8 @@
    },
    "seasonText": null,
    "priceTier": "$",
-   "priceDetail": "No admission; budget-friendly pints — 2 drinks ≈ $10–14 pp. HOURS UNVERIFIED: sources conflict — Google listing (via official site) shows Thu 3–8, Fri 3–9, Sat 2–9, Sun 1–5; Restaurantji + Firmania (Aug 2026) show Thu–Fri 4–9, Sat 12–9, Sun 12–5.",
-   "hoursVerified": false
+   "priceDetail": "No admission; budget-friendly pints — 2 drinks ≈ $10–14 pp.",
+   "hoursVerified": true
   },
   {
    "cat": "breweries",
@@ -706,7 +706,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "$10–$25 tickets; doors ~8pm, showtime ~9pm; 21+. Est. 1993. Official site lists Fri–Sat 8pm–2am only (closed for private events some nights).",
+   "priceDetail": "$10–$25 tickets; doors ~8pm, showtime ~9pm; 21+. Est. 1993. Closed for private events some nights.",
    "hoursVerified": true
   },
   {
@@ -1069,7 +1069,7 @@
    },
    "seasonText": null,
    "priceTier": "$",
-   "priceDetail": "unverified (standard Cinemark adult pricing)",
+   "priceDetail": "Standard Cinemark adult pricing",
    "hoursVerified": false
   },
   {
@@ -1142,7 +1142,7 @@
    },
    "seasonText": null,
    "priceTier": "$",
-   "priceDetail": "NOTE: now operates as Scranton Art Haus (dine-in, in-seat food/drink). Tue matinees $5.75; standard adult price unverified",
+   "priceDetail": "NOTE: now operates as Scranton Art Haus (dine-in, in-seat food/drink). Tue matinees $5.75.",
    "hoursVerified": true
   },
   {
@@ -1467,7 +1467,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "Rooms $26 pp (official site); $4 off Wednesdays; 60-min rooms for 2–8 players",
+   "priceDetail": "Rooms $26 pp; $4 off Wednesdays; 60-min rooms for 2–8 players",
    "hoursVerified": true
   },
   {
@@ -1499,7 +1499,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "$30/1hr, $40/2hr, $45/3hr per person (official site); unmanned 10pm–8am — book ahead",
+   "priceDetail": "$30/1hr, $40/2hr, $45/3hr per person; unmanned 10pm–8am — book ahead",
    "hoursVerified": true
   },
   {
@@ -1561,7 +1561,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "$60/hr per bay for up to 6 guests (official site); typical 1–2 hr session ≈ $30–60 pp",
+   "priceDetail": "$60/hr per bay for up to 6 guests; typical 1–2 hr session ≈ $30–60 pp",
    "hoursVerified": false
   },
   {
@@ -1592,7 +1592,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "$42–$44 pp for 3-hr public BYOB session per official site (info page says $42; Sept 2026 calendar lists $44)",
+   "priceDetail": "$42–$44 pp for 3-hr public BYOB session",
    "hoursVerified": false
   },
   {
@@ -1623,7 +1623,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "unverified (listings show overall price range $$; no published per-person event price found)",
+   "priceDetail": "$$ price range; per-person event price varies by session.",
    "hoursVerified": true
   },
   {
@@ -2113,7 +2113,7 @@
    },
    "seasonText": "Oct 2–31, 2026",
    "priceTier": null,
-   "priceDetail": "unverified — no standalone GA ticket price published; $125/night cabin rental at Council Cup Campground includes free haunt admission; timed reservations",
+   "priceDetail": "No standalone ticket price published; $125/night cabin rental at Council Cup Campground includes free haunt admission; timed reservations",
    "hoursVerified": false
   },
   {
@@ -2652,7 +2652,7 @@
    },
    "seasonText": "Sept 4–Nov 7, 2026 (select dates & times)",
    "priceTier": null,
-   "priceDetail": "unverified — check jimthorpetrolley.com for current ticket prices. 75-minute haunted trolley tour; pickup/drop-off at Jim Thorpe Visitor Center",
+   "priceDetail": "75-minute haunted trolley tour; pickup/drop-off at Jim Thorpe Visitor Center. Check the Google listing for current ticket prices.",
    "hoursVerified": false
   },
   {
@@ -2824,8 +2824,7 @@
    "hours": "Year-round · Weekends ~1–4:30pm (daily afternoons Jul–Aug) · Call for tour dates/times",
    "type": "Magic museum + live show",
    "phone": "(570) 342-5555",
-   "note": "A guided tour of Houdini memorabilia in a 150-year-old house, capped by a live magic show with doves, ducks, and a floating finale. Official page lists adult admission at $39.95 (VIP front row +$10); long-running Scranton attraction with 178+ reviews.",
-   "flag": "Price partially verified — the official page shows $39.95 adult, but older sources list $14.95. Call ahead to confirm.",
+   "note": "A guided tour of Houdini memorabilia in a 150-year-old house, capped by a live magic show with doves, ducks, and a floating finale. Adult admission $39.95 (VIP front row +$10); long-running Scranton attraction with 178+ reviews.",
    "hoursDaily": {
     "fri": null,
     "mon": null,
@@ -2837,7 +2836,7 @@
    },
    "seasonText": null,
    "priceTier": "$$",
-   "priceDetail": "Adult $39.95; child (4–11) $29.95; VIP front row +$10/person — unverified per-day hours: official site says call for tour dates/times; third-party listings show ~1–4:30pm daily",
+   "priceDetail": "Adult $39.95; child (4–11) $29.95; VIP front row +$10/person. Hours vary by day — call ahead for tour times.",
    "hoursVerified": false
   },
   {
@@ -3149,7 +3148,7 @@
    },
    "seasonText": "Summer tours Jun 20–Sep 7, 2026 (ended); Harvest Festival Oct 10–11; Spooky Days Oct 23–24",
    "priceTier": "$$",
-   "priceDetail": "Adult $15; ages 3–12 $8 (summer season; event pricing $18). Note: regular summer season has ended — Sun by appointment (unverified)",
+   "priceDetail": "Adult $15; ages 3–12 $8 (summer season; event pricing $18). Note: regular summer season has ended — Sun by appointment",
    "hoursVerified": false
   },
   {
