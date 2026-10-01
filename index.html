@@ -145,31 +145,6 @@
   .text-btn:hover{color:var(--ink)}
   .show-btn{flex:1;border:0;background:var(--teal-btn);color:var(--teal-btn-ink);font:inherit;font-weight:700;font-size:.96rem;border-radius:10px;padding:13px 18px;cursor:pointer}
 
-  function refreshChipCounts(){
-  var elig = eligibleVenues();
-  var tc = {all: elig.length, midday:0, evening:0, late:0};
-  for (var i=0;i<elig.length;i++){
-    var b = elig[i].hoursBuckets;
-    for (var j=0;j<b.length;j++) tc[b[j]]++;
-  }
-  var cc = {all: elig.length};
-  for (var i=0;i<CATS.length;i++){
-    var c = CATS[i].id, n = 0;
-    for (var j=0;j<elig.length;j++) if (elig[j].cat === c.id) n++;
-    cc[c] = n;
-  }
-  function setCounts(hostId, counts){
-    var btns = $(hostId).querySelectorAll("button");
-    for (var i=0;i<btns.length;i++){
-      var s = btns[i].querySelector(".n");
-      var val = btns[i].getAttribute("data-val");
-      if (s && counts[val] !== undefined) s.textContent = counts[val];
-    }
-  }
-  setCounts("timeChips", tc);
-  setCounts("catChips", cc);
-}
-
 /* ---------- Drive-time slider ---------- */
   .drive-live{margin:0 0 2px;font-size:1.04rem}
   .drive-live strong{color:var(--accent-strong)}
@@ -697,6 +672,32 @@ function wireChipGroup(host, key, optCount){
     syncChips(host, key);
     render();
   });
+}
+
+/* Refresh the counts on the time/category filter chips from the eligible set. */
+function refreshChipCounts(){
+  var elig = eligibleVenues();
+  var tc = {all: elig.length, midday:0, evening:0, late:0};
+  for (var i=0;i<elig.length;i++){
+    var b = elig[i].hoursBuckets;
+    for (var j=0;j<b.length;j++) tc[b[j]]++;
+  }
+  var cc = {all: elig.length};
+  for (var i=0;i<CATS.length;i++){
+    var c = CATS[i].id, n = 0;
+    for (var j=0;j<elig.length;j++) if (elig[j].cat === c.id) n++;
+    cc[c] = n;
+  }
+  function setCounts(hostId, counts){
+    var btns = $(hostId).querySelectorAll("button");
+    for (var i=0;i<btns.length;i++){
+      var s = btns[i].querySelector(".n");
+      var val = btns[i].getAttribute("data-val");
+      if (s && counts[val] !== undefined) s.textContent = counts[val];
+    }
+  }
+  setCounts("timeChips", tc);
+  setCounts("catChips", cc);
 }
 function eligibleVenues(){
   return VENUES.filter(function(v){ return state.friSatLate || !v.friSatLateOnly; });
