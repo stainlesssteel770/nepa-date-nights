@@ -1,0 +1,1105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="NEPA Date Nights: a hand-curated guide to date-night spots across Northeastern Pennsylvania — from midday-afternoon adventures to 2am dance floors. Bars, music, games, screens, and stars. No food, no wineries or wine bars." />
+<link rel="icon" href="data:," />
+<title>NEPA Date Nights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f7f2e8; --bg-soft:#efe8d9; --card:#fffdf7; --ink:#241e14; --muted:#6f6353;
+    --accent:#a8621f; --accent-strong:#8a4d12; --accent-soft:rgba(168,98,31,.12);
+    --teal:#0d7a62; --teal-soft:rgba(13,122,98,.12);
+    --line:#e3d9c3; --caution-bg:#fdf3e0; --caution-line:#e3b45f; --caution-ink:#7a4a08;
+    --chip:#eee7d6; --shadow:0 1px 2px rgba(36,30,20,.08),0 8px 28px rgba(36,30,20,.08);
+    --radius:14px; --teal-btn:#0d7a62; --teal-btn-ink:#ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#151218; --bg-soft:#1c1823; --card:#1f1a27; --ink:#f2ecdd; --muted:#aa9e8c;
+      --accent:#e9a94c; --accent-strong:#f4bc6a; --accent-soft:rgba(233,169,76,.14);
+      --teal:#4cc9b0; --teal-soft:rgba(76,201,176,.13);
+      --line:#322c3b; --caution-bg:rgba(227,180,95,.10); --caution-line:#8a6a2c; --caution-ink:#e5b95e;
+      --chip:#2a2433; --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.35);
+      --teal-btn:#4cc9b0; --teal-btn-ink:#0e211a;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.55; -webkit-text-size-adjust:100%;
+  }
+  .skip{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+  .skip:focus{position:absolute;left:12px;top:12px;z-index:60;width:auto;height:auto;margin:0;overflow:visible;clip:auto;clip-path:none;background:var(--accent);color:#fff;padding:.6em 1em;border-radius:8px;text-decoration:none;font-weight:700}
+  @media (prefers-color-scheme: dark){.skip:focus{color:#1a1310}}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  a{color:var(--accent-strong)}
+  @media (prefers-color-scheme: dark){a{color:var(--accent-strong)}}
+
+  /* ---------- Top bar & filters ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);padding:20px 0 12px}
+  /* Keep the sticky header fully opaque: a blurred backdrop under it forces a
+     full-page repaint on every scroll frame, which freezes scrolling on phones. */
+  /* On phones the wrapped rows make a sticky header taller than the viewport,
+     so the stuck block covers every listing and the page looks frozen while
+     scrolling. Let the header scroll naturally on small screens. */
+  @media (max-width:720px){
+    .topbar{position:static}
+  }
+  .topbar h1{
+    font-family:"DM Serif Display",Georgia,serif;font-weight:400;
+    font-size:clamp(1.8rem,5vw,2.5rem);margin:0 0 2px;letter-spacing:.01em;line-height:1.1;
+  }
+  .subhead{margin:0 0 12px;color:var(--muted);font-size:.99rem}
+  .subhead strong{color:var(--ink);font-weight:700}
+  .dist-row{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:10px}
+  .sr-row{display:flex;gap:10px;align-items:stretch;margin-bottom:10px}
+  .search{position:relative;flex:1 1 auto;min-width:0}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted)}
+  .search input{
+    width:100%;padding:10px 12px 10px 38px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font:inherit;font-size:.94rem;
+  }
+  .search input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .filters-btn{
+    position:relative;flex:none;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);
+    font:inherit;font-weight:700;font-size:.92rem;border-radius:10px;padding:10px 18px;cursor:pointer;
+  }
+  .filters-btn svg{width:16px;height:16px}
+  .filters-btn .badge{
+    position:absolute;top:-8px;right:-8px;min-width:22px;height:22px;padding:0 6px;
+    border-radius:999px;background:var(--teal-btn);color:var(--teal-btn-ink);
+    font-size:.76rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;
+    box-shadow:0 1px 3px rgba(0,0,0,.25);
+  }
+  .filters-btn .badge[hidden]{display:none}
+  .result-line{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.86rem;margin:4px 0 0}
+  .result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .clear-btn{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;font-weight:600;border-radius:8px;padding:5px 12px;cursor:pointer}
+  .clear-btn.show{display:inline-block}
+  .seg{display:flex;flex-wrap:wrap;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{
+    border:0;background:transparent;color:var(--muted);font:inherit;font-size:.85rem;font-weight:600;
+    padding:9px 14px;cursor:pointer;
+  }
+  .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+  @media (prefers-color-scheme: dark){.seg button[aria-pressed="true"]{color:#1a1310}}
+  .seg-sm button{font-size:.8rem;padding:6px 11px}
+  .tool-label{font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);flex:none}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    border:1px solid var(--line);background:var(--card);color:var(--ink);
+    font:inherit;font-size:.82rem;font-weight:600;padding:7px 12px;border-radius:999px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .chip .n{font-size:.72rem;font-weight:700;color:var(--muted);background:var(--bg-soft);border-radius:999px;padding:1px 8px}
+  .chip[aria-pressed="true"]{background:var(--teal-btn);color:var(--teal-btn-ink);border-color:var(--teal-btn)}
+  .chip[aria-pressed="true"] .n{background:rgba(255,255,255,.22);color:inherit}
+  @media (prefers-color-scheme: dark){.chip[aria-pressed="true"] .n{background:rgba(0,0,0,.2)}}
+  .toggle{
+    display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+    background:var(--card);color:var(--ink);font:inherit;font-size:.85rem;font-weight:600;
+    padding:8px 14px;cursor:pointer;
+  }
+  .toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
+  .toggle[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+  .toggle[aria-pressed="true"] .dot{background:var(--teal)}
+  button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- Filter panel ---------- */
+  body.panel-open{overflow:hidden}
+  .scrim{position:fixed;inset:0;background:rgba(15,12,8,.5);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:80}
+  @media (prefers-color-scheme: dark){.scrim{background:rgba(0,0,0,.6)}}
+  body.panel-open .scrim{opacity:1;pointer-events:auto}
+  .panel{
+    position:fixed;top:0;right:0;bottom:0;width:min(420px,94vw);
+    background:var(--bg);z-index:90;box-shadow:-14px 0 44px rgba(0,0,0,.28);
+    transform:translateX(105%);visibility:hidden;
+    transition:transform .28s ease,visibility 0s .28s;
+    display:flex;flex-direction:column;
+  }
+  body.panel-open .panel{transform:none;visibility:visible;transition:transform .28s ease}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--line)}
+  .panel-head h2{margin:0;font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:1.3rem}
+  .icon-btn{
+    flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:1.25rem;line-height:1;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .panel-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:2px 20px 20px;-webkit-overflow-scrolling:touch}
+  .fsection{padding:18px 0;border-bottom:1px solid var(--line)}
+  .fsection:last-child{border-bottom:0}
+  .fsection h3{margin:0 0 12px;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .panel-foot{display:flex;align-items:center;gap:14px;padding:14px 20px;border-top:1px solid var(--line)}
+  .text-btn{border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;padding:12px 4px;white-space:nowrap}
+  .text-btn:hover{color:var(--ink)}
+  .show-btn{flex:1;border:0;background:var(--teal-btn);color:var(--teal-btn-ink);font:inherit;font-weight:700;font-size:.96rem;border-radius:10px;padding:13px 18px;cursor:pointer}
+
+  /* ---------- Drive-time slider ---------- */
+  .drive-live{margin:0 0 2px;font-size:1.04rem}
+  .drive-live strong{color:var(--accent-strong)}
+  @media (prefers-color-scheme: dark){.drive-live strong{color:var(--accent)}}
+  .rwrap{position:relative;margin-top:10px}
+  #driveRange{position:relative;z-index:1;-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;margin:0;display:block;cursor:pointer}
+  #driveRange:focus{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+  #driveRange::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:linear-gradient(to right,var(--teal-btn) var(--pct,100%),var(--line) var(--pct,100%))}
+  #driveRange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--card);border:3px solid var(--teal-btn);margin-top:-7px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+  #driveRange::-moz-range-track{height:6px;border-radius:999px;background:var(--line)}
+  #driveRange::-moz-range-progress{height:6px;border-radius:999px;background:var(--teal-btn)}
+  #driveRange::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--card);border:3px solid var(--teal-btn)}
+  .ticks{position:absolute;top:8px;left:0;right:0;height:10px;pointer-events:none}
+  .ticks i{position:absolute;top:0;width:2px;height:10px;background:var(--muted);opacity:.75;transform:translateX(-1px);border-radius:1px}
+  .stop-labels{position:relative;height:20px;margin-top:3px;font-size:.72rem;font-weight:600;color:var(--muted)}
+  .stop-labels span{position:absolute;top:0;white-space:nowrap;transform:translateX(-50%)}
+  .stop-labels span.first{transform:none}
+  .stop-labels span.last{transform:translateX(-100%)}
+  .stop-qual{position:relative;height:15px;margin-top:1px;font-size:.66rem;font-weight:600;color:var(--muted);opacity:.65}
+  .stop-qual span{position:absolute;top:0;white-space:nowrap;transform:translateX(-50%)}
+  .stop-qual span.first{transform:none}
+  .stop-qual span.last{transform:translateX(-100%)}
+
+  /* ---------- Card extras ---------- */
+  .towns{display:flex;gap:8px;margin-top:2px}
+  .townbox{flex:1;border:1px solid var(--line);border-radius:10px;padding:7px 6px;text-align:center;background:var(--bg-soft);min-width:0}
+  .townbox .tb-name{display:block;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .townbox .tb-time{display:block;font-size:.84rem;font-weight:700;margin-top:1px}
+  .townbox.sel{background:var(--teal-soft);border-color:var(--teal)}
+  .townbox.sel .tb-time{color:var(--teal)}
+  .addr-text{flex:1;min-width:0}
+  .copy-btn{
+    flex:none;margin-left:6px;border:1px solid var(--line);background:transparent;
+    color:var(--muted);border-radius:8px;padding:4px;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .copy-btn svg{width:14px;height:14px}
+  .copy-btn:hover{color:var(--ink);border-color:var(--muted)}
+  .copy-btn.ok{color:var(--teal);border-color:var(--teal)}
+  .note.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .note.expanded{display:block}
+  .moreless{align-self:flex-start;border:0;background:none;color:var(--accent-strong);font:inherit;font-size:.85rem;font-weight:700;padding:0;margin:0;cursor:pointer;text-align:left}
+  @media (prefers-color-scheme: dark){.moreless{color:var(--accent)}}
+  .flat-list{padding-top:30px}
+
+  /* ---------- Sections ---------- */
+  .cat-section{padding-top:30px}
+  .cat-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .cat-icon{
+    flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;color:var(--accent-strong);
+  }
+  @media (prefers-color-scheme: dark){.cat-icon{color:var(--accent)}}
+  .cat-icon svg{width:25px;height:25px}
+  .cat-head h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:1.65rem;margin:0;line-height:1.2}
+  .cat-head p{margin:4px 0 0;color:var(--muted);font-size:.93rem;max-width:60ch}
+  .cat-count{margin-left:auto;flex:none;font-size:.78rem;font-weight:700;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px;white-space:nowrap}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:14px}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 15px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--shadow);
+    content-visibility:auto;contain-intrinsic-size:auto 480px;
+  }
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .town{font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-strong)}
+  @media (prefers-color-scheme: dark){.town{color:var(--accent)}}
+  .drive{font-size:.74rem;font-weight:700;color:var(--teal);background:var(--teal-soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .card h3{margin:0;font-size:1.18rem;line-height:1.25}
+  .type-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .type-tag{font-size:.76rem;font-weight:600;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+  .season-tag{display:inline-flex;align-items:center;font-size:.76rem;font-weight:700;color:var(--accent-strong);background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:2px 10px}
+  @media (prefers-color-scheme: dark){.season-tag{color:var(--accent)}}
+  .late-tag{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;font-weight:600;color:var(--teal);border:1px solid var(--teal);border-radius:999px;padding:2px 10px}
+  .late-tag svg{width:12px;height:12px}
+  .hours{display:flex;gap:8px;align-items:flex-start;font-size:.86rem;color:var(--muted)}
+  .hours svg{flex:none;width:15px;height:15px;margin-top:3px}
+  .note{margin:0;font-size:.92rem}
+  .flag{
+    display:flex;gap:8px;align-items:flex-start;margin:0;font-size:.83rem;font-weight:500;
+    background:var(--caution-bg);border:1px solid var(--caution-line);color:var(--caution-ink);
+    border-radius:10px;padding:8px 11px;
+  }
+  .flag svg{flex:none;width:15px;height:15px;margin-top:2px}
+  .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:7px}
+  .addr{font-size:.83rem;color:var(--muted);display:flex;gap:7px;align-items:flex-start}
+  .addr svg{flex:none;width:14px;height:14px;margin-top:3px}
+  .card-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .map-link{
+    display:inline-flex;align-items:center;gap:6px;font-size:.87rem;font-weight:700;
+    color:var(--accent-strong);text-decoration:none;border-bottom:2px solid var(--accent-soft);
+    padding-bottom:1px;
+  }
+  @media (prefers-color-scheme: dark){.map-link{color:var(--accent)}}
+  .map-link:hover{border-color:var(--accent)}
+  .map-link svg{width:14px;height:14px}
+  .phone-link{display:inline-flex;align-items:center;gap:6px;font-size:.87rem;font-weight:600;color:var(--muted);text-decoration:none}
+  .phone-link:hover{color:var(--ink);text-decoration:underline}
+  .phone-link svg{width:14px;height:14px}
+
+  .empty{display:none;text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty.show{display:block}
+  .empty h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;color:var(--ink);margin:0 0 8px}
+  .empty button{margin-top:14px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:.9rem;border-radius:10px;padding:10px 22px;cursor:pointer}
+  @media (prefers-color-scheme: dark){.empty button{color:#1a1310}}
+
+  /* ---------- Footer ---------- */
+  footer{margin:52px 0 0;padding:30px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:.87rem}
+  footer p{margin:0 0 10px;max-width:70ch}
+  footer strong{color:var(--ink)}
+
+  @media (max-width:640px){
+    .cat-head h2{font-size:1.4rem}
+    .topbar h1{font-size:1.9rem}
+    .subhead{font-size:.93rem}
+    .sr-row{gap:8px}
+    .filters-btn{padding:10px 13px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#listings">Skip to listings</a>
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="wrap">
+      <h1>NEPA Date Nights</h1>
+      <p class="subhead"><strong id="spotCount">97</strong> date-night spots around Northeast PA</p>
+      <div class="dist-row">
+        <span class="tool-label">Distance from</span>
+        <div class="seg" id="anchorSeg" role="group" aria-label="Starting location for drive times">
+          <button data-anchor="kingston" aria-pressed="true">Kingston</button>
+          <button data-anchor="scranton" aria-pressed="false">Scranton</button>
+          <button data-anchor="canadensis" aria-pressed="false">Canadensis</button>
+        </div>
+      </div>
+      <div class="sr-row">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+          <input id="q" type="search" placeholder="Search places or notes…" aria-label="Search places or notes" autocomplete="off" />
+        </div>
+        <button class="filters-btn" id="filtersBtn" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8.2V19l-4 2v-7.8L3 5z"/></svg>
+          Filters<span class="badge" id="filterBadge" hidden>0</span>
+        </button>
+      </div>
+      <div class="result-line">
+        <span id="resultLine"></span>
+        <span class="result-actions">
+          <div class="seg seg-sm" id="sortSeg" role="group" aria-label="Sort order">
+            <button data-sort="az" aria-pressed="true">A–Z</button>
+            <button data-sort="drive" aria-pressed="false">By drive</button>
+          </div>
+          <button class="clear-btn" id="clearBtn">Clear filters</button>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main id="listings">
+    <div id="sections"></div>
+    <div class="empty" id="empty" role="status">
+      <h2>No spots match that combination</h2>
+      <p>Try clearing the search or choosing another kind of night.</p>
+      <button id="emptyClear">Clear filters</button>
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>A snapshot from Oct 1, 2026.</strong> Hours, showtimes, and cover charges change — open the map link or call before a late-evening visit, especially anywhere flagged above.</p>
+    <p>Drive times are approximate, measured from the selected starting town. Map links open Google Maps in a new tab.</p>
+    <p>This guide covers bars, breweries, and experiences only — no restaurants, cafés, dessert shops, wineries, or wine bars, by request.</p>
+  </footer>
+</div>
+
+  <div class="scrim" id="scrim" aria-hidden="true"></div>
+  <aside class="panel" id="filterPanel" role="dialog" aria-modal="true" aria-label="Filters" aria-hidden="true">
+    <div class="panel-head">
+      <h2>Filters</h2>
+      <button class="icon-btn" id="panelClose" aria-label="Close filters">&times;</button>
+    </div>
+    <div class="panel-body">
+      <div class="fsection">
+        <h3>Max drive time</h3>
+        <p class="drive-live" id="driveLive"></p>
+        <div class="rwrap">
+          <input type="range" id="driveRange" min="0" max="4" step="1" value="4" aria-label="Maximum drive time" />
+          <div class="ticks" aria-hidden="true">
+            <i style="left:calc(10px + (100% - 20px)*0/4)"></i>
+            <i style="left:calc(10px + (100% - 20px)*1/4)"></i>
+            <i style="left:calc(10px + (100% - 20px)*2/4)"></i>
+            <i style="left:calc(10px + (100% - 20px)*3/4)"></i>
+            <i style="left:calc(10px + (100% - 20px)*4/4)"></i>
+          </div>
+        </div>
+        <div class="stop-labels" aria-hidden="true">
+          <span class="first" style="left:calc(10px + (100% - 20px)*0/4)">15 min</span>
+          <span style="left:calc(10px + (100% - 20px)*1/4)">30 min</span>
+          <span style="left:calc(10px + (100% - 20px)*2/4)">45 min</span>
+          <span style="left:calc(10px + (100% - 20px)*3/4)">1 hr</span>
+          <span class="last" style="left:calc(10px + (100% - 20px)*4/4)">All distances</span>
+        </div>
+        <div class="stop-qual" aria-hidden="true">
+          <span class="first" style="left:calc(10px + (100% - 20px)*0/4)">Local</span>
+          <span style="left:calc(10px + (100% - 20px)*3/4)">Far</span>
+          <span class="last" style="left:calc(10px + (100% - 20px)*4/4)">Further</span>
+        </div>
+      </div>
+      <div class="fsection">
+        <h3>Time of day</h3>
+        <div class="chips" id="timeChips" role="group" aria-label="Filter by time of day — choose as many as you like"></div>
+      </div>
+      <div class="fsection">
+        <h3>Seasonal</h3>
+        <div class="seg" id="seasonSeg" role="group" aria-label="Seasonal venues">
+          <button data-season="all" aria-pressed="true">All</button>
+          <button data-season="hide" aria-pressed="false">Hide seasonal</button>
+          <button data-season="now" aria-pressed="false">In season now</button>
+        </div>
+      </div>
+      <div class="fsection">
+        <h3>Category</h3>
+        <div class="chips" id="catChips" role="group" aria-label="Filter by category — choose as many as you like"></div>
+      </div>
+      <div class="fsection">
+        <h3>Late nights</h3>
+        <button class="toggle" id="weekdayToggle" aria-pressed="false"><span class="dot"></span>Weeknight-late only</button>
+      </div>
+    </div>
+    <div class="panel-foot">
+      <button class="text-btn" id="panelClear">Clear all</button>
+      <button class="show-btn" id="panelShow">Show 97 results</button>
+    </div>
+  </aside>
+
+<script>
+"use strict";
+
+/* -------- Data (researched 2026-10-01) -------- */
+var CATS = [
+  {id:"bars", title:"Bars & Cocktail Lounges", blurb:"Craft beer, karaoke, drag, dive bars, dance halls, and a speakeasy — most pouring till 2am.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-8 8.2L4 5z"/><line x1="12" y1="13.5" x2="12" y2="20"/><line x1="8.5" y1="20" x2="15.5" y2="20"/></svg>'},
+  {id:"casino", title:"Casino Nightlife", blurb:"Two 24/7 picks in the region — slots, tables, poker, live acts, and late-night bars.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1" fill="currentColor" stroke="none"/></svg>'},
+  {id:"breweries", title:"Breweries", blurb:"Start the night with a flight — most taprooms close 9–10pm.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h11v10a4 4 0 0 1-4 4H5z"/><path d="M16 10h2a3 3 0 0 1 0 6h-2"/><path d="M5 8c0-1.5 1-2.5 2-2.5S9 6 9 5.5 8 3 9 3s3 1 3 3"/></svg>'},
+  {id:"music", title:"Live Music", blurb:"Jazz clubs, theaters, and a mountaintop room — 8pm sets and concerts.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2.6V15"/><circle cx="6.8" cy="18" r="2.6"/><circle cx="17.8" cy="15" r="2.6"/></svg>'},
+  {id:"comedy", title:"Comedy", blurb:"Big-room stand-up running Friday and Saturday nights.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8.6" y="3" width="6.8" height="10.5" rx="3.4"/><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>'},
+  {id:"cinema", title:"Cinemas & Drive-Ins", blurb:"Drive-ins under the stars, dine-in screens, and late shows nightly.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5L4.6 4.8a.8.8 0 0 1 1-.6l14 3.4a.8.8 0 0 1 .6 1l-1.1 3.7"/><path d="M4.5 9.5h15"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><circle cx="9.5" cy="15" r="1.6"/><circle cx="14.5" cy="15" r="1.6"/><path d="M8 6.2l2.5.6M12.5 7.3l2.5.6M17 8.4l2.2.5"/></svg>'},
+  {id:"haunts", title:"Haunted Attractions", blurb:"Established annual haunted houses, hayrides, and scare zones that return every season — pop-up haunts stay off the list.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5C8.1 3.5 5.7 6.5 5.7 10.3v8.4l2.6-1.9 2.4 1.9 2.6-1.9 2.4 1.9 2.6-1.6v-6.8c0-3.8-2.4-6.8-6.3-6.8z"/><circle cx="9.8" cy="10.2" r="1" fill="currentColor" stroke="none"/><circle cx="14.2" cy="10.2" r="1" fill="currentColor" stroke="none"/><ellipse cx="12" cy="14.2" rx="1.1" ry="1.5"/></svg>'},
+  {id:"seasonal", title:"Seasonal Series & Annual Events", blurb:"Summer concert series, outdoor movies, ghost tours, night tubing, light trails, and fairs — open only in season, back every year.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="14" rx="2.5"/><path d="M4 10.5h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/><path d="M12 13.4l.7 1.5 1.4.7-1.4.7-.7 1.5-.7-1.5-1.4-.7 1.4-.7z"/></svg>'},
+  {id:"games", title:"Bowling, Arcades & Mini Golf", blurb:"Cosmic bowling after 9, pinball rows, laser tag, and big all-night-feeling arcades.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.2" r="2.1"/><path d="M12 7.5c-2.1 2.6-3.8 5.3-3.8 8.3a3.8 3.8 0 0 0 7.6 0c0-3-1.7-5.7-3.8-8.3z"/><path d="M10.1 9.9l3.8-.6"/></svg>'},
+  {id:"adventure", title:"Axe Throwing, Escape Rooms & Indoor Golf", blurb:"Swing axes, crack rooms, or play simulated golf till 2am.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5.5" y1="18.5" x2="14" y2="10"/><path d="M12.5 3.5c3.6-.8 7.2 1 8.4 4.4-2.7 2.4-6.3 2.4-8.6.4z"/><line x1="3.5" y1="20.5" x2="6" y2="18"/></svg>'},
+  {id:"creative", title:"Creative Nights", blurb:"Paint-and-sip, pottery, candle-making, improv, and more — evening workshops and classes.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-4.8 0-8.5 3.5-8.5 7.8 0 2.5 1.3 4.3 3 5.3.7 2.1 2 3.9 3.5 3.9 2 0 1.4-2.9.6-4.4H12c4.8 0 8.5-3.5 8.5-7.8S16.8 3.5 12 3.5z"/><circle cx="8" cy="10.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="11.5" cy="8" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1.1" fill="currentColor" stroke="none"/></svg>'},
+  {id:"afternoon", title:"Afternoon Adventures", blurb:"Midday-only date ideas — scenic rails, mines, museums, waterfalls, and animal parks for the daytime half of the day.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.5 1.5M16.9 16.9l1.5 1.5M18.4 5.6l-1.5 1.5M7.1 16.9l-1.5 1.5"/></svg>'},
+  {id:"stars", title:"Stargazing & Scenic Nights", blurb:"A riverfront walk under the skyline glow.", icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13.2A8 8 0 1 1 10.8 4 6.6 6.6 0 0 0 20 13.2z"/><path d="M18 4.5l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z"/></svg>'}
+];
+
+var VENUES = [
+  {cat:"bars", name:"Beer Boys", town:"Wilkes-Barre", addr:"176 N Washington St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Wed–Sat 6pm–2am · Sun 12pm–2am · Closed Mon–Tue", type:"Sports bar",
+   note:"72 drafts on tap and an 8pm–midnight happy hour — a no-frills craft-beer date night.", weeknight:true},
+  {cat:"bars", name:"Heat Bar & Night Club", town:"Wilkes-Barre", addr:"69–71 N Main St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Sun 5pm–2am · Wed–Sat 8pm–2am", type:"LGBTQ+ nightclub",
+   note:"Drag cabaret “Inferno Fridays” and karaoke Thursdays — downtown Wilkes-Barre's late-night showpiece.", weeknight:true},
+  {cat:"bars", name:"Whiskey Business", town:"Wilkes-Barre", addr:"87 Wood St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Daily 11am–2am", type:"Dive bar",
+   note:"Cash-only dive bar with cheap drinks — a classic low-key night out.", weeknight:true},
+  {cat:"bars", name:"Breakers", town:"Wilkes-Barre (inside Mohegan Pennsylvania)", addr:"1280 Highway 315 Blvd, Wilkes-Barre, PA 18702", time:{kingston:15, scranton:25, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Live bands Fri & Sat 8:30pm–12:30am · Battle of the Bands Thursdays", type:"Nightclub / live music",
+   note:"Inside Mohegan Pennsylvania — live bands till 12:30am and Battle of the Bands Thursdays.", weeknight:true},
+  {cat:"bars", name:"The Hive Taphouse", town:"Wilkes-Barre (inside Mohegan Pennsylvania)", addr:"1280 Highway 315 Blvd, Wilkes-Barre, PA", time:{kingston:15, scranton:25, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Bands Thu & Sat 9:30pm–12:30am · Open mic / DJ Tommy Fridays 7:30–11:30pm · Trivia Fri 7:30pm", type:"Live music bar",
+   note:"Inside Mohegan Pennsylvania — live bands till 12:30am, open mic and DJ Fridays, trivia at 7:30.", weeknight:true},
+  {cat:"bars", name:"Poor Richard's Pub", town:"Scranton (inside South Side Bowl)", addr:"125 Beech St, Scranton, PA", time:{kingston:30, scranton:6, canadensis:46}, hoursBuckets:["evening","late"],
+   hours:"Mon–Fri 5pm–2am · Sat 12pm–12am · Sun 12pm–2am", type:"Dive bar / karaoke",
+   note:"Inside South Side Bowl — karaoke with DJ Honey Do on Saturdays at 9:30pm.", weeknight:true},
+  {cat:"bars", name:"The V-Spot Bar", town:"Scranton", addr:"906 Providence Rd, Scranton, PA", time:{kingston:30, scranton:8, canadensis:50}, hoursBuckets:["evening","late"],
+   hours:"Sun 3pm–12am · Mon–Sat 3pm–2am", type:"Live music bar / karaoke",
+   note:"Live bands Fri & Sat, duos Thursdays, line dancing Wednesdays, open mic Tuesdays, karaoke Sundays.", weeknight:true, phone:"(570) 963-7888"},
+  {cat:"bars", name:"Ole Tyme Charley's Pub & Grill", town:"Plains", addr:"31 S River St, Plains, PA", time:{kingston:10, scranton:27, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Tue–Sat 6pm–2am", type:"Karaoke hotspot / pub",
+   note:"Karaoke multiple nights a week, pool tables, and live music in Plains.", weeknight:true, phone:"(570) 822-3332",
+   flag:"Also serves food — but the draw is the karaoke and bar scene."},
+  {cat:"bars", name:"The Office - Mountaintop Pub", town:"Mountain Top", addr:"501 S Main Rd, Mountain Top, PA", time:{kingston:25, scranton:36, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Thu–Sat 11am–2am", type:"Darts & pool pub",
+   note:"Dart boards (American and English), a pool table, and live music up on the mountain.",
+   flag:"Smoking is permitted inside."},
+  {cat:"bars", name:"Madame Jenny's", town:"Scranton (inside Ale Mary's)", addr:"126 Franklin Ave, Scranton, PA", time:{kingston:30, scranton:5, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Fri–Sat 6pm–11:45pm", type:"Speakeasy",
+   note:"Hidden cocktail speakeasy inside Ale Mary's — a jazz band Fridays, burlesque and cabaret Saturdays. Enter through the alley red-light door."},
+  {cat:"casino", name:"Mount Airy Casino Resort", town:"Mt Pocono", addr:"312 Woodland Rd, Mt Pocono, PA", time:{kingston:70, scranton:40, canadensis:15}, hoursBuckets:["evening","late"],
+   hours:"Casino floor open 24/7 · Live acts · 21+", type:"Casino resort",
+   note:"1,585 machines, 68 table games, and a poker room — plus live music, comedy, and multiple bars. The farthest pick by far, and genuinely year-round.", weeknight:true},
+  {cat:"casino", name:"Mohegan Pennsylvania (gaming floor)", town:"Wilkes-Barre", addr:"1280 Highway 315 Blvd, Wilkes-Barre, PA 18702", time:{kingston:10, scranton:25, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Open 24 hours, 7 days", type:"Casino",
+   note:"The full casino floor — slots, table games, and poker room, open around the clock. Home to three other listings here: Breakers, The Hive Taphouse, and Wise Crackers Comedy Club.", weeknight:true,
+   flag:"Smoking is permitted in half of the casino."},
+  {cat:"bars", name:"The Mines", town:"Wilkes-Barre", addr:"105 N Main St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Thu 9pm–1am listed · Other nights not verified", type:"Dance nightclub / live music",
+   note:"Downtown Wilkes-Barre's three-level dance nightclub with DJs and themed nights.",
+   flag:"Hours only partially verified — call ahead."},
+  {cat:"bars", name:"Tap at Humboldt Beer Depot", town:"Hazleton (Hazle Township)", addr:"563 Can Do Expressway, Hazle Township, PA 18202", time:{kingston:30, scranton:55, canadensis:50}, hoursBuckets:["evening","late"],
+   hours:"Tue 3–10:30pm · Wed–Thu 11am–10:30pm · Fri–Sat 11am–midnight", type:"Craft-beer bar / live music",
+   note:"50 rotating taps plus a game room — acoustic Thursdays, bands Fri–Sat, open mic Tuesdays.", phone:"(570) 497-4140"},
+  {cat:"bars", name:"The Rusty Nail", town:"Scranton", addr:"732 S Irving Ave, Scranton, PA", time:{kingston:30, scranton:8, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Sun 12pm–10pm · Mon 5pm–2am · Wed–Sat 11am–2am", type:"Dive bar",
+   note:"Neighborhood dive with karaoke, trivia, darts, pool, and live music.", weeknight:true, phone:"(570) 354-2829",
+   flag:"Cash only."},
+  {cat:"bars", name:"The Bog", town:"Scranton", addr:"341 Adams Ave, Scranton, PA", time:{kingston:30, scranton:5, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Sun 4pm–2am · Wed–Sat open till 2am", type:"Dive bar / live music",
+   note:"Dive bar and live-music hub with weekly music and cheap drafts — a Scranton crowd favorite.", weeknight:true, phone:"(570) 341-6761"},
+  {cat:"bars", name:"Normandie Bar & Grill", town:"Scranton", addr:"1225 Capouse Ave, Scranton, PA", time:{kingston:30, scranton:8, canadensis:46}, hoursBuckets:["evening","late"],
+   hours:"Daily 12pm–2am", type:"Corner dive bar",
+   note:"Corner dive with pool tables, a 9,000-track jukebox, and sports TVs.", weeknight:true},
+
+  {cat:"breweries", name:"Susquehanna Brewing Co.", town:"Pittston", addr:"635 S Main St, Pittston, PA", time:{kingston:20, scranton:20, canadensis:56}, hoursBuckets:["evening"],
+   hours:"Tue–Sat 12–10pm · Sun–Mon 12–8pm", type:"Brewery",
+   note:"4.7-star taproom with trivia and live music.", flag:"Closes 9–10pm — best as a first stop."},
+  {cat:"breweries", name:"Breaker Brewing Company", town:"Wilkes-Barre", addr:"787 E Northampton St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening"],
+   hours:"Tue–Thu 4–9pm · Fri 4–10pm · Sat 12–10pm · Sun 12–7pm", type:"Brewery",
+   note:"Saturday live music and beer flights.", flag:"Closes 9–10pm — best as a first stop."},
+  {cat:"breweries", name:"Back Mountain Brewing Company", town:"Dallas", addr:"1174 Twin Stacks Dr, Dallas, PA 18612", time:{kingston:20, scranton:34, canadensis:69}, hoursBuckets:["evening"],
+   hours:"Thu–Fri 4–9pm · Sat 12–9pm · Sun 12–5pm", type:"Brewery",
+   note:"Veteran-owned nano brewery; trivia Thursdays and live music.", flag:"Closes 9–10pm — best as a first stop."},
+  {cat:"breweries", name:"Benny Brewing Co.", town:"Wilkes-Barre", addr:"1429 Sans Souci Pkwy, Wilkes-Barre, PA", time:{kingston:10, scranton:25, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Tue–Thu 4–10pm · Fri–Sat 4–11pm", type:"Brewery",
+   note:"Taproom with weekly trivia Tuesdays at 7pm, live music nights, and touring Next Stop Comedy shows.",
+   flag:"Hours vary by source — call ahead. Closes ~10–11pm, best as a first stop."},
+
+  {cat:"music", name:"River Street Jazz Cafe", town:"Plains", addr:"667 N River St, Plains, PA 18705", time:{kingston:10, scranton:27, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Fri–Sat 8pm–2am · 21+", type:"Jazz/blues club",
+   note:"Est. 1993 — $10–$25 tickets, doors ~8pm, about 10 minutes from Kingston."},
+  {cat:"music", name:"F.M. Kirby Center for the Performing Arts", town:"Wilkes-Barre", addr:"71 Public Square, Wilkes-Barre, PA 18701", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening"],
+   hours:"Shows start 7–8pm, ending ~10–10:30pm", type:"Theater / concerts",
+   note:"Concerts and Broadway-style shows, plus $5–$7 classic film screenings."},
+  {cat:"music", name:"Mohegan Arena at Casey Plaza", town:"Wilkes-Barre", addr:"255 Highland Park Blvd, Wilkes-Barre, PA 18702", time:{kingston:15, scranton:26, canadensis:60}, hoursBuckets:["evening"],
+   hours:"Evening events", type:"Arena",
+   note:"WBS Penguins hockey plus touring concerts; 8,600 seats."},
+  {cat:"music", name:"Penn's Peak", town:"Jim Thorpe", addr:"325 Maury Road, Jim Thorpe, PA 18229", time:{kingston:50, scranton:70, canadensis:55}, hoursBuckets:["evening"],
+   hours:"Shows start ~8pm", type:"Concert venue",
+   note:"1,600-capacity mountaintop room with 50-mile views; ~25 shows booked through 2027."},
+  {cat:"music", name:"Sherman Theater", town:"Stroudsburg", addr:"524 Main Street, Stroudsburg, PA 18360", time:{kingston:60, scranton:55, canadensis:25}, hoursBuckets:["evening"],
+   hours:"Shows typically 7–8pm", type:"Concert venue",
+   note:"Nonprofit 1,250-cap room with a busy fall calendar."},
+  {cat:"music", name:"Sergei's LIVE", town:"Scranton", addr:"519 Linden St, Scranton, PA 18503", time:{kingston:30, scranton:5, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Fri–Sat 8pm–2am · 21+ only", type:"Live-music lounge / cocktail bar",
+   note:"Upscale live-music lounge and cocktail bar — live bands, late-night DJs, and the Scranton Comedy Club showtime series.", phone:"(272) 228-1725",
+   flag:"Business-casual dress code enforced."},
+  {cat:"music", name:"Scranton Cultural Center (Masonic Temple)", town:"Scranton", addr:"420 N Washington Ave, Scranton, PA 18503", time:{kingston:30, scranton:5, canadensis:45}, hoursBuckets:["evening"],
+   hours:"Evening performances typically 7:00–7:30pm", type:"Theater / concerts",
+   note:"Broadway touring shows and concerts in the renovated 1930 Masonic Temple — upcoming season includes Mystic Pizza (Oct 23–25) and Menopause The Musical (Nov 17)."},
+
+  {cat:"comedy", name:"Wise Crackers Comedy Club", town:"Wilkes-Barre (inside Mohegan Pennsylvania)", addr:"1280 PA-315, Wilkes-Barre, PA 18702", time:{kingston:15, scranton:25, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Fri–Sat 8–11pm (doors 8pm, show 9pm) · ~$25 · 21+", type:"Stand-up comedy",
+   note:"The stand-up room inside Mohegan Pennsylvania. Note: the old Scranton location is permanently closed — this Mohegan PA location is the live one."},
+
+  {cat:"cinema", name:"Moonlite Drive-In", town:"West Wyoming", addr:"1190 Shoemaker Ave, West Wyoming, PA 18644", time:{kingston:10, scranton:29, canadensis:63}, hoursBuckets:["evening","late"],
+   hours:"Fridays 7pm · In season · Evening double features", type:"Drive-in", season:{s:[4,1],e:[9,30]},
+   note:"Evening double features starting 7pm Fridays.", flag:"Call ahead: hours only partially verified."},
+  {cat:"cinema", name:"R/C Wilkes-Barre Movies 14", town:"Wilkes-Barre", addr:"24 E Northampton St, Wilkes-Barre, PA 18701", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Late evening shows nightly", type:"Multiplex",
+   note:"Downtown multiplex with late shows every night.", weeknight:true},
+  {cat:"cinema", name:"Garden Drive-In Theater", town:"Hunlock Creek", addr:"20 State Route 11, Hunlock Creek, PA 18621", time:{kingston:20, scranton:40, canadensis:64}, hoursBuckets:["evening","late"],
+   hours:"Fri/Sat/Sun · In season · Gates ~7pm · Closes ~11:30pm · $7 double feature", type:"Drive-in", season:{s:[4,1],e:[9,30]},
+   note:"Double features under the stars for $7.", phone:"(570) 735-5933"},
+  {cat:"cinema", name:"Cinemark Montage Mountain 20 and XD", town:"Moosic", addr:"40 Glenmaura National Blvd, Moosic, PA 18507", time:{kingston:25, scranton:15, canadensis:40}, hoursBuckets:["evening","late"],
+   hours:"Late evening shows nightly", type:"Multiplex",
+   note:"Big-screen XD format with late shows every night.", weeknight:true},
+  {cat:"cinema", name:"Circle Drive-In Theater", town:"Scranton", addr:"1911 Scranton Carbondale Hwy, Scranton, PA 18508", time:{kingston:30, scranton:10, canadensis:50}, hoursBuckets:["evening","late"],
+   hours:"Evening double features Fri–Sun · In season", type:"Drive-in", season:{s:[4,1],e:[9,30]},
+   note:"Classic drive-in on the Scranton–Carbondale highway.", flag:"Call ahead: hours not fully verified."},
+  {cat:"cinema", name:"Cosmic Cinemas", town:"Scranton", addr:"301 Lackawanna Ave, Scranton, PA 18503", time:{kingston:30, scranton:5, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Evening shows", type:"Dine-in cinema",
+   note:"Evening shows with in-seat dining and drinks.", flag:"Call ahead: showtimes not verified."},
+  {cat:"cinema", name:"Dietrich Theater", town:"Tunkhannock", addr:"60 East Tioga Street, Tunkhannock, PA 18657", time:{kingston:30, scranton:40, canadensis:75}, hoursBuckets:["evening"],
+   hours:"Evening showtimes typically 6:30–9:30pm", type:"Independent cinema",
+   note:"1936-built nonprofit theater with cheap tickets and retro charm."},
+  {cat:"cinema", name:"Mahoning Drive-In Theatre", town:"Lehighton", addr:"635 Seneca Rd, Lehighton, PA 18235", time:{kingston:50, scranton:55, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Fri–Sun 6pm–2am · In season (showtimes listed through October) · ~$8 general admission", type:"Drive-in", season:{s:[4,1],e:[10,31]},
+   note:"Classic 35mm drive-in, opened 1949, still running double features under the stars each season.", phone:"(610) 683-7243"},
+
+  {cat:"games", name:"Chacko's Family Bowling Center", town:"Wilkes-Barre", addr:"195 N Wilkes-Barre Blvd, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Wed–Sat till 11pm · Glow bowling Fri & Sat nights (Sun 10am–10pm · Mon 5–10pm · Tue 11am–10pm)", type:"Bowling",
+   note:"40 lanes with glow bowling Friday and Saturday nights, plus the Memory Lane Lounge with weekly live entertainment."},
+  {cat:"games", name:"Idle Hours North", town:"Scranton", addr:"2008 Scranton Carbondale Hwy, Scranton, PA", time:{kingston:30, scranton:12, canadensis:50}, hoursBuckets:["evening","late"],
+   hours:"Fri till 12:30am · Sat till 1am (Sun 9am–12am · Mon–Thu 10am–12am)", type:"Bowling / arcade",
+   note:"Cosmic bowling Fri 9pm–midnight & Sat 9pm–1am, plus glow mini golf, VR, and a giant arcade."},
+  {cat:"games", name:"South Side Bowl (Idle Hours South)", town:"Scranton", addr:"125 Beech St, Scranton, PA", time:{kingston:30, scranton:6, canadensis:46}, hoursBuckets:["evening","late"],
+   hours:"Listed till 2am nightly", type:"Bowling / arcade",
+   note:"34 lanes, 14 pool tables, laser tag, and the arcade — home of Poor Richard's Pub (listed under Bars).",
+   flag:"Confirm late hours for your night before heading out.", weeknight:true},
+  {cat:"games", name:"Bartari", town:"Scranton", addr:"101 Adams Ave, Scranton, PA 18503", time:{kingston:30, scranton:5, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Extended weekend hours", type:"Arcade bar",
+   note:"Classic arcade and pinball with craft cocktails.", flag:"Call ahead: exact closing hours not verified."},
+  {cat:"games", name:"Dave & Buster's", town:"Moosic", addr:"6000 Shoppes Blvd, Moosic, PA", time:{kingston:25, scranton:15, canadensis:40}, hoursBuckets:["evening","late"],
+   hours:"Sun–Thu till 12am · Fri–Sat till 1am", type:"Arcade",
+   note:"18,000 sq ft arcade with VR, about 25 minutes from Kingston; Thursday 6pm trivia.", weeknight:true},
+  {cat:"games", name:"Clarkys Billiards", town:"Scranton", addr:"850 Providence Rd, Scranton, PA", time:{kingston:30, scranton:8, canadensis:50}, hoursBuckets:["evening","late"],
+   hours:"Sun–Thu 11am–11pm · Fri–Sat 11am–1am", type:"Pool hall + bar",
+   note:"Pro-grade 9ft Diamond tables and 7ft bar boxes with leagues, tournaments, and a central bar.", phone:"(570) 650-2564"},
+
+  {cat:"adventure", name:"The Hatchet Factory", town:"Kingston", addr:"125 Welles St, Kingston, PA", time:{kingston:5, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Fri 5–10:30pm · Sat 3–10:30pm (Sun 12–5pm · Thu 5–9pm)", type:"Axe throwing",
+   note:"13 lanes of instructor-led 90-minute sessions, BYOB — right in Kingston."},
+  {cat:"adventure", name:"Breakout Escape Room", town:"Wilkes-Barre", addr:"618 Blackman St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening"],
+   hours:"Fri 4–9pm · Sat 12–9pm (Wed–Thu 4–8pm · Sun 12–7pm)", type:"Escape room",
+   note:"60-minute themed escape rooms for 2–8 players."},
+  {cat:"adventure", name:"Virtual Fairways", town:"Wilkes-Barre", addr:"45 E Northampton St, Wilkes-Barre, PA 18701", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"Daily 5am–2am (unmanned 10pm–8am — book ahead)", type:"Indoor golf simulators",
+   note:"Foresight Falcon golf simulators, $30–45/hr per person.", weeknight:true},
+  {cat:"adventure", name:"Alden Axe Co", town:"Nanticoke", addr:"26 E Kirmar Ave, Nanticoke, PA", time:{kingston:15, scranton:30, canadensis:62}, hoursBuckets:["evening"],
+   hours:"Sun–Tue & Thu–Sat 5–10pm · Closed Wed", type:"Axe throwing + arcade",
+   note:"Axe throwing and arcade games in Nanticoke."},
+  {cat:"adventure", name:"Clubhouse 315", town:"Wilkes-Barre", addr:"1492 Highway 315, Wilkes-Barre, PA 18702", time:{kingston:15, scranton:25, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Mon–Wed 4–10pm · Thu–Fri 4–11pm · Sat 11am–11pm · Sun 4–10pm", type:"Indoor golf + arcade bar",
+   note:"Golfzon golf simulators, a full cocktail bar, vintage arcade, live music stage, covered deck, and touring Next Stop Comedy shows.", phone:"(570) 304-6405",
+   flag:"Hours vary by source — call ahead."},
+  {cat:"adventure", name:"Electric City Axe Throwing", town:"Scranton", addr:"1141 Capouse Ave, Scranton, PA", time:{kingston:30, scranton:8, canadensis:46}, hoursBuckets:["evening"],
+   hours:"Thu–Fri 5–10pm · Sat 12–10pm · Sun 12–6pm", type:"Axe throwing",
+   note:"Axe throwing with projected target games and Glow Throw nights; outside food and drinks allowed (BYOB-friendly)."},
+  {cat:"creative", name:"Art n' Vino", town:"Pittston", addr:"350 Kennedy Blvd, Pittston, PA 18640", time:{kingston:20, scranton:20, canadensis:56}, hoursBuckets:["evening"],
+   hours:"Evening events start 6:30pm · ~3 hrs · ~$42 (instruction till ~9:30pm, open finishing time after)", type:"Paint-and-sip studio (BYOB)",
+   note:"\"It's a party, not an art class.\" A BYOB paint-and-sip studio — bring whatever you want to drink or nothing at all; the painting is the whole point, nothing wine-centric about it.", phone:"(570) 430-5045"},
+  {cat:"creative", name:"Nai's Merlot n Picasso", town:"Tannersville", addr:"246 Stadden Rd, Tannersville, PA", time:{kingston:47, scranton:42, canadensis:25}, hoursBuckets:["evening"],
+   hours:"Evening painting sessions Wed–Fri 6:30–9pm · Sat 5–7:30pm (Sun 3–5:30pm)", type:"Paint-and-sip studio",
+   note:"Paint-and-sip art studio where painting is the activity — wine and cocktails are purely a side thing if you want them. 4.8★ across 17 reviews.", phone:"(570) 534-0999"},
+  {cat:"creative", name:"Canvas and Cabernet", town:"Walnutport", addr:"1160 Riverview Dr, Walnutport, PA", time:{kingston:52, scranton:72, canadensis:55}, hoursBuckets:["evening"],
+   hours:"Evening sessions Mon–Sat 6–9pm (Sun 1–4pm)", type:"Paint-and-sip studio",
+   note:"Paint-and-sip studio hosting parties \"at your place or ours\" — painting is the whole event and the wine is a side thing. 5.0★ across 31 reviews.", phone:"(484) 330-1298"},
+
+  {cat:"creative", name:"Designs by Olivia Grey", town:"Pittston", addr:"350 Kennedy Blvd, Pittston, PA 18640", time:{kingston:15, scranton:20, canadensis:56}, hoursBuckets:["evening"],
+   hours:"Themed evening candle-making events after hours (regular hours Wed–Sat 11am–7pm)", type:"Candle bar / classes",
+   note:"Candle bar with themed after-hours classes like murder-mystery \"Clues & Candles\" and Schitt's Creek night; BYO snacks and drinks. Sits in the same complex as Art n' Vino — an easy double-stop date night.", phone:"(570) 704-7761",
+   flag:"Evening events are special ticketed nights — check the schedule."},
+  {cat:"creative", name:"Peaceful Potter", town:"Wilkes-Barre", addr:"539 Scott St, Wilkes-Barre, PA 18702", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening"],
+   hours:"One-time wheel classes Wed 6–8pm · Intro to Pottery Wed/Thu 6–8pm · Intermediate Mon 6–8pm", type:"Pottery studio",
+   note:"One-time pottery-wheel classes — \"ditch the typical dinner-and-a-movie night out and take the pottery wheel for a spin,\" as they put it. All-inclusive, no experience needed; intro sessions run 6–8pm on Wednesdays and Thursdays.", phone:"(570) 266-8811"},
+  {cat:"creative", name:"Behold A New Thing", town:"Plymouth", addr:"25 E Main St, Plymouth, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening"],
+   hours:"Open Fri & Sat till 7pm — call ahead for evening class times", type:"Creative workshop hub",
+   note:"Beginner stained glass, painting, mosaic, and epoxy workshops in a creative-hub studio.", phone:"(570) 771-6621",
+   flag:"Evening class times partially verified — call ahead."},
+  {cat:"creative", name:"Electric City Improv", town:"Scranton", addr:"227 Lackawanna Ave, Scranton, PA", time:{kingston:35, scranton:5, canadensis:45}, hoursBuckets:["evening"],
+   hours:"Fridays 7–10pm · Classes, shows & workshops", type:"Improv theater",
+   note:"\"Scranton's home for improv training and performance\" — improv shows, classes, and workshops."},
+  {cat:"creative", name:"Hazleton Art League", town:"Hazleton", addr:"31 W Broad St, Hazleton, PA 18201", time:{kingston:35, scranton:57, canadensis:50}, hoursBuckets:["evening"],
+   hours:"Bi-weekly Wednesdays 6–8:30pm · $15 (pay online)", type:"Art classes / life drawing",
+   note:"Bi-weekly life drawing and painting sessions — still life plus figure drawing. One heads-up: an artist's model attends and sessions may include nude figure drawing, so go in with full expectations."},
+  {cat:"creative", name:"Noteology", town:"Scranton", addr:"537 Wyoming Ave, Scranton, PA 18509", time:{kingston:35, scranton:5, canadensis:45}, hoursBuckets:["evening"],
+   hours:"Regular hours daytime Tue–Fri 10–5:30 · Sat 10–4 — after-hours private parties available", type:"Perfume & candle studio",
+   note:"Custom-fragrance studio — design your own perfume scent or pour your own candle together. 4.9★ across 197 reviews.", phone:"(570) 343-2100",
+   flag:"Call ahead for an after-hours private party."},
+  {cat:"creative", name:"Board & Brush Allentown", town:"Allentown", addr:"6000 Hamilton Blvd, Allentown, PA 18106", time:{kingston:62, scranton:78, canadensis:70}, hoursBuckets:["evening"],
+   hours:"Workshops Fri 6–9pm (some Fri/Sat 6–9pm) · BYOB", type:"DIY wood-sign workshop (BYOB)",
+   note:"DIY wood-sign workshops — build and paint your own sign; bring your own drinks. 5.0★ across 102 reviews.", phone:"(610) 310-5252",
+   flag:"Special-trip pick: 60–65 min from Kingston."},
+  {cat:"creative", name:"Craft Into Art", town:"Dingmans Ferry", addr:"106 Dingman Pl, Dingmans Ferry, PA 18328", time:{kingston:65, scranton:60, canadensis:45}, hoursBuckets:["evening"],
+   hours:"Open Mon 6–8:30pm · Thu till 8:30pm · Pottery Date Night events · BYOB 21+", type:"Pottery & printmaking studio",
+   note:"Pottery and printmaking studio with Pottery Date Night events — BYOB, 21+; tickets through Eventbrite. The phone number is the owner's Connecticut cell (hence the 203 area code).", phone:"(203) 558-1137",
+   flag:"Special-trip pick: 60–70 min from Kingston."},
+  {cat:"stars", name:"Susquehanna Riverfront levee walk", town:"Wilkes-Barre", addr:"River Common Park area, 133 N River St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening","late"],
+   hours:"No posted hours", type:"Evening walk",
+   note:"Public riverfront path with skyline views.",
+   flag:"No posted hours — bring a light and verify access before a late visit."},
+  {cat:"haunts", name:"Reaper's Revenge", town:"Olyphant", addr:"460 Green Grove Rd, Blakely/Olyphant, PA", time:{kingston:25, scranton:15, canadensis:50}, hoursBuckets:["evening"],
+   hours:"Sept 19–Nov 1, 2026 · Fri–Sun · gates 6–9:30pm", type:"Haunted attraction", season:{s:[9,19],e:[11,1]},
+   note:"Six attractions across 60+ acres — haunted hayride, twisted carnival, multi-dimensional nightmare, pitch-black factory, funeral parlor and post-apocalyptic wasteland. Nearly 90 minutes of scares; nationally recognized (voted America's Best Haunted Hayride). Not recommended for kids under 10. $59–69 GA, $94–104 VIP."},
+  {cat:"haunts", name:"Horror Hall", town:"West Nanticoke", addr:"11 E Poplar St, Nanticoke, PA 18634", time:{kingston:10, scranton:35, canadensis:60}, hoursBuckets:["evening","late"],
+   hours:"Sept 25–Oct 31, 2026 · Fri–Sat 6–11pm · Sun 6–10pm", type:"Haunted house", season:{s:[9,25],e:[10,31]}, phone:"(570) 735-7899",
+   note:"NEPA's longest-running all-indoor haunt — 40+ years of haunted tradition in 20,000 sq ft, now with two attractions (Horror Hall + Underground). $25 GA, $35 combo; 18+ After Dark event Oct 31 ($40). Proceeds benefit PA Wounded Warriors. 4.2★ (156)."},
+  {cat:"haunts", name:"Gravestone Manor", town:"Wilkes-Barre", addr:"1095 PA-315, Wilkes-Barre, PA", time:{kingston:10, scranton:25, canadensis:50}, hoursBuckets:["evening"],
+   hours:"Sept 25–Oct 30, 2026 · Fri–Sun · 7–10pm (Sun till 9:30)", type:"Haunted theater", season:{s:[9,25],e:[10,30]},
+   note:"Interactive haunted-house theater — you're a potential buyer touring a haunted house, and the cast pulls you into the performance. Volunteer-run; 22nd season; proceeds benefit the United Way of Wyoming Valley. Just $12. 4.4★ (223)."},
+  {cat:"haunts", name:"Hell's Nightmares", town:"Dallas", addr:"70 Ridgway Dr, Dallas, PA 18612 (Irem Shrine)", time:{kingston:20, scranton:45, canadensis:75}, hoursBuckets:["evening","late"],
+   hours:"Sept 25–Nov 1, 2026 · Fri–Sat 7–10:30pm · Sun 7–10pm", type:"Haunted hayride", season:{s:[9,25],e:[11,1]},
+   note:"A 20–25 minute hayride through 'the abandoned section of hell' at the Irem Shrine — nonprofit/charity run, nominated for 2025 Haunt of the Year. $20."},
+  {cat:"haunts", name:"Haunted Woods of Council Cup", town:"Wapwallopen", addr:"212 Ruckle Hill Rd, Wapwallopen, PA 18660", time:{kingston:25, scranton:50, canadensis:65}, hoursBuckets:["evening"],
+   hours:"Oct 2–31, 2026 · Fri & Sat nights", type:"Haunted trail", season:{s:[10,2],e:[10,31]}, phone:"(570) 379-2566",
+   note:"An all-new terror trail tucked inside a wooded camping resort — make a full night of it with a $125 cabin rental that includes free haunt admission. Timed reservations."},
+  {cat:"haunts", name:"Waldorf Estate of Fear", town:"Lehighton", addr:"6325 Interchange Rd, Lehighton, PA 18235", time:{kingston:45, scranton:60, canadensis:40}, hoursBuckets:["evening","late"],
+   hours:"Sept 26–Oct 31, 2026 · Fri–Sat 7–11pm", type:"Haunted attraction", season:{s:[9,26],e:[10,31]}, phone:"(610) 824-6835",
+   note:"Four attractions including The Haunting at the Waldorf Hotel and Terror in the Corn — set at the actual Hell House LLC movie filming location. Running 20 years; consistently ranked among the top 10 US haunts. ~$35 package (deals from $25). 4.4★ (157)."},
+  {cat:"haunts", name:"Devil's Last Laugh", town:"Lehighton", addr:"3975 Long Run Rd, Lehighton, PA 18235", time:{kingston:50, scranton:65, canadensis:40}, hoursBuckets:["evening"],
+   hours:"Sept 25–Nov 1, 2026 · select Fri–Sun · Fri–Sat 7–10pm · Sun 6–9pm", type:"Haunted attraction", season:{s:[9,25],e:[11,1]}, phone:"(484) 264-3289",
+   note:"Walcksville Asylum plus The Spread outdoor scare zone, with food vendors and a fall bonfire. One of PA's most popular haunts per the state tourism office; 13+ recommended (under 13 with an adult). $30 GA, $50 VIP."},
+  {cat:"haunts", name:"Halls of Horror", town:"Palmerton", addr:"320 Delaware Ave, Palmerton, PA 18071", time:{kingston:50, scranton:65, canadensis:35}, hoursBuckets:["evening","late"],
+   hours:"Sept 25–Oct 31, 2026 · Fri–Sat 7–11pm · Sun 6–10pm", type:"Extreme haunt", season:{s:[9,25],e:[10,31]}, phone:"(610) 577-6893",
+   note:"Adults-only EXTREME haunt — blood-soaked, hands-on and interactive (the optional $47 Blood Experience is exactly what it sounds like). Waiver required; leave sensitivities at home. $27 standard. 4.9★ (685).",
+   flag:"Adult-only extreme haunt — graphic, physical, waiver required"},
+  {cat:"haunts", name:"Hotel of Horror", town:"Saylorsburg", addr:"5105 Cherry Valley Rd, Saylorsburg, PA 18353", time:{kingston:65, scranton:75, canadensis:30}, hoursBuckets:["evening","late"],
+   hours:"Sept 25–Nov 1, 2026 · Fri 7–10pm · Sat 6–11pm · Sun 7–10pm", type:"Haunted hotel", season:{s:[9,25],e:[11,1]}, phone:"(570) 992-3278",
+   note:"Inside the historic Lake House Hotel — the main walkthrough plus Altered Nightmares psychological funhouse and the Exhibition Macabre medical-history exhibit. 'Over 30 Years of Fear' (est. 1992). $35–45 combo. 4.4★."},
+  {cat:"haunts", name:"Massacre Mansion", town:"Simpson", addr:"454 Delaware St, Simpson, PA 18407", time:{kingston:40, scranton:25, canadensis:55}, hoursBuckets:["evening","late"],
+   hours:"Oct 2–31, 2026 · Fri–Sun · Fri–Sat 7–11pm · Sun 7–10pm", type:"Haunted house", season:{s:[10,2],e:[10,31]},
+   note:"Three attractions in one — walk-through mansion, haunted corn maze and blacklight maze, plus a hayride. Newer but at a permanent location, and reviewers love the passionate actors. 5.0★ (34)."},
+  {cat:"haunts", name:"North Pocono Place Haunted House", town:"Moscow", addr:"106 S Main St, Moscow, PA 18444", time:{kingston:35, scranton:20, canadensis:40}, hoursBuckets:["evening"],
+   hours:"Sept 25–Oct 31, 2026 · Fri–Sun · from 7pm", type:"Haunted house", season:{s:[9,25],e:[10,31]},
+   note:"An immersive downtown-Moscow haunt — creepy encounters and unexpected scares around every corner. Tickets from ~$23 on Eventbrite."},
+  {cat:"haunts", name:"Fear at the Farm", town:"Bloomsburg", addr:"284 W Fort McClure Blvd, Bloomsburg, PA 17815", time:{kingston:45, scranton:65, canadensis:90}, hoursBuckets:["evening"],
+   hours:"Oct 2–Nov 1, 2026 · Fri–Sun · from 6pm", type:"Haunted house + hayride", season:{s:[10,2],e:[11,1]},
+   note:"A two-story haunted house (McClure Manor) plus a haunted hayride at The Farm in Bloom — R-rated farm fright with hands-on actors. $15 per attraction, cash only at the gate; supports the Bloomsburg HS Drama Club."},
+
+  {cat:"seasonal", name:"Party on the Patio", town:"Wilkes-Barre (at Mohegan Pennsylvania)", addr:"1280 Highway 315 Blvd, Wilkes-Barre, PA 18702", time:{kingston:10, scranton:25, canadensis:60}, hoursBuckets:["evening"],
+   hours:"17th season · Thu May 7–Sept 10, 2026 (19 weeks) · doors 6pm · live music 7:30pm · FREE · 21+", type:"Summer concert series", season:{s:[5,7],e:[9,10]},
+   note:"Free weekly outdoor concert nights on the casino's patio with 19 weeks of live music — a huge summer staple, in its 17th season in 2026 (per Mohegan Pennsylvania's own newsroom and discovernepa)."},
+  {cat:"seasonal", name:"Rockin' the River", town:"Wilkes-Barre (River Common)", addr:"Millennium Circle, 92 N River St, Wilkes-Barre, PA", time:{kingston:10, scranton:27, canadensis:62}, hoursBuckets:["evening"],
+   hours:"8th year · Fri Jul 17/24/31, 2026 · gates 5pm · live music 6–9pm · FREE, all-ages", type:"Summer concert series", season:{s:[7,17],e:[7,31]},
+   note:"Free summer concerts on the waterfront at Millennium Circle — three Fridays under the Market Street Bridge (per visitluzernecounty and discovernepa listings)."},
+  {cat:"seasonal", name:"Lahey Family Fun Park", town:"Clarks Summit", addr:"500 Morgan Hwy, Clarks Summit, PA 18411", time:{kingston:25, scranton:15, canadensis:45}, hoursBuckets:["evening","late"],
+   hours:"Sun–Thu 10am–10pm · Fri–Sat 10am–11pm · Outdoor attractions late spring through early fall", type:"Mini golf / go-karts", season:{s:[5,15],e:[9,15]}, phone:"(570) 586-5699",
+   note:"Family-owned 30+ years — two 18-hole mini-golf courses, a 1/4-mile figure-8 kart track with over/under bridges, bumper boats and batting cages. The pick: glow-in-the-dark kart racing after sunset. Indoor arcade open year-round; outdoor attractions run late spring through early fall. 4.3★ (524)."},
+  {cat:"seasonal", name:"Montage Mountain — night skiing", town:"Scranton", addr:"1000 Montage Mountain Rd, Scranton, PA 18505", time:{kingston:30, scranton:10, canadensis:45}, hoursBuckets:["evening"],
+   hours:"Night skiing 100% lit until 10pm, 7 days/week in winter · Snow tubing park open 7 days/week in season", type:"Night skiing & tubing", season:{s:[12,1],e:[3,31]},
+   note:"The closest night skiing in the region, fully lit until 10pm every winter night, plus a snow tubing park.",
+   flag:"Snow-tubing night hours are not separately confirmed — check before a late visit."},
+  {cat:"seasonal", name:"Scranton Summer Movies in the Park", town:"Scranton (rotating parks)", addr:"Weston Field House, Scranton, PA", time:{kingston:30, scranton:8, canadensis:45}, hoursBuckets:["evening"],
+   hours:"Annual series in summer · Films start 8:30pm · FREE", type:"Outdoor movie nights", season:{s:[6,1],e:[8,31]},
+   note:"Scranton Parks & Recreation's free summer movie series in rotating city parks — Weston Field House, Nay Aug Park, Connell Park. Annual, multi-year listings (per the City of Scranton events pages)."},
+  {cat:"seasonal", name:"Jim Thorpe Rotary Ghost Walks", town:"Jim Thorpe", addr:"24 Broadway, Jim Thorpe, PA", time:{kingston:47, scranton:60, canadensis:35}, hoursBuckets:["evening"],
+   hours:"Annual evening walking ghost tours · Schedule varies — see listing", type:"Ghost tour", season:{s:[5,1],e:[10,31]}, phone:"(484) 629-3698",
+   note:"A long-running annual evening ghost walk through a haunted-feeling coal town — tour listings and reviews span many years.",
+   flag:"One 2023 review reported a no-show date — check the current schedule before going."},
+  {cat:"seasonal", name:"Ghosts and Graveyards Tour (Jim Thorpe Trolley Co.)", town:"Jim Thorpe", addr:"Jim Thorpe Visitor Center, Jim Thorpe, PA", time:{kingston:47, scranton:60, canadensis:35}, hoursBuckets:["evening"],
+   hours:"2026: Sept 4–Nov 7, select dates · 75-minute evening tours", type:"Ghost tour (trolley)", season:{s:[9,4],e:[11,7]},
+   note:"A 75-minute evening haunted-history trolley tour through Jim Thorpe — an annual series running select dates September through November (per discovernepa event listing)."},
+  {cat:"seasonal", name:"West End Festival of Lights & Kris Kringle", town:"Gilbert", addr:"West End Fair Association, 570 Fairground Road, Gilbert, PA", time:{kingston:42, scranton:50, canadensis:30}, hoursBuckets:["evening"],
+   hours:"Sat–Sun 2–9pm · Mon–Fri 5–9pm, through Dec 23 · $6 (kids under 3 free)", type:"Holiday light show", season:{s:[11,27],e:[12,23]}, phone:"(610) 681-4293",
+   note:"An annual walk-around holiday light trail set to music, with fire pits, a craft market, live performances, rides and games, and Kris Kringle visits (per the Beacon Journal holiday guide and the West End Fair Association site) — very date-friendly."},
+  {cat:"seasonal", name:"Bloomsburg Fair", town:"Bloomsburg", addr:"Bloomsburg Fairgrounds, 980 W Main Street, Bloomsburg, PA 17815", time:{kingston:50, scranton:70, canadensis:90}, hoursBuckets:["evening"],
+   hours:"2026: 171st year · Sept 25–Oct 3 · open 7am–10pm daily · $8 (13+), 12 & under free · parking $10", type:"Annual fair", season:{s:[9,25],e:[10,3]},
+   note:"Pennsylvania's largest agricultural fair, in its 171st year — rides, midway, grandstand concerts (Live, Kansas, Nate Smith, Skillet) and a demolition derby Oct 1 at 7pm. The definitive NEPA fall evening out (per bloomsburgfair.com)."},
+  {cat:"seasonal", name:"Camelback Resort — Galactic snow tubing", town:"Tannersville", addr:"107 Resort Dr, Tannersville, PA", time:{kingston:52, scranton:45, canadensis:25}, hoursBuckets:["evening"],
+   hours:"Fri & Sat nights until 10pm + Christmas week · $49–69 per 2-hour session", type:"Night snow tubing", season:{s:[12,1],e:[3,31]}, phone:"(570) 629-1661",
+   note:"Cosmic 'Galactic' night tubing — lights and music on a 42-lane tube park (self-billed largest in the USA). Made-for-dates winter activity (per camelbackresort.com). 4.4★ (359)."},
+
+  {cat:"afternoon", name:"Lehigh Gorge Scenic Railway", town:"Jim Thorpe", addr:"1 Susquehanna St, Jim Thorpe, PA 18229", time:{kingston:50, scranton:70, canadensis:55}, hoursBuckets:["midday"],
+   hours:"Daily departures 11am, 1pm, 3pm (weekends +4:30pm in season) · Autumn Leaf schedule Sep 26–Nov 15", type:"Scenic railway", phone:"(570) 325-8485",
+   note:"The only established scenic train ride in NEPA — a 70-minute round trip through the gorge (45 min during Autumn Leaf season), and the open-air car is the photographer's pick. Pairs perfectly with a Jim Thorpe afternoon: Asa Packer Mansion + the Old Jail. Adult $22–39 depending on season/class."},
+  {cat:"afternoon", name:"Houdini Museum", town:"Scranton", addr:"1433 N Main Ave, Scranton, PA 18508", time:{kingston:35, scranton:8, canadensis:46}, hoursBuckets:["midday"],
+   hours:"Year-round · Weekends ~1–4:30pm (daily afternoons Jul–Aug) · Call for tour dates/times", type:"Magic museum + live show", phone:"(570) 342-5555",
+   note:"A guided tour of Houdini memorabilia in a 150-year-old house, capped by a live magic show with doves, ducks, and a floating finale. Official page lists adult admission at $39.95 (VIP front row +$10); long-running Scranton attraction with 178+ reviews.",
+   flag:"Price partially verified — the official page shows $39.95 adult, but older sources list $14.95. Call ahead to confirm."},
+  {cat:"afternoon", name:"Lackawanna Coal Mine Tour", town:"Scranton", addr:"1 Bald Mountain Rd, Scranton, PA 18504", time:{kingston:35, scranton:12, canadensis:46}, hoursBuckets:["midday"],
+   hours:"Thu–Mon · Tours hourly 10:45am–2:30pm (arrive 30 min early) · Apr 1–Nov 30, 2026 · $12 adult", type:"Underground mine tour", season:{s:[4,1],e:[11,30]}, phone:"(570) 963-6463",
+   note:"Descend 300 feet in a mine car for an hour-long tour led by former miners — bring a jacket (53°F year-round). Easy combo with the PA Anthracite Heritage Museum next door in the same McDade Park complex. National-Award-winning, county-run, mentioned on NBC's The Office."},
+  {cat:"afternoon", name:"No. 9 Coal Mine & Museum", town:"Lansford", addr:"9 W Dock St, Lansford, PA 18232", time:{kingston:45, scranton:55, canadensis:45}, hoursBuckets:["midday"],
+   hours:"Wed–Sun 10am–4pm · Tours on the hour (~1 hour) · Mine always 50°F", type:"Underground mine tour + museum", phone:"(570) 645-7074",
+   note:"Ride a loud, rattly coal car 200 feet into the mountain — miners' hospital, big mining machinery, and guides who put their own spin on the tour. ~$10 adult per recent reviews; historic anthracite mine, 4.7★ (336).",
+   flag:"Price partially verified (review-reported). One 2026 review says cash only — call ahead."},
+  {cat:"afternoon", name:"Electric City Trolley Museum", town:"Scranton", addr:"300 Cliff St, Scranton, PA 18503", time:{kingston:35, scranton:5, canadensis:45}, hoursBuckets:["midday"],
+   hours:"Museum daily 9am–4pm · Excursions Thu–Sun 10:30am / 12pm / 1:30pm / 3pm (Apr 9–Oct 25, 2026)", type:"Trolley museum + excursions", phone:"(570) 963-6590",
+   note:"Ride a vintage trolley through the Lackawanna Valley — departs from the Steamtown boarding platform, so it's an easy double-stop with the free railroad site. Museum $9 adult, ride $12, combo $15. (Weekends in Nov–Dec run the Santa on the Trolley series.)"},
+  {cat:"afternoon", name:"Steamtown National Historic Site", town:"Scranton", addr:"350 Cliff St, Scranton, PA 18503", time:{kingston:35, scranton:5, canadensis:45}, hoursBuckets:["midday"],
+   hours:"Daily ~9:30am–5pm · FREE grounds & museums · Short train rides Fri–Sun May–Oct (extra fee)", type:"National Park railroad museum", phone:"(570) 445-1898",
+   note:"A free National Park with vintage locomotives, the roundhouse, and ranger talks — ride a nearly 100-year-old train into downtown Scranton. Train rides extra (a 2026 review says ~$6 adult, partially verified). 4.6★ (933)."},
+  {cat:"afternoon", name:"Everhart Museum", town:"Scranton (Nay Aug Park)", addr:"1901 Mulberry St, Scranton, PA 18510", time:{kingston:35, scranton:10, canadensis:46}, hoursBuckets:["midday"],
+   hours:"Wed–Sun 11am–5pm (open year-round)", type:"Natural history, science & art museum", phone:"(570) 346-7186",
+   note:"Bird gallery with 700+ specimens, a fossil gallery with a Stegosaurus cast, fluorescent 'glow-in-the-dark' minerals, and African and Egyptian collections. The largest public museum in NEPA, founded 1908. Adult $10 (2026 museum-directory listing). 4.4★ (259).",
+   flag:"Hours and price partially verified — older sources show different figures, so confirm before going."},
+  {cat:"afternoon", name:"Asa Packer Mansion", town:"Jim Thorpe", addr:"Packer Hill Ave, Jim Thorpe, PA 18229", time:{kingston:50, scranton:70, canadensis:55}, hoursBuckets:["midday"],
+   hours:"Grounds 11am–4:15pm · Guided tours 11:30am–3:30pm (~45–60 min) · Apr–Dec (Memorial Day–Oct 31: 6 days/wk, closed Tue; Nov: Sat/Sun) · $20 general", type:"Historic house museum", season:{s:[4,1],e:[12,31]}, phone:"(570) 325-3229",
+   note:"The best-preserved Italianate villa in the US (completed 1861) with original Victorian furnishings — tours run since 1956 by the Jim Thorpe Lions Club and the house is a National Historic Landmark. No photos inside; the entrance is a steep climb. 4.6★ (678)."},
+  {cat:"afternoon", name:"Old Jail Museum", town:"Jim Thorpe", addr:"128 W Broadway, Jim Thorpe, PA 18229", time:{kingston:50, scranton:70, canadensis:55}, hoursBuckets:["midday"],
+   hours:"Daily 12–4pm · Closed Wednesday · ~45-min guided tours + self-guided rooms · Adult $12", type:"Historic jail museum", phone:"(570) 325-5259",
+   note:"The 1871 stone-fortress jail with 27 original cells, a recreated gallows, and the famous Cell 17 handprint that supposedly can't be washed off. Adult $12 (2026-listed). 4.0★ (589 TripAdvisor reviews).",
+   flag:"Season and price partially verified — check the current schedule before going."},
+  {cat:"afternoon", name:"Eckley Miners' Village", town:"Weatherly", addr:"2 Eckley Main St, Weatherly, PA 18255", time:{kingston:35, scranton:55, canadensis:45}, hoursBuckets:["midday"],
+   hours:"Museum & visitor center Wed–Sun 10am–4pm · Guided tours 11am & 2pm (don't miss them)", type:"Living-history coal patch town", phone:"(570) 636-2070",
+   note:"Walk an intact 19th-century company town — miners' double houses, two churches, and the Company Store built for the Molly Maguires movie. $8 museum + self-guided village, $10 with the guided tour. The largest best-preserved anthracite community in the US; a PA Historical & Museum Commission site. 4.6★ (280)."},
+  {cat:"afternoon", name:"Quiet Valley Living Historical Farm", town:"Stroudsburg", addr:"347 Quiet Valley Rd, Stroudsburg, PA 18360", time:{kingston:50, scranton:55, canadensis:30}, hoursBuckets:["midday"],
+   hours:"Summer season tours: Tue–Sat 10am–5pm · $15 adult ($18 events) · 52nd Annual Harvest Festival Oct 10–11", type:"Living-history farm museum", season:{s:[6,1],e:[10,11]}, phone:"(570) 992-6161",
+   note:"An 1800s Pennsylvania German homestead with costumed interpreters — hearth cooking, spinning, bake-oven bread on Saturdays, wagon rides to the heritage orchard. Operating since ~1974; summer season ends early September, with the Harvest Festival (Oct 10–11, 2026) and a Spooky Days evening murder mystery (Oct 23–24, 6–8:30pm) to close the year."},
+  {cat:"afternoon", name:"Bushkill Falls", town:"Bushkill", addr:"138 Bushkill Falls Trail, Bushkill, PA 18324", time:{kingston:57, scranton:55, canadensis:30}, hoursBuckets:["midday"],
+   hours:"Daily ~9am–4pm/5pm · Spring through late fall · Adult ~$22 / seniors (62+) ~$20 / kids 4–10 ~$12 / 3 & under free", type:"Waterfall park", season:{s:[4,15],e:[11,15]}, phone:"(570) 588-6682",
+   note:"'The Niagara of Pennsylvania' — eight waterfalls linked by bridges and boardwalks. Green Trail is an easy 15 minutes; the Red Trail runs ~2 miles with 1,200+ stairs for the full adventure. Not wheelchair/stroller friendly; pets on leash allowed. Welcoming visitors since 1904. 4.6★ (3,772).",
+   flag:"Prices partially verified from a 2026 visitor report — confirm before going."},
+  {cat:"afternoon", name:"Claws 'N' Paws Wild Animal Park", town:"Lake Ariel", addr:"1475 Ledgedale Rd, Lake Ariel, PA 18436", time:{kingston:50, scranton:35, canadensis:25}, hoursBuckets:["midday"],
+   hours:"Daily 10am–6pm · May through mid-October · Adult $24 / juniors (2–11) $16 / under 2 free", type:"Woodland zoo", season:{s:[5,1],e:[10,15]}, phone:"(570) 698-6154",
+   note:"'The zoo in the woods' — 120+ species along shaded trails, with keeper-led encounters through the day and giraffe feeding ($3) as the crowd favorite. 4.1★ (445).",
+   flag:"Prices partially verified (2026 coupon-site figures) — confirm before going."},
+  {cat:"afternoon", name:"Pocono Snake & Animal Farm", town:"East Stroudsburg", addr:"424 Seven Bridge Rd, East Stroudsburg, PA 18301", time:{kingston:50, scranton:50, canadensis:25}, hoursBuckets:["midday"],
+   hours:"Memorial Day–Columbus Day: daily 11am–5pm · Summer daily 11am–5pm · Winter: pleasant-weather weekends only · $13 adult / kids 2–11 $10", type:"Interactive mini-zoo", phone:"(570) 223-8653",
+   note:"Celebrating its 57th year — hand-feed monkeys, lemurs, a bear, 'gators (summer) and a pot-bellied pig. A compact ~40-minute visit and an easygoing afternoon stop. USDA/PAGC approved. 4.8★ (176)."}
+];
+
+/* season:{s:[m,d],e:[m,d]} marks a venue as seasonal, back every year for
+   that calendar range (winter ranges wrap past Dec, e.g. [12,1]->[3,31]).
+   It powers the 'In season now' filter; the Seasonal badge shows regardless. */
+
+/* Precomputed once at load: lowercase search text per venue, so filtering
+   doesn't rebuild and garbage-collect 97 haystack strings on every keystroke. */
+(function(){
+  for (var i=0;i<VENUES.length;i++){
+    var v = VENUES[i];
+    v._hay = (v.name+" "+v.town+" "+v.type+" "+v.note+" "+v.hours).toLowerCase();
+  }
+})();
+
+/* -------- State -------- */
+var state = { q:"", cats:[], hours:[], season:"all", weeknight:false, anchor:"kingston", maxDrive:0, sort:"az" };
+
+var $ = function(id){ return document.getElementById(id); };
+
+/* Starting towns for drive times; keys match v.time */
+var ANCHORS = {
+  kingston:{label:"Kingston", full:"Kingston, PA"},
+  scranton:{label:"Scranton", full:"Scranton, PA"},
+  canadensis:{label:"Canadensis", full:"Canadensis, PA"}
+};
+function vtime(v){ return v.time[state.anchor]; }
+function driveLabel(m){
+  if (m <= 5) return "In town (~5 min)";
+  if (m < 60) return "~" + m + " min";
+  var hr = Math.floor(m/60), rest = m % 60;
+  return "~" + hr + " hr" + (rest ? " " + rest + " min" : "");
+}
+function esc(s){
+  return String(s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function mapsUrl(name, addr){
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(name + ", " + addr);
+}
+var MOON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 13.2A8 8 0 1 1 10.8 4 6.6 6.6 0 0 0 20 13.2z"/></svg>';
+var CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></svg>';
+var PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8.5 7H17v8.5"/></svg>';
+var PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>';
+var WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5L22 20H2z"/><line x1="12" y1="10" x2="12" y2="14.2"/><circle cx="12" cy="16.8" r=".4" fill="currentColor"/></svg>';
+
+/* Copy icon (address row) */
+var COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>';
+
+function catTitle(id){
+  for (var i=0;i<CATS.length;i++) if (CATS[i].id===id) return CATS[i].title;
+  return "";
+}
+
+/* Seasonal venues carry season:{s:[m,d],e:[m,d]} — the calendar range they
+   come back for each year. The end can precede the start (Dec 1 -> Mar 31)
+   for winter spots. */
+function seasonActive(v){
+  var s = v.season;
+  if (!s || !s.s || !s.e) return false;
+  var n = new Date(), curM = n.getMonth()+1, curD = n.getDate();
+  function cmp(m1,d1,m2,d2){ return m1===m2 ? d1-d2 : m1-m2; }
+  var afterStart = cmp(curM,curD,s.s[0],s.s[1]) >= 0;
+  var beforeEnd = cmp(curM,curD,s.e[0],s.e[1]) <= 0;
+  return cmp(s.e[0],s.e[1],s.s[0],s.s[1]) < 0 ? (afterStart || beforeEnd) : (afterStart && beforeEnd);
+}
+
+/* Compact drive label for the three town boxes. */
+function boxLabel(m){
+  if (m <= 5) return "In town";
+  if (m < 60) return "~" + m + " min";
+  var hr = Math.floor(m/60), rest = m % 60;
+  return "~" + hr + " hr" + (rest ? " " + rest + " min" : "");
+}
+
+/* OR within each filter group, AND across groups. */
+function hoursMatch(v){
+  if (!state.hours.length) return true;
+  for (var i=0;i<state.hours.length;i++){
+    if (v.hoursBuckets.indexOf(state.hours[i]) !== -1) return true;
+  }
+  return false;
+}
+function matches(v){
+  if (state.cats.length && state.cats.indexOf(v.cat) === -1) return false;
+  if (!hoursMatch(v)) return false;
+  if (state.season === "hide" && v.season) return false;
+  if (state.season === "now" && !(v.season && seasonActive(v))) return false;
+  if (state.weeknight && !v.weeknight) return false;
+  if (state.maxDrive && vtime(v) > state.maxDrive) return false;
+  if (state.q && v._hay.indexOf(state.q) === -1) return false;
+  return true;
+}
+function sortByDrive(a, b){
+  var ta = vtime(a), tb = vtime(b);
+  if (ta !== tb) return ta - tb;
+  return a.name.localeCompare(b.name);
+}
+function sortByName(a, b){ return a.name.localeCompare(b.name); }
+
+function townBox(v, key){
+  var sel = state.anchor === key ? ' sel' : '';
+  return '<div class="townbox'+sel+'"><span class="tb-name">'+ANCHORS[key].label+'</span>' +
+    '<span class="tb-time">'+esc(boxLabel(v.time[key]))+'</span></div>';
+}
+
+function cardHTML(v, flat){
+  var catTag = flat ? '<span class="type-tag">'+esc(catTitle(v.cat))+'</span>' : '';
+  var seasonTag = v.season ? '<span class="season-tag">Seasonal</span>' : '';
+  var lateTag = v.weeknight ? '<span class="late-tag">'+MOON+'Open late weeknights</span>' : '';
+  var flag = v.flag ? '<p class="flag">'+WARN+'<span>'+esc(v.flag)+'</span></p>' : '';
+  var phone = v.phone ? '<a class="phone-link" href="tel:+1'+v.phone.replace(/[^0-9]/g,"")+'">'+PHONE+esc(v.phone)+'</a>' : '';
+  var longNote = v.note.length > 150;
+  var noteCls = 'note' + (longNote ? ' clamp' : '');
+  var moreBtn = longNote ? '<button class="moreless" type="button" aria-expanded="false">Show more</button>' : '';
+  return '<article class="card">' +
+    '<div class="card-top"><span class="town">'+esc(v.town)+'</span><span class="drive">'+esc(driveLabel(vtime(v)))+'</span></div>' +
+    '<h3>'+esc(v.name)+'</h3>' +
+    '<div class="type-row">'+catTag+'<span class="type-tag">'+esc(v.type)+'</span>'+seasonTag+lateTag+'</div>' +
+    '<div class="hours">'+CLOCK+'<span>'+esc(v.hours)+'</span></div>' +
+    flag +
+    '<div class="towns" aria-label="Drive times from each starting town">' +
+      townBox(v,"kingston") + townBox(v,"scranton") + townBox(v,"canadensis") + '</div>' +
+    '<div class="card-foot">' +
+      '<div class="addr">'+PIN+'<span class="addr-text">'+esc(v.addr)+'</span><button class="copy-btn" type="button" title="Copy address" aria-label="Copy address">'+COPY+'</button></div>' +
+      '<p class="'+noteCls+'">'+esc(v.note)+'</p>' + moreBtn +
+      '<div class="card-links"><a class="map-link" href="'+esc(mapsUrl(v.name, v.addr))+'" target="_blank" rel="noopener">Open in Maps'+ARROW+'</a>'+phone+'</div>' +
+    '</div>' +
+  '</article>';
+}
+
+/* ---------- Filter panel groups ---------- */
+var HOURS_META = [
+  {id:"midday", label:"Midday-afternoon", tip:"Open midday to afternoon"},
+  {id:"evening", label:"Evening", tip:"Open during 6\u201310pm"},
+  {id:"late", label:"Late night", tip:"Still open past 10pm"}
+];
+
+/* Toggle one value in a multi-select group; selecting every option collapses
+   back to "all" (an empty array means no restriction). */
+function toggleGroup(arr, val, optCount){
+  if (val === "all"){ arr.length = 0; return; }
+  var ix = arr.indexOf(val);
+  if (ix === -1) arr.push(val); else arr.splice(ix,1);
+  if (arr.length === optCount) arr.length = 0;
+}
+function syncChips(host, key){
+  var arr = state[key];
+  var btns = host.querySelectorAll("button");
+  for (var i=0;i<btns.length;i++){
+    var v = btns[i].getAttribute("data-val");
+    var on = v === "all" ? arr.length === 0 : arr.indexOf(v) !== -1;
+    btns[i].setAttribute("aria-pressed", on ? "true" : "false");
+  }
+}
+function wireChipGroup(host, key, optCount){
+  host.addEventListener("click", function(e){
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    toggleGroup(state[key], btn.getAttribute("data-val"), optCount);
+    syncChips(host, key);
+    render();
+  });
+}
+function buildTimeChips(){
+  var host = $("timeChips");
+  var counts = {midday:0, evening:0, late:0};
+  for (var i=0;i<VENUES.length;i++){
+    var b = VENUES[i].hoursBuckets;
+    for (var j=0;j<b.length;j++) counts[b[j]]++;
+  }
+  var html = '<button class="chip" data-val="all" aria-pressed="true">All times</button>';
+  for (var k=0;k<HOURS_META.length;k++){
+    var m = HOURS_META[k];
+    html += '<button class="chip" data-val="'+m.id+'" aria-pressed="false" title="'+m.tip+'">'+esc(m.label)+' <span class="n">'+counts[m.id]+'</span></button>';
+  }
+  host.innerHTML = html;
+  wireChipGroup(host, "hours", HOURS_META.length);
+}
+function buildCatChips(){
+  var host = $("catChips");
+  var html = '<button class="chip" data-val="all" aria-pressed="true">All kinds <span class="n">'+VENUES.length+'</span></button>';
+  for (var i=0;i<CATS.length;i++){
+    var c = CATS[i], n = 0;
+    for (var j=0;j<VENUES.length;j++) if (VENUES[j].cat === c.id) n++;
+    html += '<button class="chip" data-val="'+c.id+'" aria-pressed="false">'+esc(c.title)+' <span class="n">'+n+'</span></button>';
+  }
+  host.innerHTML = html;
+  wireChipGroup(host, "cats", CATS.length);
+}
+
+/* ---------- Drive-time slider ---------- */
+var DRIVE_STOPS = [15, 30, 45, 60, 0]; /* 0 = all distances */
+var DRIVE_RANGE = null;
+function setRangePct(){
+  var r = DRIVE_RANGE; if (!r) return;
+  var rad = 10, w = r.clientWidth || 300, v = +r.value;
+  r.style.setProperty("--pct", ((rad + (w - 2*rad) * (v/4)) / w * 100) + "%");
+}
+function driveLiveText(){
+  var town = ANCHORS[state.anchor].label;
+  return state.maxDrive
+    ? "Within <strong>"+state.maxDrive+"m</strong> of "+esc(town)
+    : "All distances from "+esc(town);
+}
+
+function filterCount(){
+  return state.hours.length + state.cats.length
+    + (state.maxDrive ? 1 : 0)
+    + (state.season !== "all" ? 1 : 0)
+    + (state.weeknight ? 1 : 0);
+}
+
+function render(){
+  var flat = state.sort === "drive";
+  var list = VENUES.filter(matches);
+  var shown = list.length, total = VENUES.length;
+  var html = "";
+  if (flat){
+    list.sort(sortByDrive);
+    html = '<div class="flat-list"><div class="grid">' +
+      list.map(function(v){ return cardHTML(v, true); }).join("") +
+      '</div></div>';
+  } else {
+    for (var i=0;i<CATS.length;i++){
+      var c = CATS[i];
+      var mv = list.filter(function(v){ return v.cat === c.id; }).sort(sortByName);
+      if (!mv.length) continue;
+      html += '<section class="cat-section" aria-label="'+esc(c.title)+'">' +
+        '<div class="cat-head"><span class="cat-icon">'+c.icon+'</span>' +
+        '<div><h2>'+esc(c.title)+'</h2><p>'+esc(c.blurb)+'</p></div>' +
+        '<span class="cat-count">'+mv.length+' spot'+(mv.length===1?"":"s")+'</span></div>' +
+        '<div class="grid">' + mv.map(function(v){ return cardHTML(v, false); }).join("") + '</div></section>';
+    }
+  }
+  $("sections").innerHTML = html;
+  $("empty").classList.toggle("show", shown === 0);
+  $("resultLine").textContent = "Showing "+shown+" of "+total;
+  var n = filterCount(), badge = $("filterBadge");
+  badge.textContent = n;
+  badge.hidden = n === 0;
+  $("driveLive").innerHTML = driveLiveText();
+  $("panelShow").textContent = "Show "+shown+" result"+(shown===1?"":"s");
+  var dirty = state.q !== "" || state.cats.length > 0 || state.hours.length > 0 ||
+    state.season !== "all" || state.weeknight || state.anchor !== "kingston" ||
+    state.maxDrive !== 0 || state.sort !== "az";
+  $("clearBtn").classList.toggle("show", dirty);
+}
+
+function setSegPressed(rootId, attr, value){
+  var host = $(rootId);
+  if (!host) return;
+  var btns = host.querySelectorAll("button");
+  for (var i=0;i<btns.length;i++){
+    btns[i].setAttribute("aria-pressed", btns[i].getAttribute(attr)===value ? "true":"false");
+  }
+}
+
+function clearAll(){
+  state = {q:"", cats:[], hours:[], season:"all", weeknight:false, anchor:"kingston", maxDrive:0, sort:"az"};
+  $("q").value = "";
+  $("weekdayToggle").setAttribute("aria-pressed","false");
+  setSegPressed("anchorSeg","data-anchor","kingston");
+  setSegPressed("sortSeg","data-sort","az");
+  setSegPressed("seasonSeg","data-season","all");
+  syncChips($("timeChips"),"hours");
+  syncChips($("catChips"),"cats");
+  if (DRIVE_RANGE){ DRIVE_RANGE.value = 4; setRangePct(); }
+  render();
+}
+
+/* ---------- Panel open/close ---------- */
+function openPanel(){
+  document.body.classList.add("panel-open");
+  $("filterPanel").setAttribute("aria-hidden","false");
+}
+function closePanel(){
+  document.body.classList.remove("panel-open");
+  $("filterPanel").setAttribute("aria-hidden","true");
+}
+
+/* ---------- Card interactions (delegated; no re-render needed) ---------- */
+function copyAddr(btn){
+  var t = btn.closest(".card").querySelector(".addr-text").textContent;
+  var done = function(){
+    btn.classList.add("ok"); btn.setAttribute("title","Copied");
+    setTimeout(function(){ btn.classList.remove("ok"); btn.setAttribute("title","Copy address"); }, 1400);
+  };
+  var legacy = function(){
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    done();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(done, legacy);
+  } else { legacy(); }
+}
+
+/* Debounced: re-rendering ~97 cards on every raw keystroke stalls mobile input. */
+var qTimer = null;
+$("q").addEventListener("input", function(){
+  var input = this;
+  clearTimeout(qTimer);
+  qTimer = setTimeout(function(){
+    state.q = input.value.trim().toLowerCase();
+    render();
+  }, 150);
+});
+$("weekdayToggle").addEventListener("click", function(){
+  state.weeknight = !state.weeknight;
+  this.setAttribute("aria-pressed", state.weeknight ? "true":"false");
+  render();
+});
+$("clearBtn").addEventListener("click", clearAll);
+$("panelClear").addEventListener("click", clearAll);
+$("emptyClear").addEventListener("click", clearAll);
+$("filtersBtn").addEventListener("click", openPanel);
+$("panelClose").addEventListener("click", closePanel);
+$("scrim").addEventListener("click", closePanel);
+$("panelShow").addEventListener("click", closePanel);
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape" && document.body.classList.contains("panel-open")) closePanel();
+});
+$("sections").addEventListener("click", function(e){
+  var m = e.target.closest(".moreless");
+  if (m){
+    var note = m.closest(".card").querySelector(".note");
+    var open = note.classList.toggle("expanded");
+    note.classList.toggle("clamp", !open);
+    m.textContent = open ? "Show less" : "Show more";
+    m.setAttribute("aria-expanded", open ? "true" : "false");
+    return;
+  }
+  var cb = e.target.closest(".copy-btn");
+  if (cb) copyAddr(cb);
+});
+
+function wireSeg(rootId, attr, apply){
+  var host = $(rootId);
+  if (!host) return;
+  var btns = host.querySelectorAll("button");
+  for (var i=0;i<btns.length;i++){
+    btns[i].addEventListener("click", function(){
+      var val = this.getAttribute(attr);
+      setSegPressed(rootId, attr, val);
+      apply(val);
+      render();
+    });
+  }
+}
+wireSeg("anchorSeg","data-anchor",function(val){ state.anchor = val; });
+wireSeg("sortSeg","data-sort",function(val){ state.sort = val; });
+wireSeg("seasonSeg","data-season",function(val){ state.season = val; });
+
+DRIVE_RANGE = $("driveRange");
+DRIVE_RANGE.addEventListener("input", function(){
+  state.maxDrive = DRIVE_STOPS[+this.value];
+  setRangePct();
+  render();
+});
+window.addEventListener("resize", setRangePct);
+
+$("spotCount").textContent = VENUES.length;
+buildTimeChips();
+buildCatChips();
+setRangePct();
+render();
+</script>
+</body>
+</html>
