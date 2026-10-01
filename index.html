@@ -422,7 +422,7 @@
           <span style="left:calc(10px + (100% - 20px)*1/4)">30 min</span>
           <span style="left:calc(10px + (100% - 20px)*2/4)">45 min</span>
           <span style="left:calc(10px + (100% - 20px)*3/4)">1 hr</span>
-          <span class="last" style="left:calc(10px + (100% - 20px)*4/4)">All distances</span>
+          <span class="last" style="left:calc(10px + (100% - 20px)*4/4)">All</span>
         </div>
         <div class="stop-qual" aria-hidden="true">
           <span class="first" style="left:calc(10px + (100% - 20px)*0/4)">Local</span>
@@ -665,6 +665,11 @@ function syncChips(host, key){
   }
 }
 function wireChipGroup(host, key, optCount){
+  /* initData() runs twice (embedded data, then the fetched venues.json), so
+     guard against binding the same host's click handler more than once —
+     a double-bound handler toggles a chip on and immediately back off. */
+  if (host.getAttribute("data-wired")) return;
+  host.setAttribute("data-wired", "1");
   host.addEventListener("click", function(e){
     var btn = e.target.closest("button");
     if (!btn) return;
@@ -685,7 +690,7 @@ function refreshChipCounts(){
   var cc = {all: elig.length};
   for (var i=0;i<CATS.length;i++){
     var c = CATS[i].id, n = 0;
-    for (var j=0;j<elig.length;j++) if (elig[j].cat === c.id) n++;
+    for (var j=0;j<elig.length;j++) if (elig[j].cat === c) n++;
     cc[c] = n;
   }
   function setCounts(hostId, counts){
