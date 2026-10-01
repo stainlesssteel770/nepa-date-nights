@@ -1,33 +1,58 @@
 # NEPA Date Nights
 
-A hand-curated guide to date-night spots across Northeastern Pennsylvania — from
-midday-afternoon adventures to late-night dance floors. Bars, music, creative
-nights, drive-ins, seasonal attractions, and more.
+A hand-curated guide to date-night spots across Northeastern Pennsylvania — bars,
+breweries, live music, cinemas, haunts, games, and more. No restaurants, cafés,
+dessert shops, wineries, or wine bars.
 
-The entire site is a single self-contained page: [`index.html`](index.html).
-No build step, no dependencies — open it in a browser or serve it statically.
+**Live site:** https://stainlesssteel770.github.io/nepa-date-nights/
 
-## Hosting on your own domain
+## How the site works
 
-**GitHub Pages (free):**
+- `index.html` — the whole page (filters, cards, banners).
+- `venues.json` — the venue dataset. The page fetches this file when it loads, so
+  editing the data here updates the live guide without touching any code. A copy
+  of the data is also embedded in `index.html` as an offline fallback.
+- `assets/banners/` — one banner image per category.
 
-1. In this repo go to **Settings → Pages**.
-2. Under "Build and deployment", set **Source** to **Deploy from a branch**,
-   branch `main`, folder `/ (root)`. Save.
-3. Under **Custom domain**, enter your domain (e.g. `datenights.example.com`)
-   and save. GitHub will add the `CNAME` for you.
-4. At your DNS provider, point the domain at GitHub Pages:
-   - Subdomain (`datenights.example.com`): add a `CNAME` record →
-     `<your-username>.github.io`
-   - Apex domain (`example.com`): add `A` records → `185.199.108.153`,
-     `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-5. Wait for DNS to propagate, then tick **Enforce HTTPS** in the Pages settings.
+## Editing venue data (no coding needed)
 
-**Netlify / Vercel / Cloudflare Pages:** drag-and-drop this folder or connect
-the repo — no build command needed, publish directory is the repo root.
+1. Open [`venues.json`](venues.json) on GitHub and click the pencil icon (Edit).
+2. Find the venue by its `"name"` and change the fields you need (see schema below).
+3. Click **Commit changes** — the site picks up the new data within a few minutes.
+   A validation check runs automatically on every push; if the JSON has a syntax
+   error the commit is flagged.
 
-## Updating the site
+### `venues.json` schema
 
-Edit `index.html` directly (venue data lives in a `VENUES` array near the top
-of the script) and commit. If you host via GitHub Pages, changes go live on
-push.
+Top level: `{ "data_updated": "YYYY-MM-DD", "venues": [ … ] }`
+
+Each venue:
+
+| Field | Meaning |
+|---|---|
+| `name` | Venue name (unique) |
+| `town` | Town label shown on the card |
+| `cat` | Category id: `bars`, `casino`, `breweries`, `music`, `comedy`, `cinema`, `haunts`, `seasonal`, `games`, `adventure`, `creative`, `afternoon` |
+| `addr` | Street address (used for the Maps link) |
+| `time` | Drive minutes from each starting town: `{"kingston": 10, "scranton": 27, "canadensis": 62}` |
+| `hoursBuckets` | Time-of-day filters it belongs to: any of `midday`, `evening`, `late` |
+| `hours` | Human-readable hours line shown on the card |
+| `type` | Short type label (e.g. "Dive bar", "Escape room") |
+| `note` | One–two sentence description |
+| `weeknight` | `true` if open late on weeknights (shows "Open late weeknights") |
+| `friSatLateOnly` | `true` if only open Fri/Sat late — hidden unless the "Fri & Sat late-night spots" toggle is on |
+| `phone` | Optional phone number |
+| `flag` | Optional extra notice merged into the card's warning line |
+| `season` | Optional `{"s": [month, day], "e": [month, day]}` for annual seasonal venues (powers "In season now") |
+| `hoursDaily` | Per-day hours: `{"mon": "…", "tue": "closed", …}` (`null` = unknown, `"closed"` = closed). Powers the "Open tonight" filter |
+| `seasonText` | Free-text season description (e.g. "Apr–Oct (annual)") |
+| `priceTier` | `Free`, `$`, `$$`, or `$$$` (per person: under $15 / $15–$40 / over $40) |
+| `priceDetail` | Optional price note shown under the tier |
+| `hoursVerified` | `false` → the card shows a uniform "Call ahead — hours vary" notice |
+
+## Reporting wrong hours / suggesting a spot
+
+Every card has a **Report wrong hours** link that opens a prefilled issue naming the
+venue. There's also a **Suggest a spot** link in the footer. Both use the issue
+forms in `.github/ISSUE_TEMPLATE/` — no GitHub expertise required, just fill in
+the boxes.
