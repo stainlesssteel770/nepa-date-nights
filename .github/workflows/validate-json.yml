@@ -1,0 +1,26 @@
+name: Validate venues.json
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate venues.json
+        run: |
+          python3 - <<'EOF'
+          import json
+          d = json.load(open('venues.json'))
+          assert isinstance(d.get('venues'), list) and d['venues'], 'venues must be a non-empty list'
+          names = [v['name'] for v in d['venues']]
+          assert len(names) == len(set(names)), 'duplicate venue names'
+          for v in d['venues']:
+              for k in ('name', 'town', 'cat', 'addr', 'time', 'hoursBuckets',
+                        'hours', 'type', 'note', 'hoursDaily', 'priceTier',
+                        'hoursVerified'):
+                  assert k in v, f"{v.get('name')}: missing {k}"
+          print(f"venues.json OK: {len(names)} venues")
+          EOF
