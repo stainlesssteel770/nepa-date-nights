@@ -433,7 +433,6 @@
       <div class="fsection">
         <h3>Time of day</h3>
         <div class="chips" id="timeChips" role="group" aria-label="Filter by time of day — choose as many as you like"></div>
-        <button class="toggle" id="weekdayToggle" aria-pressed="false"><span class="dot"></span>Open late on weeknights</button>
         <button class="toggle" id="friSatToggle" aria-pressed="false"><span class="dot"></span>Include Sat late-night spots</button>
         <button class="toggle" id="openTodayToggle" aria-pressed="false"><span class="dot"></span>Open tonight</button>
       </div>
@@ -492,7 +491,7 @@ function primeVenues(){
 }
 
 /* -------- State -------- */
-var state = { q:"", cats:[], hours:[], openToday:false, season:"all", weeknight:false, friSatLate:false, anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable" };
+var state = { q:"", cats:[], hours:[], openToday:false, season:"all", friSatLate:false, anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable" };
 
 var $ = function(id){ return document.getElementById(id); };
 
@@ -580,7 +579,6 @@ function matches(v){
   if (!hoursMatch(v)) return false;
   if (state.season === "hide" && v.season) return false;
   if (state.season === "now" && !(v.season && seasonActive(v))) return false;
-  if (state.weeknight && !v.weeknight) return false;
   if (!state.friSatLate && v.friSatLateOnly) return false;
   if (state.openToday && !openTodayFn(v)) return false;
   if (state.maxDrive && vtime(v) > state.maxDrive) return false;
@@ -756,7 +754,6 @@ function filterCount(){
     + (state.openToday ? 1 : 0)
     + (state.maxDrive ? 1 : 0)
     + (state.season !== "all" ? 1 : 0)
-    + (state.weeknight ? 1 : 0)
     + (state.friSatLate ? 1 : 0);
 }
 
@@ -848,7 +845,7 @@ function render(){
   $("driveLive").innerHTML = driveLiveText();
   $("panelShow").textContent = "Show "+shown+" result"+(shown===1?"":"s");
   var dirty = state.q !== "" || state.cats.length > 0 || state.hours.length > 0 ||
-    state.season !== "all" || state.weeknight || state.friSatLate || state.anchor !== "kingston" ||
+    state.season !== "all" || state.friSatLate || state.anchor !== "kingston" ||
     state.maxDrive !== 0 || state.sort !== "az";
   $("clearBtn").classList.toggle("show", dirty);
   updateNavOffsets();
@@ -865,10 +862,9 @@ function setSegPressed(rootId, attr, value){
 }
 
 function clearAll(){
-  state = {q:"", cats:[], hours:[], openToday:false, season:"all", weeknight:false, friSatLate:false, anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable"};
+  state = {q:"", cats:[], hours:[], openToday:false, season:"all", friSatLate:false, anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable"};
   document.body.classList.remove("dense");
   $("q").value = "";
-  $("weekdayToggle").setAttribute("aria-pressed","false");
   $("friSatToggle").setAttribute("aria-pressed","false");
   $("openTodayToggle").setAttribute("aria-pressed","false");
   setSegPressed("anchorSeg","data-anchor","kingston");
@@ -930,11 +926,6 @@ $("q").addEventListener("input", function(){
     state.q = input.value.trim().toLowerCase();
     render();
   }, 150);
-});
-$("weekdayToggle").addEventListener("click", function(){
-  state.weeknight = !state.weeknight;
-  this.setAttribute("aria-pressed", state.weeknight ? "true":"false");
-  render();
 });
 $("friSatToggle").addEventListener("click", function(){
   state.friSatLate = !state.friSatLate;
