@@ -1,5 +1,5 @@
 {
- "data_updated": "2026-10-01",
+ "data_updated": "2026-10-05",
  "venues": [
   {
    "cat": "bars",
@@ -2554,8 +2554,8 @@
      1
     ],
     "e": [
-     8,
-     31
+     10,
+     10
     ]
    },
    "note": "Scranton Parks & Recreation's free summer movie series in rotating city parks — Weston Field House, Nay Aug Park, Connell Park. Annual, multi-year listings (per the City of Scranton events pages).",
@@ -2568,7 +2568,7 @@
     "tue": null,
     "wed": null
    },
-   "seasonText": "Summer 2026 (select dates; also ran Oct 10, 2026 showing)",
+   "seasonText": "Summer 2026 (select dates) + Oct 10, 2026 showing",
    "priceTier": "Free",
    "priceDetail": "free",
    "hoursVerified": false
@@ -2590,12 +2590,12 @@
    "type": "Ghost tour",
    "season": {
     "s": [
-     5,
-     1
+     9,
+     4
     ],
     "e": [
-     10,
-     31
+     11,
+     14
     ]
    },
    "phone": "(484) 629-3698",
@@ -2803,6 +2803,16 @@
     "tue": "9:30am–4:30pm",
     "wed": "9:30am–4:30pm"
    },
+   "season": {
+    "s": [
+     3,
+     15
+    ],
+    "e": [
+     12,
+     31
+    ]
+   },
    "seasonText": "Regular season + Autumn Leaf 2026: Sep 26–Nov 15 (45-min foliage rides; holiday trains late Nov–Dec)",
    "priceTier": "$$",
    "priceDetail": "Adult $22–39 depending on season/class; daily departures 11am, 1pm, 3pm (weekends +4:30pm in season)",
@@ -2937,6 +2947,16 @@
     "thu": "9am–4pm",
     "tue": "9am–4pm",
     "wed": "9am–4pm"
+   },
+   "season": {
+    "s": [
+     4,
+     1
+    ],
+    "e": [
+     12,
+     31
+    ]
    },
    "seasonText": "Museum daily Apr–Dec 2026; excursions Thu–Sun Apr 9–Oct 25, 2026 (departures 10:30am/12pm/1:30pm/3pm)",
    "priceTier": "$",
@@ -3073,6 +3093,16 @@
     "tue": "12pm–4pm",
     "wed": "closed"
    },
+   "season": {
+    "s": [
+     5,
+     25
+    ],
+    "e": [
+     10,
+     31
+    ]
+   },
    "seasonText": "Memorial Day–fall (check schedule — older sources list Memorial Day–Labor Day + Sept/Oct weekends; 2026 reviews suggest wider operation)",
    "priceTier": "$",
    "priceDetail": "Adult $12 (2026-listed)",
@@ -3131,7 +3161,7 @@
     ],
     "e": [
      10,
-     11
+     24
     ]
    },
    "phone": "(570) 992-6161",
@@ -3258,9 +3288,273 @@
     "tue": "11am–5pm",
     "wed": "11am–5pm"
    },
+   "season": {
+    "s": [
+     5,
+     25
+    ],
+    "e": [
+     10,
+     12
+    ]
+   },
    "seasonText": "Memorial Day–Columbus Day daily 11am–5pm; shoulder-season hours vary (12–5/12–4:30); winter: pleasant-weather weekends only",
    "priceTier": "$",
    "priceDetail": "Adult $13; kids 2–11 $10; under 2 free",
+   "hoursVerified": true
+  },
+  {
+   "cat": "adventure",
+   "name": "The Cabin Armory & Training Center",
+   "town": "Wilkes-Barre",
+   "addr": "10 Pethick St, Wilkes-Barre, PA 18702",
+   "phone": "(570) 550-9032",
+   "time": {
+    "kingston": 8,
+    "scranton": 30,
+    "canadensis": 60
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Wed–Sat 11am–7pm · Sun 12–6pm · Mon–Tue closed",
+   "type": "Indoor shooting range",
+   "note": "Indoor range with electronic target retrieval, rental firearms, and beginner-friendly instruction — walk-ins welcome, no membership needed.",
+   "hoursDaily": {
+    "mon": "closed",
+    "tue": "closed",
+    "wed": "11am–7pm",
+    "thu": "11am–7pm",
+    "fri": "11am–7pm",
+    "sat": "11am–7pm",
+    "sun": "12pm–6pm"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "$20/hr walk-in lane rental ($10 second shooter same lane); 30-day unlimited $45",
+   "hoursVerified": true
+  },
+  {
+   "cat": "adventure",
+   "name": "PA State Game Lands Public Shooting Ranges",
+   "town": "Ross Township",
+   "addr": "Patla Rd, Ross Township, PA",
+   "time": {
+    "kingston": 20,
+    "scranton": 45,
+    "canadensis": 40
+   },
+   "hoursBuckets": [
+    "midday"
+   ],
+   "hours": "Mon–Sat 8am–sunset · Sun 12pm–sunset · open year-round unless posted",
+   "type": "Public outdoor shooting range",
+   "note": "Free outdoor public rifle and pistol ranges run by the PA Game Commission — bring your own ammo and targets; no range officer on site. Daytime only, 8am to sunset. Requires a PA hunting/furtaker license or the ~$32/year PGC range permit (plus ID). Nearest range to Kingston is off Patla Rd, Ross Township; another serves the Scranton area off Salem Mt. Rd, Archbald.",
+   "hoursDaily": {
+    "mon": "8am–sunset",
+    "tue": "8am–sunset",
+    "wed": "8am–sunset",
+    "thu": "8am–sunset",
+    "fri": "8am–sunset",
+    "sat": "8am–sunset",
+    "sun": "12pm–sunset"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Free to shoot; PA hunting license or ~$32/yr PGC range permit required",
+   "hoursVerified": true
+  },
+  {
+   "cat": "adventure",
+   "name": "Revolution Ice Centre",
+   "town": "Pittston",
+   "addr": "12 Old Boston Rd, Pittston, PA 18640",
+   "phone": "(570) 883-1100",
+   "time": {
+    "kingston": 15,
+    "scranton": 25,
+    "canadensis": 55
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Mon–Fri 4–9pm · Sat 8am–9pm · Sun 12–2pm",
+   "type": "Ice rink",
+   "note": "Year-round two-rink ice arena with public skating, cosmic glow skate nights, hockey and learn-to-skate programs. Public-skate session times change by day — check the day's schedule before heading over.",
+   "hoursDaily": {
+    "mon": "4pm–9pm",
+    "tue": "4pm–9pm",
+    "wed": "4pm–9pm",
+    "thu": "4pm–9pm",
+    "fri": "4pm–9pm",
+    "sat": "8am–9pm",
+    "sun": "12pm–2pm"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "Public skate ~$8 + $3 skate rental",
+   "hoursVerified": true
+  },
+  {
+   "cat": "bars",
+   "name": "River Grille",
+   "town": "Wilkes-Barre",
+   "addr": "670 N River St Ste 100, Wilkes-Barre, PA 18702",
+   "phone": "(570) 208-1282",
+   "time": {
+    "kingston": 10,
+    "scranton": 30,
+    "canadensis": 55
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening",
+    "late"
+   ],
+   "hours": "Mon–Thu 3–10pm · Fri 3–11pm · Sat–Sun 10:30am–11pm",
+   "type": "Bar & grill",
+   "note": "Riverside bar & grill with live music, trivia nights, themed pop-up bars, and weekend brunch from 11am.",
+   "hoursDaily": {
+    "mon": "3pm–10pm",
+    "tue": "3pm–10pm",
+    "wed": "3pm–10pm",
+    "thu": "3pm–10pm",
+    "fri": "3pm–11pm",
+    "sat": "10:30am–11pm",
+    "sun": "10:30am–11pm"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "$$ American bar & grill; weekend brunch from 11am",
+   "hoursVerified": true
+  },
+  {
+   "cat": "afternoon",
+   "name": "On&On",
+   "town": "Scranton",
+   "addr": "1138 Capouse Ave, Scranton, PA 18509",
+   "phone": "(570) 504-6992",
+   "time": {
+    "kingston": 25,
+    "scranton": 10,
+    "canadensis": 45
+   },
+   "hoursBuckets": [
+    "midday"
+   ],
+   "hours": "Tue–Fri 11am–6pm · Sat 10am–5pm · Sun 10am–4pm · Mon closed",
+   "type": "Vintage marketplace",
+   "note": "Two-floor vintage marketplace with 60+ local vendors — mid-century housewares, vintage clothing, and a big vinyl record selection. Famous Dwight Schrute mural on the building.",
+   "hoursDaily": {
+    "mon": "closed",
+    "tue": "11am–6pm",
+    "wed": "11am–6pm",
+    "thu": "11am–6pm",
+    "fri": "11am–6pm",
+    "sat": "10am–5pm",
+    "sun": "10am–4pm"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Free to browse; 60+ local vintage/antique vendors",
+   "hoursVerified": true
+  },
+  {
+   "cat": "afternoon",
+   "name": "Viewmont Mall",
+   "town": "Dickson City",
+   "addr": "100 Viewmont Dr, Dickson City, PA 18519",
+   "phone": "(570) 346-9165",
+   "time": {
+    "kingston": 25,
+    "scranton": 10,
+    "canadensis": 45
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Mon–Sat 11am–8pm · Sun 11am–6pm",
+   "type": "Shopping mall",
+   "note": "The Scranton area's main enclosed mall — 70+ stores, food court, and a Regal cinema on site.",
+   "hoursDaily": {
+    "mon": "11am–8pm",
+    "tue": "11am–8pm",
+    "wed": "11am–8pm",
+    "thu": "11am–8pm",
+    "fri": "11am–8pm",
+    "sat": "11am–8pm",
+    "sun": "11am–6pm"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Free entry; Boscov's, JCPenney, Dick's Sporting Goods + Regal cinema",
+   "hoursVerified": true
+  },
+  {
+   "cat": "afternoon",
+   "name": "Wyoming Valley Mall",
+   "town": "Wilkes-Barre Township",
+   "addr": "29 Wyoming Valley Mall, Wilkes-Barre, PA 18702",
+   "phone": "(570) 822-9944",
+   "time": {
+    "kingston": 15,
+    "scranton": 30,
+    "canadensis": 60
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Mon–Sat 11am–8pm · Sun 11am–6pm",
+   "type": "Shopping mall",
+   "note": "Regional mall just off I-81 with 50+ stores and a food court; individual store hours may vary from mall hours.",
+   "hoursDaily": {
+    "mon": "11am–8pm",
+    "tue": "11am–8pm",
+    "wed": "11am–8pm",
+    "thu": "11am–8pm",
+    "fri": "11am–8pm",
+    "sat": "11am–8pm",
+    "sun": "11am–6pm"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Free entry; JCPenney, Macy's, Bath & Body Works, Hot Topic",
+   "hoursVerified": true
+  },
+  {
+   "cat": "afternoon",
+   "name": "Laurel Mall",
+   "town": "Hazleton",
+   "addr": "106 Laurel Mall Dr, Hazleton, PA 18202",
+   "phone": "(570) 454-2100",
+   "time": {
+    "kingston": 40,
+    "scranton": 55,
+    "canadensis": 55
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Mon–Sat 10am–8pm · Sun 11am–6pm",
+   "type": "Shopping mall",
+   "note": "Family mall in Hazle Township with national anchors, a food court, and a kids' play area.",
+   "hoursDaily": {
+    "mon": "10am–8pm",
+    "tue": "10am–8pm",
+    "wed": "10am–8pm",
+    "thu": "10am–8pm",
+    "fri": "10am–8pm",
+    "sat": "10am–8pm",
+    "sun": "11am–6pm"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Free entry; Boscov's, Hobby Lobby + Regal cinema",
    "hoursVerified": true
   }
  ]
