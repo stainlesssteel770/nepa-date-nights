@@ -35,38 +35,6 @@
   },
   {
    "cat": "bars",
-   "name": "Heat Bar & Night Club",
-   "town": "Wilkes-Barre",
-   "addr": "69–71 N Main St, Wilkes-Barre, PA",
-   "time": {
-    "kingston": 10,
-    "scranton": 27,
-    "canadensis": 62
-   },
-   "hoursBuckets": [
-    "evening",
-    "late"
-   ],
-   "hours": "Sun 5pm–2am · Wed–Sat 8pm–2am",
-   "type": "LGBTQ+ nightclub",
-   "note": "Drag cabaret “Inferno Fridays” and karaoke Thursdays — downtown Wilkes-Barre's late-night showpiece.",
-   "weeknight": true,
-   "hoursDaily": {
-    "fri": "8pm–2am",
-    "mon": "closed",
-    "sat": "8pm–2am",
-    "sun": "5pm–2am",
-    "thu": "8pm–2am",
-    "tue": "closed",
-    "wed": "8pm–2am"
-   },
-   "seasonText": null,
-   "priceTier": "$$",
-   "priceDetail": "Typical ~$10–30 pp (cover + cocktails; moderate)",
-   "hoursVerified": true
-  },
-  {
-   "cat": "bars",
    "name": "Whiskey Business",
    "town": "Wilkes-Barre",
    "addr": "87 Wood St, Wilkes-Barre, PA",
