@@ -29,7 +29,10 @@ jobs:
           D=$(TZ=America/New_York date +"%b %-d, %Y")
           sed -i "s/<!--BUILD_DATE-->/$D/" index.html
           grep -o "A snapshot from [^<]*" index.html
-          grep -q "BUILD_DATE" index.html && { echo "placeholder not replaced"; exit 1; }
+          if grep -q "BUILD_DATE" index.html; then
+            echo "placeholder not replaced"
+            exit 1
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
