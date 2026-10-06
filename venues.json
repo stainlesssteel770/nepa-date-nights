@@ -3589,6 +3589,272 @@
    "priceTier": "$",
    "priceDetail": "Inexpensive table time (Google price level $)",
    "hoursVerified": true
+  },
+  {
+   "cat": "games",
+   "name": "Eagle Billiards",
+   "town": "Dickson City",
+   "addr": "873 Scranton Carbondale Hwy, Dickson City, PA",
+   "time": {
+    "kingston": 25,
+    "scranton": 10,
+    "canadensis": 45
+   },
+   "hoursBuckets": [
+    "evening",
+    "late"
+   ],
+   "hours": "Sun 4–10pm · Mon–Thu 4–11pm · Fri–Sat 4pm–12am",
+   "type": "Pool hall",
+   "note": "10 regulation Brunswick tables plus 3 Diamonds, with arcade games, darts, and a full bar.",
+   "hoursDaily": {
+    "mon": "4pm–11pm",
+    "tue": "4pm–11pm",
+    "wed": "4pm–11pm",
+    "thu": "4pm–11pm",
+    "fri": "4pm–12am",
+    "sat": "4pm–12am",
+    "sun": "4pm–10pm"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "Table time + drinks ~$15–25 pp (estimated)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "games",
+   "name": "Splinters' Hatchet & Axe Throwing",
+   "town": "Swiftwater",
+   "addr": "2190 Route 611, Swiftwater, PA",
+   "time": {
+    "kingston": 40,
+    "scranton": 40,
+    "canadensis": 25
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Sun 12–6pm · Mon–Thu 5:30–9pm · Fri 5:30–10pm · Sat 11am–10pm",
+   "type": "Axe throwing",
+   "note": "13 WATL axe-throwing lanes, BYOB — reviewers call it a date-night pick.",
+   "hoursDaily": {
+    "mon": "5:30pm–9pm",
+    "tue": "5:30pm–9pm",
+    "wed": "5:30pm–9pm",
+    "thu": "5:30pm–9pm",
+    "fri": "5:30pm–10pm",
+    "sat": "11am–10pm",
+    "sun": "12pm–6pm"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "Per-person sessions, moderate (estimated)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "bars",
+   "name": "Jim Mc Carthy Tavern On Hill",
+   "town": "Wilkes-Barre",
+   "addr": "349 E Northampton St, Wilkes-Barre, PA 18702",
+   "phone": "(570) 826-1362",
+   "time": {
+    "kingston": 10,
+    "scranton": 30,
+    "canadensis": 60
+   },
+   "hoursBuckets": [
+    "evening",
+    "late"
+   ],
+   "hours": "Tue–Fri 3pm–2am · Sat 6pm–2am · Sun–Mon closed",
+   "type": "Irish tavern",
+   "note": "Family-run Irish tavern for 40+ years — one of NEPA's original karaoke bars, with open-mic nights and in-house dart leagues.",
+   "weeknight": true,
+   "hoursDaily": {
+    "mon": "closed",
+    "tue": "3pm–2am",
+    "wed": "3pm–2am",
+    "thu": "3pm–2am",
+    "fri": "3pm–2am",
+    "sat": "6pm–2am",
+    "sun": "closed"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Inexpensive drinks (Google price level: inexpensive)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "bars",
+   "name": "The V Spot Bar",
+   "town": "Scranton",
+   "addr": "906 Providence Rd, Scranton, PA 18508",
+   "phone": "(570) 963-7888",
+   "time": {
+    "kingston": 30,
+    "scranton": 8,
+    "canadensis": 50
+   },
+   "hoursBuckets": [
+    "evening",
+    "late"
+   ],
+   "hours": "Mon–Sat 3pm–2am · Sun 3pm–12am",
+   "type": "Entertainment bar & grill",
+   "note": "Non-smoking bar with live music four nights a week — Sunday karaoke, Monday DJ, Tuesday open mic, Wednesday line dancing.",
+   "weeknight": true,
+   "hoursDaily": {
+    "mon": "3pm–2am",
+    "tue": "3pm–2am",
+    "wed": "3pm–2am",
+    "thu": "3pm–2am",
+    "fri": "3pm–2am",
+    "sat": "3pm–2am",
+    "sun": "3pm–12am"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "Moderate pub fare + drinks (Google price level: moderate)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "breweries",
+   "name": "Groove Brewing",
+   "town": "Scranton",
+   "addr": "1401 Sanderson Ave, Scranton, PA 18509",
+   "phone": "(570) 800-5440",
+   "time": {
+    "kingston": 30,
+    "scranton": 10,
+    "canadensis": 50
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening"
+   ],
+   "hours": "Wed–Thu 5–9pm · Fri 3–9pm · Sat 12–9pm · Sun 12–8pm · Mon–Tue closed",
+   "type": "Brewery taproom",
+   "note": "Neighborhood taproom with rotating craft taps, live music, trivia, and food trucks outside — no kitchen, outside food welcome.",
+   "hoursDaily": {
+    "mon": "closed",
+    "tue": "closed",
+    "wed": "5pm–9pm",
+    "thu": "5pm–9pm",
+    "fri": "3pm–9pm",
+    "sat": "12pm–9pm",
+    "sun": "12pm–8pm"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Inexpensive pints (Google price level: inexpensive)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "bars",
+   "name": "O'Malley's Tavern",
+   "town": "Scranton (Minooka)",
+   "addr": "3277 Birney Ave, Scranton, PA",
+   "time": {
+    "kingston": 30,
+    "scranton": 10,
+    "canadensis": 50
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening",
+    "late"
+   ],
+   "hours": "Mon–Sat 11:30am–2:30am · Sun closed",
+   "type": "Irish tavern",
+   "note": "Family-run Irish tavern since 1964 — Tuesday karaoke with DJ Lucas packs the house, Wednesday open mic.",
+   "weeknight": true,
+   "hoursDaily": {
+    "mon": "11:30am–2:30am",
+    "tue": "11:30am–2:30am",
+    "wed": "11:30am–2:30am",
+    "thu": "11:30am–2:30am",
+    "fri": "11:30am–2:30am",
+    "sat": "11:30am–2:30am",
+    "sun": "closed"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Inexpensive drinks (estimated)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "bars",
+   "name": "Dunn's Tavern",
+   "town": "Scranton",
+   "addr": "905 S Main Ave, Scranton, PA",
+   "time": {
+    "kingston": 30,
+    "scranton": 10,
+    "canadensis": 50
+   },
+   "hoursBuckets": [
+    "evening",
+    "late"
+   ],
+   "hours": "Wed–Sat 6pm–12am · Sun–Tue closed",
+   "type": "Dive bar",
+   "note": "Non-smoking dive bar with shuffleboard, a pool table, and dart boards.",
+   "hoursDaily": {
+    "mon": "closed",
+    "tue": "closed",
+    "wed": "6pm–12am",
+    "thu": "6pm–12am",
+    "fri": "6pm–12am",
+    "sat": "6pm–12am",
+    "sun": "closed"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Cheap drinks (estimated)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "seasonal",
+   "name": "940 Golf N' Fun",
+   "town": "Pocono Lake",
+   "addr": "951 Route 940, Pocono Lake, PA",
+   "time": {
+    "kingston": 35,
+    "scranton": 40,
+    "canadensis": 20
+   },
+   "hoursBuckets": [
+    "midday",
+    "evening",
+    "late"
+   ],
+   "hours": "Daily 10am–11pm · Apr 1–Oct 15 (seasonal)",
+   "type": "Mini golf + arcade",
+   "note": "Mini golf, arcade, batting cages, and bumper cars — open till 11pm nightly through the season.",
+   "season": {
+    "s": [
+     4,
+     1
+    ],
+    "e": [
+     10,
+     15
+    ]
+   },
+   "hoursDaily": {
+    "mon": "10am–11pm",
+    "tue": "10am–11pm",
+    "wed": "10am–11pm",
+    "thu": "10am–11pm",
+    "fri": "10am–11pm",
+    "sat": "10am–11pm",
+    "sun": "10am–11pm"
+   },
+   "seasonText": "Apr 1–Oct 15 (seasonal)",
+   "priceTier": "$$",
+   "priceDetail": "Pay per attraction, moderate (estimated)",
+   "hoursVerified": true
   }
  ]
 }
