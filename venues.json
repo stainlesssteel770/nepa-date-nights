@@ -947,8 +947,8 @@
      1
     ],
     "e": [
-     9,
-     30
+     10,
+     31
     ]
    },
    "note": "Evening double features Friday–Sunday in season.",
@@ -961,7 +961,7 @@
     "tue": "closed",
     "wed": "closed"
    },
-   "seasonText": "Seasonal (annual; 2026 screenings confirmed Jun–Aug)",
+   "seasonText": "Seasonal (annual; Apr–Oct)",
    "priceTier": "$",
    "priceDetail": "$8 adults, $5 children 3–11; occasional $5 single-movie Sundays (venue's own 2026 posts)",
    "hoursVerified": true
@@ -1020,8 +1020,8 @@
      1
     ],
     "e": [
-     9,
-     30
+     10,
+     31
     ]
    },
    "note": "Double features under the stars for $7.",
@@ -1094,8 +1094,8 @@
      1
     ],
     "e": [
-     9,
-     30
+     10,
+     31
     ]
    },
    "note": "Classic drive-in on the Scranton–Carbondale highway.",
@@ -1108,7 +1108,7 @@
     "tue": null,
     "wed": null
    },
-   "seasonText": "Apr–Oct (annual)",
+   "seasonText": "Apr–Oct (annual; Circle of Screams horror films through Oct 2026)",
    "priceTier": "$",
    "priceDetail": "$9.50 adults (13+), $7.50 children 3–12, 2 & under free (venue's own description + July 2026 press coverage)",
    "hoursVerified": false
