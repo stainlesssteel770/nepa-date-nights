@@ -721,7 +721,7 @@ function cardHTML(v, flat){
   return '<article class="card">' +
     '<div class="card-top"><span class="town">'+esc(v.town)+'</span><span class="drive">'+esc(driveLabel(vtime(v)))+'</span></div>' +
     '<h3>'+esc(v.name)+'</h3>' +
-    (v.friSatLateOnly ? '<p class="latebadge">'+WARN+'<span><strong>Friday &amp; Saturday nights only</strong> \u2014 the late-night hours here run Fri &amp; Sat.</span></p>' : '') +
+    (v.friSatLateOnly ? '<p class="latebadge">'+WARN+'<span><strong>Saturday nights only</strong> — the late-night hours here run on Saturdays.</span></p>' : '') +
     '<div class="type-row">'+catTag+'<span class="type-tag">'+esc(v.type)+'</span></div>' +
     '<div class="hours">'+CLOCK+'<span>'+esc(v.hours)+'</span></div>' +
     (v.priceTier ? '<div class="price-row"><span class="price-tier">'+esc(v.priceTier)+'</span>'+(v.priceDetail ? '<span class="price-detail">'+esc(v.priceDetail)+'</span>' : '')+'</div>' : '') +
