@@ -56,8 +56,6 @@
      so the stuck block covers every listing and the page looks frozen while
      scrolling. Let the header scroll naturally on small screens. */
   @media (max-width:720px){
-  #densitySeg{display:none}
-  #densitySection{display:block}
   .topbar h1{font-size:1.55rem}
   .subhead{font-size:.88rem;margin-bottom:8px}
   .dist-row{margin-bottom:8px}
@@ -69,9 +67,6 @@
   .topbar{position:static}
   .topbar, .topbar > .wrap{display:contents}
   .sr-row{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
-  }
-  @media (min-width:721px){
-    #densitySection{display:none}
   }
   .topbar h1{
     font-family:"DM Serif Display",Georgia,serif;font-weight:400;
@@ -211,9 +206,8 @@
   @media (prefers-color-scheme: dark){.moreless{color:var(--accent)}}
   .flat-list{padding-top:30px}
 
-  /* ---------- Jump-to-category nav ---------- */
+  /* ---------- Jump-to-category nav (scrolls away; not sticky) ---------- */
   .jumpnav{
-    position:-webkit-sticky;position:sticky;top:var(--jump-top,0px);z-index:40;
     margin:12px -20px 0;padding:8px 20px;background:var(--bg);border-bottom:1px solid var(--line);
   }
   .jumpnav[hidden]{display:none}
@@ -228,6 +222,17 @@
   .jn-active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
   .jn-active .jn-n{color:var(--accent-strong);background:var(--accent-soft)}
   @media (prefers-color-scheme: dark){.jn-active .jn-n{color:var(--accent)}}
+
+  /* ---------- Back-to-top button ---------- */
+  #toTop{
+    position:fixed;right:16px;bottom:16px;width:48px;height:48px;border-radius:50%;
+    background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);
+    color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;
+    z-index:60;opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .2s ease,transform .2s ease;
+  }
+  #toTop.show{opacity:1;pointer-events:auto;transform:none}
+  #toTop svg{width:20px;height:20px}
 
   /* ---------- Sections ---------- */
   .cat-section{padding-top:26px;scroll-margin-top:var(--scroll-mt,80px)}
@@ -263,18 +268,6 @@
   .cat-section .grid{margin-top:16px}
   .cat-section.collapsed .grid{display:none}
   .banner:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
-  /* Compact card density. 44px tap targets are fixed min-heights, unaffected. */
-  body.dense .grid{gap:10px}
-  body.dense .card{padding:13px 15px 10px;gap:6px}
-  body.dense .card h3{font-size:1.04rem}
-  body.dense .note{font-size:.87rem}
-  body.dense .note.clamp{-webkit-line-clamp:2}
-  body.dense .townbox{padding:5px 4px}
-  body.dense .townbox .tb-time{font-size:.78rem}
-  body.dense .hours{font-size:.82rem}
-  body.dense .warnline{font-size:.76rem}
-  body.dense .card-foot{padding-top:7px}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:14px}
 
@@ -393,10 +386,7 @@
             <button data-sort="az" aria-pressed="true">A–Z</button>
             <button data-sort="drive" aria-pressed="false">Nearest first</button>
           </div>
-          <div class="seg seg-sm" id="densitySeg" role="group" aria-label="Card density">
-            <button data-density="comfortable" aria-pressed="true">Comfortable</button>
-            <button data-density="compact" aria-pressed="false">Compact</button>
-          </div>
+          <button class="toggle" id="rightNowToggle" aria-pressed="false"><span class="dot"></span>Right now</button>
           <button class="clear-btn" id="clearBtn">Clear filters</button>
         </span>
       </div>
@@ -420,6 +410,10 @@
     <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeTYpsjhJg7DbLzBwO55tfCS00DCOipHCyVH9WTUMUPiI7Olw/viewform?usp=header" target="_blank" rel="noopener"><strong>Suggest a spot</strong></a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLScravzRfODNDWaopbJ-hf_wJlY8mfcMUxpYqmWdE6ipDbv_WQ/viewform?usp=header" target="_blank" rel="noopener">Report wrong hours</a> · corrections welcome.</p>
   </footer>
 </div>
+
+  <button id="toTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+  </button>
 
   <div class="scrim" id="scrim" aria-hidden="true"></div>
   <aside class="panel" id="filterPanel" role="dialog" aria-modal="true" aria-label="Filters" aria-hidden="true">
@@ -458,14 +452,6 @@
         <h3>Time of day</h3>
         <div class="chips" id="timeChips" role="group" aria-label="Filter by time of day — choose as many as you like"></div>
         <button class="toggle" id="openTodayToggle" aria-pressed="false"><span class="dot"></span>Open tonight</button>
-        <button class="toggle" id="rightNowToggle" aria-pressed="false"><span class="dot"></span>Right now</button>
-      </div>
-      <div class="fsection" id="densitySection">
-        <h3>Card density</h3>
-        <div class="seg" id="densitySegDrawer" role="group" aria-label="Card density">
-          <button data-density="comfortable" aria-pressed="true">Comfortable</button>
-          <button data-density="compact" aria-pressed="false">Compact</button>
-        </div>
       </div>
       <div class="fsection">
         <h3>Seasonal</h3>
@@ -518,7 +504,7 @@ function primeVenues(){
 }
 
 /* -------- State -------- */
-var state = { q:"", cats:[], hours:[], openToday:false, rightNow:false, season:"all", anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable" };
+var state = { q:"", cats:[], hours:[], openToday:false, rightNow:false, season:"all", anchor:"kingston", maxDrive:0, sort:"az" };
 
 var $ = function(id){ return document.getElementById(id); };
 
@@ -961,7 +947,9 @@ function filterCount(){
 }
 
 /* ---------- Collapsible sections, jump nav ---------- */
-/* Collapse state is view-only: it survives every re-render and Clear filters. */
+/* Collapse state is view-only: it survives every re-render and Clear filters.
+   Sections start collapsed; render() opens sections with matches while a
+   search or filter is active. */
 var collapsedCats = {};
 function setCollapsed(catId, on){
   collapsedCats[catId] = on;
@@ -973,24 +961,20 @@ function setCollapsed(catId, on){
   }
 }
 
-/* Sticky offsets: on desktop the header stays sticky, so the jump bar sticks
-   right under it; on phones the search row is always sticky (pure CSS), so
-   the bar sticks beneath it. Sections get scroll-margin to match. */
+/* Sticky offsets: on desktop the header stays sticky, so sections need a
+   scroll-margin under it; on phones the search row is always sticky (pure
+   CSS). The category nav scrolls away and needs no offset. */
 function updateNavOffsets(){
   var mobile = window.matchMedia("(max-width:720px)").matches;
   var topH = 0;
   if (mobile){
     var sr = document.querySelector(".sr-row");
-    topH = sr ? sr.offsetHeight + 16 : 0;
+    topH = sr ? sr.offsetHeight : 0;
   } else {
     var tb = document.querySelector(".topbar");
     topH = tb ? tb.offsetHeight : 0;
   }
-  var nav = $("jumpnav");
-  var navH = (nav && !nav.hidden) ? nav.offsetHeight : 0;
-  var root = document.documentElement;
-  root.style.setProperty("--jump-top", topH + "px");
-  root.style.setProperty("--scroll-mt", (topH + navH + 14) + "px");
+  document.documentElement.style.setProperty("--scroll-mt", (topH + 14) + "px");
 }
 /* Re-measure the sticky offsets when the viewport changes (rotation, font
    load shifting the search row's height). */
@@ -1014,14 +998,24 @@ function spy(){
 }
 window.addEventListener("scroll", function(){
   if (spyTick) return;
-  spyTick = requestAnimationFrame(function(){ spyTick = null; spy(); });
+  spyTick = requestAnimationFrame(function(){ spyTick = null; spy(); updateToTop(); });
 }, {passive:true});
+/* Back-to-top arrow: appears once the user has scrolled a ways down. */
+function updateToTop(){
+  $("toTop").classList.toggle("show", (window.scrollY || 0) > 600);
+}
+$("toTop").addEventListener("click", function(){
+  var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({top:0, behavior: smooth ? "smooth" : "auto"});
+});
 
 function render(){
   var flat = state.sort === "drive" || state.rightNow;
   var list = VENUES.filter(matches);
   var total = VENUES.length;
   var shown = list.length;
+  var filtering = state.q !== "" || state.cats.length > 0 || state.hours.length > 0 ||
+    state.openToday || state.rightNow || state.season !== "all" || state.maxDrive !== 0;
   var html = "";
   var navHtml = "";
   if (flat){
@@ -1034,7 +1028,10 @@ function render(){
       var c = CATS[i];
       var mv = list.filter(function(v){ return v.cat === c.id; }).sort(sortByName);
       if (!mv.length) continue;
-      var isCollapsed = !!collapsedCats[c.id];
+      /* Categories start collapsed by default; a manual expand/collapse sticks
+         for the session. While a search or filter is active, sections with
+         matches open up so results are visible (unless explicitly collapsed). */
+      var isCollapsed = filtering ? (collapsedCats[c.id] === true) : (collapsedCats[c.id] !== false);
       navHtml += '<a class="jn" href="#sec-'+c.id+'"><span class="jn-name">'+esc(c.short)+'</span><span class="jn-n">'+mv.length+'</span></a>';
       html += '<section class="cat-section'+(isCollapsed?' collapsed':'')+'" id="sec-'+c.id+'" aria-label="'+esc(c.title)+'">' +
         '<button type="button" class="banner" aria-expanded="'+(isCollapsed?'false':'true')+'" aria-controls="grid-'+c.id+'">' +
@@ -1083,15 +1080,13 @@ function setSegPressed(rootId, attr, value){
 }
 
 function clearAll(){
-  state = {q:"", cats:[], hours:[], openToday:false, rightNow:false, season:"all", anchor:"kingston", maxDrive:0, sort:"az", density:"comfortable"};
+  state = {q:"", cats:[], hours:[], openToday:false, rightNow:false, season:"all", anchor:"kingston", maxDrive:0, sort:"az"};
   document.body.classList.remove("dense");
   $("q").value = "";
   $("rightNowToggle").setAttribute("aria-pressed","false");
   $("openTodayToggle").setAttribute("aria-pressed","false");
   setSegPressed("anchorSeg","data-anchor","kingston");
   setSegPressed("sortSeg","data-sort","az");
-  setSegPressed("densitySeg","data-density","comfortable");
-  setSegPressed("densitySegDrawer","data-density","comfortable");
   setSegPressed("seasonSeg","data-season","all");
   syncChips($("timeChips"),"hours");
   syncChips($("catChips"),"cats");
@@ -1115,7 +1110,6 @@ function saveState(){
     if (state.anchor !== "kingston") p.push("from=" + state.anchor);
     if (state.maxDrive) p.push("drive=" + state.maxDrive);
     if (state.sort !== "az") p.push("sort=" + state.sort);
-    if (state.density !== "comfortable") p.push("density=" + state.density);
     var h = p.join("&");
     if (window.history && history.replaceState){
       history.replaceState(null, "", h ? "#" + h : location.pathname + location.search);
@@ -1150,11 +1144,6 @@ function loadState(){
     if (di !== -1){ state.maxDrive = DRIVE_STOPS[di]; if (DRIVE_RANGE){ DRIVE_RANGE.value = di; setRangePct(); } }
   }
   if (o.sort === "drive"){ state.sort = "drive"; setSegPressed("sortSeg","data-sort","drive"); }
-  if (o.density === "compact"){
-    applyDensity("compact");
-    setSegPressed("densitySeg","data-density","compact");
-    setSegPressed("densitySegDrawer","data-density","compact");
-  }
   syncChips($("timeChips"),"hours");
   syncChips($("catChips"),"cats");
 }
@@ -1292,9 +1281,6 @@ function wireSeg(rootId, attr, apply){
 }
 wireSeg("anchorSeg","data-anchor",function(val){ state.anchor = val; });
 wireSeg("sortSeg","data-sort",function(val){ state.sort = val; });
-function applyDensity(val){ state.density = val; document.body.classList.toggle("dense", val==="compact"); }
-wireSeg("densitySeg","data-density",function(val){ applyDensity(val); setSegPressed("densitySegDrawer","data-density",val); });
-wireSeg("densitySegDrawer","data-density",function(val){ applyDensity(val); setSegPressed("densitySeg","data-density",val); });
 wireSeg("seasonSeg","data-season",function(val){ state.season = val; });
 
 DRIVE_RANGE = $("driveRange");
