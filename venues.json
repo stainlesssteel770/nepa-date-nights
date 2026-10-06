@@ -1911,7 +1911,7 @@
    "hoursVerified": false
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Reaper's Revenge",
    "town": "Olyphant",
    "addr": "460 Green Grove Rd, Blakely/Olyphant, PA",
@@ -1951,7 +1951,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Horror Hall",
    "town": "West Nanticoke",
    "addr": "11 E Poplar St, Nanticoke, PA 18634",
@@ -1994,7 +1994,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Gravestone Manor",
    "town": "Wilkes-Barre",
    "addr": "1095 PA-315, Wilkes-Barre, PA",
@@ -2034,7 +2034,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Hell's Nightmares",
    "town": "Dallas",
    "addr": "70 Ridgway Dr, Dallas, PA 18612 (Irem Shrine)",
@@ -2076,7 +2076,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Haunted Woods of Council Cup",
    "town": "Wapwallopen",
    "addr": "212 Ruckle Hill Rd, Wapwallopen, PA 18660",
@@ -2117,7 +2117,7 @@
    "hoursVerified": false
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Waldorf Estate of Fear",
    "town": "Lehighton",
    "addr": "6325 Interchange Rd, Lehighton, PA 18235",
@@ -2160,7 +2160,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Devil's Last Laugh",
    "town": "Lehighton",
    "addr": "3975 Long Run Rd, Lehighton, PA 18235",
@@ -2201,7 +2201,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Halls of Horror",
    "town": "Palmerton",
    "addr": "320 Delaware Ave, Palmerton, PA 18071",
@@ -2245,7 +2245,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Hotel of Horror",
    "town": "Saylorsburg",
    "addr": "5105 Cherry Valley Rd, Saylorsburg, PA 18353",
@@ -2288,7 +2288,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Massacre Mansion",
    "town": "Simpson",
    "addr": "454 Delaware St, Simpson, PA 18407",
@@ -2330,7 +2330,7 @@
    "hoursVerified": true
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "North Pocono Place Haunted House",
    "town": "Moscow",
    "addr": "106 S Main St, Moscow, PA 18444",
@@ -2370,7 +2370,7 @@
    "hoursVerified": false
   },
   {
-   "cat": "haunts",
+   "cat": "seasonal",
    "name": "Fear at the Farm",
    "town": "Bloomsburg",
    "addr": "284 W Fort McClure Blvd, Bloomsburg, PA 17815",
