@@ -1012,17 +1012,26 @@ window.addEventListener("scroll", function(){
   if (spyTick) return;
   spyTick = requestAnimationFrame(function(){ spyTick = null; spy(); });
 }, {passive:true});
+/* Mobile collapsing header: past 140px the header shrinks to just the search
+   row (see the body.scrolled CSS). Hiding those rows changes the topbar's
+   height, which would make the page visibly jump; measure the height delta
+   across the toggle and shift the scroll position by the same amount so the
+   content under the viewport stays put. */
+function updateScrolled(){
+  var sc = (window.scrollY || 0) > 140;
+  if (document.body.classList.contains("scrolled") === sc) return;
+  var tb = document.querySelector(".topbar");
+  var hBefore = tb ? tb.offsetHeight : 0;
+  document.body.classList.toggle("scrolled", sc);
+  var hAfter = tb ? tb.offsetHeight : 0;
+  var dy = hBefore - hAfter;
+  if (dy) window.scrollTo(0, (window.scrollY || 0) + dy);
+  updateNavOffsets();
+}
 var scTick = null;
 window.addEventListener("scroll", function(){
   if (scTick) return;
-  scTick = requestAnimationFrame(function(){
-    scTick = null;
-    var sc = (window.scrollY || 0) > 140;
-    if (document.body.classList.contains("scrolled") !== sc){
-      document.body.classList.toggle("scrolled", sc);
-      updateNavOffsets();
-    }
-  });
+  scTick = requestAnimationFrame(function(){ scTick = null; updateScrolled(); });
 }, {passive:true});
 
 function render(){
@@ -1073,7 +1082,7 @@ function render(){
   $("driveLive").innerHTML = driveLiveText();
   $("panelShow").textContent = "Show "+shown+" result"+(shown===1?"":"s");
   var dirty = state.q !== "" || state.cats.length > 0 || state.hours.length > 0 ||
-    state.season !== "all" || state.rightNow || state.anchor !== "kingston" ||
+    state.season !== "all" || state.rightNow ||
     state.maxDrive !== 0 || state.sort !== "az";
   $("clearBtn").classList.toggle("show", dirty);
   saveState();
