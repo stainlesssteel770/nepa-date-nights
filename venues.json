@@ -3556,6 +3556,39 @@
    "priceTier": "$",
    "priceDetail": "Free entry; Boscov's, Hobby Lobby + Regal cinema",
    "hoursVerified": true
+  },
+  {
+   "cat": "games",
+   "name": "Jack & Jill's Billiards",
+   "town": "Wilkes-Barre Township",
+   "addr": "510 Blackman St, Wilkes-Barre, PA 18702",
+   "phone": "(570) 829-9058",
+   "time": {
+    "kingston": 10,
+    "scranton": 30,
+    "canadensis": 60
+   },
+   "hoursBuckets": [
+    "evening",
+    "late"
+   ],
+   "hours": "Mon–Sat 12pm–12am · Sun 1pm–12am",
+   "type": "Pool hall",
+   "note": "Long-running basement pool hall with a dive-bar feel — very affordable table time, a classic late-night hangout for groups.",
+   "weeknight": true,
+   "hoursDaily": {
+    "mon": "12pm–12am",
+    "tue": "12pm–12am",
+    "wed": "12pm–12am",
+    "thu": "12pm–12am",
+    "fri": "12pm–12am",
+    "sat": "12pm–12am",
+    "sun": "1pm–12am"
+   },
+   "seasonText": null,
+   "priceTier": "$",
+   "priceDetail": "Inexpensive table time (Google price level $)",
+   "hoursVerified": true
   }
  ]
 }
