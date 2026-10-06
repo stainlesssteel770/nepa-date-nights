@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+# Every push to main stamps the footer date (US Eastern) into index.html,
+# then deploys. The repo keeps a <!--BUILD_DATE--> placeholder, so the
+# published date is provably fresh on every deploy with no manual step.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stamp footer date (US Eastern)
+        run: |
+          D=$(TZ=America/New_York date +"%b %-d, %Y")
+          sed -i "s/<!--BUILD_DATE-->/$D/" index.html
+          grep -o "A snapshot from [^<]*" index.html
+          grep -q "BUILD_DATE" index.html && { echo "placeholder not replaced"; exit 1; }
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
