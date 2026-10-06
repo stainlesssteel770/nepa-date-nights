@@ -56,25 +56,19 @@
      so the stuck block covers every listing and the page looks frozen while
      scrolling. Let the header scroll naturally on small screens. */
   @media (max-width:720px){
-    .topbar{position:static}
-  }
-  /* Mobile toolbar: 4 stacked rows before the first card. While scrolling,
-     everything collapses away except search + filters, which stick; the
-     category chips (jumpnav) stick right beneath them. Card density lives
-     in the filter drawer on phones. */
-  @media (max-width:720px){
-    #densitySeg{display:none}
-    #densitySection{display:block}
-    .topbar h1{font-size:1.55rem}
-    .subhead{font-size:.88rem;margin-bottom:8px}
-    .dist-row{margin-bottom:8px}
-    .result-line{margin-bottom:10px}
-    body.scrolled .topbar{position:sticky;top:0;padding:10px 0;z-index:50;background:var(--bg)}
-    body.scrolled .topbar h1,
-    body.scrolled .topbar .subhead,
-    body.scrolled .topbar .dist-row,
-    body.scrolled .topbar .result-line{display:none}
-    body.scrolled .topbar .sr-row{margin-bottom:0}
+  #densitySeg{display:none}
+  #densitySection{display:block}
+  .topbar h1{font-size:1.55rem}
+  .subhead{font-size:.88rem;margin-bottom:8px}
+  .dist-row{margin-bottom:8px}
+  .result-line{margin-bottom:10px}
+  /* Mobile: the search row sticks for the whole page with no JS. Skipping the
+     header's boxes makes the row's containing block the page wrapper, so it
+     stays stuck; everything else scrolls away naturally. No threshold, no
+     class toggle, no layout shift, no scroll jank. */
+  .topbar{position:static}
+  .topbar, .topbar > .wrap{display:contents}
+  .sr-row{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
   }
   @media (min-width:721px){
     #densitySection{display:none}
@@ -980,21 +974,31 @@ function setCollapsed(catId, on){
 }
 
 /* Sticky offsets: on desktop the header stays sticky, so the jump bar sticks
-   right under it; on phones (<=720px) the header scrolls away, so the bar
-   sticks at the very top. Sections get scroll-margin to match. */
+   right under it; on phones the search row is always sticky (pure CSS), so
+   the bar sticks beneath it. Sections get scroll-margin to match. */
 function updateNavOffsets(){
   var mobile = window.matchMedia("(max-width:720px)").matches;
-  var tb = document.querySelector(".topbar");
-  var sr = tb ? tb.querySelector(".sr-row") : null;
-  var topH = mobile
-    ? (document.body.classList.contains("scrolled") && sr ? sr.offsetHeight + 16 : 0)
-    : (tb ? tb.offsetHeight : 0);
+  var topH = 0;
+  if (mobile){
+    var sr = document.querySelector(".sr-row");
+    topH = sr ? sr.offsetHeight + 16 : 0;
+  } else {
+    var tb = document.querySelector(".topbar");
+    topH = tb ? tb.offsetHeight : 0;
+  }
   var nav = $("jumpnav");
   var navH = (nav && !nav.hidden) ? nav.offsetHeight : 0;
   var root = document.documentElement;
   root.style.setProperty("--jump-top", topH + "px");
   root.style.setProperty("--scroll-mt", (topH + navH + 14) + "px");
 }
+/* Re-measure the sticky offsets when the viewport changes (rotation, font
+   load shifting the search row's height). */
+var rzTick = null;
+window.addEventListener("resize", function(){
+  if (rzTick) return;
+  rzTick = requestAnimationFrame(function(){ rzTick = null; updateNavOffsets(); });
+}, {passive:true});
 
 /* Scroll spy: highlight the jump-nav pill for the visible section. */
 var spyTick = null;
@@ -1011,27 +1015,6 @@ function spy(){
 window.addEventListener("scroll", function(){
   if (spyTick) return;
   spyTick = requestAnimationFrame(function(){ spyTick = null; spy(); });
-}, {passive:true});
-/* Mobile collapsing header: past 140px the header shrinks to just the search
-   row (see the body.scrolled CSS). Hiding those rows changes the topbar's
-   height, which would make the page visibly jump; measure the height delta
-   across the toggle and shift the scroll position by the same amount so the
-   content under the viewport stays put. */
-function updateScrolled(){
-  var sc = (window.scrollY || 0) > 140;
-  if (document.body.classList.contains("scrolled") === sc) return;
-  var tb = document.querySelector(".topbar");
-  var hBefore = tb ? tb.offsetHeight : 0;
-  document.body.classList.toggle("scrolled", sc);
-  var hAfter = tb ? tb.offsetHeight : 0;
-  var dy = hBefore - hAfter;
-  if (dy) window.scrollTo(0, (window.scrollY || 0) + dy);
-  updateNavOffsets();
-}
-var scTick = null;
-window.addEventListener("scroll", function(){
-  if (scTick) return;
-  scTick = requestAnimationFrame(function(){ scTick = null; updateScrolled(); });
 }, {passive:true});
 
 function render(){
