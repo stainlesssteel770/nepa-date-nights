@@ -393,7 +393,7 @@
     <p><strong>A snapshot from Oct 1, 2026.</strong> Hours, showtimes, and cover charges change — open the map link or call before a late-evening visit, especially anywhere flagged above.</p>
     <p>Drive times are approximate, measured from the selected starting town. Map links open Google Maps in a new tab.</p>
     <p>This guide covers bars, breweries, and experiences only — no restaurants, cafés, dessert shops, wineries, or wine bars, by request.</p>
-    <p><a href="https://github.com/stainlesssteel770/nepa-date-nights/issues/new?template=suggest-a-spot.yml" target="_blank" rel="noopener"><strong>Suggest a spot</strong></a> · <a href="https://github.com/stainlesssteel770/nepa-date-nights/issues/new?template=wrong-hours.yml" target="_blank" rel="noopener">Report wrong hours</a> · Data lives in <a href="https://github.com/stainlesssteel770/nepa-date-nights/blob/main/venues.json" target="_blank" rel="noopener">venues.json</a> — corrections welcome.</p>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeTYpsjhJg7DbLzBwO55tfCS00DCOipHCyVH9WTUMUPiI7Olw/viewform?usp=header" target="_blank" rel="noopener"><strong>Suggest a spot</strong></a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLScravzRfODNDWaopbJ-hf_wJlY8mfcMUxpYqmWdE6ipDbv_WQ/viewform?usp=header" target="_blank" rel="noopener">Report wrong hours</a> · Data lives in <a href="https://github.com/stainlesssteel770/nepa-date-nights/blob/main/venues.json" target="_blank" rel="noopener">venues.json</a> — corrections welcome.</p>
   </footer>
 </div>
 
@@ -594,12 +594,9 @@ function townBox(v, key){
     '<span class="tb-time">'+esc(boxLabel(v.time[key]))+'</span></div>';
 }
 
-var ISSUES = "https://github.com/stainlesssteel770/nepa-date-nights/issues/new";
+var WRONG_HOURS_FORM = "https://docs.google.com/forms/d/e/1FAIpQLScravzRfODNDWaopbJ-hf_wJlY8mfcMUxpYqmWdE6ipDbv_WQ/viewform?usp=header";
 function reportUrl(v){
-  return ISSUES + "?template=wrong-hours.yml" +
-    "&title=" + encodeURIComponent("[Wrong hours] " + v.name) +
-    "&body=" + encodeURIComponent("Venue: " + v.name + "\nTown: " + v.town +
-      "\n\nWhat's wrong:\n\nCorrect hours (if known):\n");
+  return WRONG_HOURS_FORM;
 }
 function cardHTML(v, flat){
   var catTag = flat ? '<span class="type-tag">'+esc(catTitle(v.cat))+'</span>' : '';
