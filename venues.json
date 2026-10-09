@@ -1,5 +1,5 @@
 {
- "data_updated": "2026-10-05",
+ "data_updated": "2026-10-08",
  "venues": [
   {
    "cat": "bars",
@@ -3822,6 +3822,39 @@
    "seasonText": "Apr 1–Oct 15 (seasonal)",
    "priceTier": "$$",
    "priceDetail": "Pay per attraction, moderate (estimated)",
+   "hoursVerified": true
+  },
+  {
+   "cat": "games",
+   "name": "Valley Bowling Lanes",
+   "town": "Carbondale",
+   "addr": "1 Meredith St, Carbondale, PA 18407",
+   "phone": "(570) 282-3960",
+   "time": {
+    "kingston": 45,
+    "scranton": 20,
+    "canadensis": 50
+   },
+   "hoursBuckets": [
+    "evening",
+    "late"
+   ],
+   "hours": "Cosmic bowling Fri & Sat 8pm–1am · UNREAL AR-projection lanes · Open bowl daily (Fri 3pm–1am · Sat 9am–1am · Sun 12pm–11:30pm · Mon 3pm–11:30pm · Tue–Thu 12pm–11:30pm)",
+   "type": "Bowling / cosmic bowling",
+   "note": "UNREAL AR-projection bowling on 8 lanes — interactive lane graphics and ball-tracking effects — plus Fri & Sat cosmic from 8pm with a DJ taking requests. Full bar (Champions Lounge), arcade, and pool tables.",
+   "friSatLateOnly": true,
+   "hoursDaily": {
+    "mon": "3pm–11:30pm",
+    "tue": "12pm–11:30pm",
+    "wed": "12pm–11:30pm",
+    "thu": "12pm–11:30pm",
+    "fri": "3pm–1am",
+    "sat": "9am–1am",
+    "sun": "12pm–11:30pm"
+   },
+   "seasonText": null,
+   "priceTier": "$$",
+   "priceDetail": "Open play ~$5.75/game or $34.95/lane/hr; cosmic $6/game or $37.95/hr (+$50 to add UNREAL to a party)",
    "hoursVerified": true
   }
  ]
