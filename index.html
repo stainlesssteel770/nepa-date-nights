@@ -184,12 +184,6 @@
   .stop-qual span.last{transform:translateX(-100%)}
 
   /* ---------- Card extras ---------- */
-  .towns{display:flex;gap:8px;margin-top:2px}
-  .townbox{flex:1;border:1px solid var(--line);border-radius:10px;padding:7px 6px;text-align:center;background:var(--bg-soft);min-width:0}
-  .townbox .tb-name{display:block;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-  .townbox .tb-time{display:block;font-size:.84rem;font-weight:700;margin-top:1px}
-  .townbox.sel{background:var(--teal-soft);border-color:var(--teal)}
-  .townbox.sel .tb-time{color:var(--teal)}
   .addr-text{flex:1;min-width:0}
   .copy-btn{
     flex:none;margin-left:6px;border:1px solid var(--line);background:transparent;
@@ -748,15 +742,6 @@ function seasonActive(v){
   return cmp(s.e[0],s.e[1],s.s[0],s.s[1]) < 0 ? (afterStart || beforeEnd) : (afterStart && beforeEnd);
 }
 
-/* Compact drive label for the three town boxes. */
-function boxLabel(m){
-  if (m <= 5) return "In town";
-  if (m < 60) return "~" + m + " min";
-  var hr = Math.floor(m/60), rest = m % 60;
-  return "~" + hr + " hr" + (rest ? " " + rest + " min" : "");
-}
-
-
 /* OR within each filter group, AND across groups. */
 function hoursMatch(v){
   if (!state.hours.length) return true;
@@ -782,12 +767,6 @@ function sortByDrive(a, b){
   return a.name.localeCompare(b.name);
 }
 function sortByName(a, b){ return a.name.localeCompare(b.name); }
-
-function townBox(v, key){
-  var sel = state.anchor === key ? ' sel' : '';
-  return '<div class="townbox'+sel+'"><span class="tb-name">'+ANCHORS[key].label+'</span>' +
-    '<span class="tb-time">'+esc(boxLabel(v.time[key]))+'</span></div>';
-}
 
 var WRONG_HOURS_FORM = "https://docs.google.com/forms/d/e/1FAIpQLScravzRfODNDWaopbJ-hf_wJlY8mfcMUxpYqmWdE6ipDbv_WQ/viewform?usp=header";
 function reportUrl(v){
@@ -816,8 +795,6 @@ function cardHTML(v, flat){
     '<div class="hours">'+CLOCK+'<span>'+esc(v.hours)+'</span></div>' +
     (v.priceTier ? '<div class="price-row"><span class="price-tier">'+esc(v.priceTier)+'</span>'+(v.priceDetail ? '<span class="price-detail">'+esc(v.priceDetail)+'</span>' : '')+'</div>' : '') +
     warnline +
-    '<div class="towns" aria-label="Drive times from each starting town">' +
-      townBox(v,"kingston") + townBox(v,"scranton") + townBox(v,"canadensis") + '</div>' +
     '<div class="card-foot">' +
       '<div class="addr">'+PIN+'<span class="addr-text">'+esc(v.addr)+'</span><button class="copy-btn" type="button" title="Copy address" aria-label="Copy address">'+COPY+'</button></div>' +
       '<p class="'+noteCls+'">'+esc(v.note)+'</p>' + moreBtn +
