@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Summer Fairs &amp; Outdoor Nights in NEPA | NEPA Date Nights</title>
+<meta name="description" content="Summer date nights in NEPA — fairs, outdoor concerts, summer movies in the park, and drive-ins." />
+<link rel="canonical" href="https://nepadatenights.com/summer-fairs/" />
+<meta property="og:title" content="Summer Fairs &amp; Outdoor Nights in NEPA | NEPA Date Nights" />
+<meta property="og:description" content="Summer date nights in NEPA — fairs, outdoor concerts, summer movies in the park, and drive-ins." />
+<meta property="og:url" content="https://nepadatenights.com/summer-fairs/" />
+<!-- GA4 not configured: set GA_MEASUREMENT_ID in site_config.json -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Summer Fairs & Outdoor Nights in NEPA", "description": "Summer date nights in NEPA — fairs, outdoor concerts, summer movies in the park, and drive-ins.", "mainEntityOfPage": "https://nepadatenights.com/summer-fairs/"}
+</script>
+<style>
+  :root{
+    --bg:#f7f2e8; --bg-soft:#efe8d9; --card:#fffdf7; --ink:#241e14; --muted:#6f6353;
+    --accent:#a8621f; --accent-strong:#8a4d12; --accent-soft:rgba(168,98,31,.12);
+    --teal:#0d7a62; --teal-soft:rgba(13,122,98,.12);
+    --line:#e3d9c3; --caution-bg:#fdf3e0; --caution-line:#e3b45f; --caution-ink:#7a4a08;
+    --chip:#eee7d6; --shadow:0 1px 2px rgba(36,30,20,.08),0 8px 28px rgba(36,30,20,.08);
+    --radius:14px; --teal-btn:#0d7a62; --teal-btn-ink:#ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#151218; --bg-soft:#1c1823; --card:#1f1a27; --ink:#f2ecdd; --muted:#aa9e8c;
+      --accent:#e9a94c; --accent-strong:#f4bc6a; --accent-soft:rgba(233,169,76,.14);
+      --teal:#4cc9b0; --teal-soft:rgba(76,201,176,.13);
+      --line:#322c3b; --caution-bg:rgba(227,180,95,.10); --caution-line:#8a6a2c; --caution-ink:#e5b95e;
+      --chip:#2a2433; --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.35);
+      --teal-btn:#4cc9b0; --teal-btn-ink:#0e211a;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.55; -webkit-text-size-adjust:100%;
+  }
+  .skip{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+  .skip:focus{position:absolute;left:12px;top:12px;z-index:60;width:auto;height:auto;margin:0;overflow:visible;clip:auto;clip-path:none;background:var(--accent);color:#fff;padding:.6em 1em;border-radius:8px;text-decoration:none;font-weight:700}
+  @media (prefers-color-scheme: dark){.skip:focus{color:#1a1310}}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  a{color:var(--accent-strong)}
+  @media (prefers-color-scheme: dark){a{color:var(--accent-strong)}}
+
+  /* ---------- Top bar & filters ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);padding:20px 0 12px}
+  /* Keep the sticky header fully opaque: a blurred backdrop under it forces a
+     full-page repaint on every scroll frame, which freezes scrolling on phones. */
+  /* On phones the wrapped rows make a sticky header taller than the viewport,
+     so the stuck block covers every listing and the page looks frozen while
+     scrolling. Let the header scroll naturally on small screens. */
+  @media (max-width:720px){
+  .topbar h1{font-size:1.55rem}
+  .subhead{font-size:.88rem;margin-bottom:8px}
+  .dist-row{margin-bottom:8px}
+  .result-line{margin-bottom:10px}
+  /* Mobile: the search row sticks for the whole page with no JS. Skipping the
+     header's boxes makes the row's containing block the page wrapper, so it
+     stays stuck; everything else scrolls away naturally. No threshold, no
+     class toggle, no layout shift, no scroll jank. */
+  .topbar{position:static}
+  .topbar, .topbar > .wrap{display:contents}
+  .sr-row{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
+  }
+  .topbar h1{
+    font-family:"DM Serif Display",Georgia,serif;font-weight:400;
+    font-size:clamp(1.8rem,5vw,2.5rem);margin:0 0 2px;letter-spacing:.01em;line-height:1.1;
+  }
+  .subhead{margin:0 0 12px;color:var(--muted);font-size:.99rem}
+  .subhead strong{color:var(--ink);font-weight:700}
+  .dist-row{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:10px}
+  .sr-row{display:flex;gap:10px;align-items:stretch;margin-bottom:10px}
+  .search{position:relative;flex:1 1 auto;min-width:0}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted)}
+  .search input{
+    width:100%;padding:10px 12px 10px 38px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font:inherit;font-size:.94rem;
+  }
+  .search input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .filters-btn{
+    position:relative;flex:none;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);
+    font:inherit;font-weight:700;font-size:.92rem;border-radius:10px;padding:10px 18px;cursor:pointer;
+  }
+  .filters-btn svg{width:16px;height:16px}
+  .filters-btn .badge{
+    position:absolute;top:-8px;right:-8px;min-width:22px;height:22px;padding:0 6px;
+    border-radius:999px;background:var(--teal-btn);color:var(--teal-btn-ink);
+    font-size:.76rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;
+    box-shadow:0 1px 3px rgba(0,0,0,.25);
+  }
+  .filters-btn .badge[hidden]{display:none}
+  .result-line{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.86rem;margin:4px 0 0}
+  .result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .clear-btn{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;font-weight:600;border-radius:8px;padding:5px 12px;cursor:pointer}
+  .clear-btn.show{display:inline-block}
+  .seg{display:flex;flex-wrap:wrap;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{
+    border:0;background:transparent;color:var(--muted);font:inherit;font-size:.85rem;font-weight:600;
+    padding:9px 14px;cursor:pointer;
+  }
+  .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+  @media (prefers-color-scheme: dark){.seg button[aria-pressed="true"]{color:#1a1310}}
+  .seg-sm button{font-size:.8rem;padding:10px 16px;min-height:44px}
+  .tool-label{font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);flex:none}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    border:1px solid var(--line);background:var(--card);color:var(--ink);
+    font:inherit;font-size:.82rem;font-weight:600;padding:7px 12px;border-radius:999px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .chip .n{font-size:.72rem;font-weight:700;color:var(--muted);background:var(--bg-soft);border-radius:999px;padding:1px 8px}
+  .chip[aria-pressed="true"]{background:var(--teal-btn);color:var(--teal-btn-ink);border-color:var(--teal-btn)}
+  .chip[aria-pressed="true"] .n{background:rgba(255,255,255,.22);color:inherit}
+  @media (prefers-color-scheme: dark){.chip[aria-pressed="true"] .n{background:rgba(0,0,0,.2)}}
+  .toggle{
+    display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+    background:var(--card);color:var(--ink);font:inherit;font-size:.85rem;font-weight:600;
+    padding:8px 14px;cursor:pointer;
+  }
+  .toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
+  .toggle[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+  .toggle[aria-pressed="true"] .dot{background:var(--teal)}
+  /* Late-night toggles live in the Time of day section, below the chips */
+  .fsection .toggle{margin-top:12px}
+  button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ---------- Filter panel ---------- */
+  body.panel-open{overflow:hidden}
+  .scrim{position:fixed;inset:0;background:rgba(15,12,8,.5);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:80}
+  @media (prefers-color-scheme: dark){.scrim{background:rgba(0,0,0,.6)}}
+  body.panel-open .scrim{opacity:1;pointer-events:auto}
+  .panel{
+    position:fixed;top:0;right:0;bottom:0;width:min(420px,94vw);
+    background:var(--bg);z-index:90;box-shadow:-14px 0 44px rgba(0,0,0,.28);
+    transform:translateX(105%);visibility:hidden;
+    transition:transform .28s ease,visibility 0s .28s;
+    display:flex;flex-direction:column;
+  }
+  body.panel-open .panel{transform:none;visibility:visible;transition:transform .28s ease}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--line)}
+  .panel-head h2{margin:0;font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:1.3rem}
+  .icon-btn{
+    flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:1.25rem;line-height:1;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .panel-body{flex:1;overflow-y:auto;overflow-x:hidden;padding:2px 20px 20px;-webkit-overflow-scrolling:touch}
+  .fsection{padding:18px 0;border-bottom:1px solid var(--line)}
+  .fsection:last-child{border-bottom:0}
+  .fsection h3{margin:0 0 12px;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .panel-foot{display:flex;align-items:center;gap:14px;padding:14px 20px;border-top:1px solid var(--line)}
+  .text-btn{border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;padding:12px 4px;white-space:nowrap}
+  .text-btn:hover{color:var(--ink)}
+  .show-btn{flex:1;border:0;background:var(--teal-btn);color:var(--teal-btn-ink);font:inherit;font-weight:700;font-size:.96rem;border-radius:10px;padding:13px 18px;cursor:pointer}
+
+/* ---------- Drive-time slider ---------- */
+  .drive-live{margin:0 0 2px;font-size:1.04rem}
+  .drive-live strong{color:var(--accent-strong)}
+  @media (prefers-color-scheme: dark){.drive-live strong{color:var(--accent)}}
+  .rwrap{position:relative;margin-top:10px}
+  #driveRange{position:relative;z-index:1;-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;margin:0;display:block;cursor:pointer}
+  #driveRange:focus{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+  #driveRange::-webkit-slider-runnable-track{height:6px;border-radius:999px;background:linear-gradient(to right,var(--teal-btn) var(--pct,100%),var(--line) var(--pct,100%))}
+  #driveRange::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--card);border:3px solid var(--teal-btn);margin-top:-7px;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+  #driveRange::-moz-range-track{height:6px;border-radius:999px;background:var(--line)}
+  #driveRange::-moz-range-progress{height:6px;border-radius:999px;background:var(--teal-btn)}
+  #driveRange::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--card);border:3px solid var(--teal-btn)}
+  .ticks{position:absolute;top:8px;left:0;right:0;height:10px;pointer-events:none}
+  .ticks i{position:absolute;top:0;width:2px;height:10px;background:var(--muted);opacity:.75;transform:translateX(-1px);border-radius:1px}
+  .stop-labels{position:relative;height:20px;margin-top:3px;font-size:.72rem;font-weight:600;color:var(--muted)}
+  .stop-labels span{position:absolute;top:0;white-space:nowrap;transform:translateX(-50%)}
+  .stop-labels span.first{transform:none}
+  .stop-labels span.last{transform:translateX(-100%)}
+  .stop-qual{position:relative;height:15px;margin-top:1px;font-size:.66rem;font-weight:600;color:var(--muted);opacity:.65}
+  .stop-qual span{position:absolute;top:0;white-space:nowrap;transform:translateX(-50%)}
+  .stop-qual span.first{transform:none}
+  .stop-qual span.last{transform:translateX(-100%)}
+
+  /* ---------- Card extras ---------- */
+  .addr-text{flex:1;min-width:0}
+  .copy-btn{
+    flex:none;margin-left:6px;border:1px solid var(--line);background:transparent;
+    color:var(--muted);border-radius:8px;padding:13px;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:44px;min-height:44px;box-sizing:border-box;
+  }
+  .copy-btn svg{width:14px;height:14px}
+  .copy-btn:hover{color:var(--ink);border-color:var(--muted)}
+  .copy-btn.ok{color:var(--teal);border-color:var(--teal)}
+  .note.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .note.expanded{display:block}
+  .moreless{align-self:flex-start;border:0;background:none;color:var(--accent-strong);font:inherit;font-size:.85rem;font-weight:700;padding:0;margin:0;cursor:pointer;text-align:left}
+  @media (prefers-color-scheme: dark){.moreless{color:var(--accent)}}
+  .flat-list{padding-top:30px}
+
+  /* ---------- Jump-to-category nav (scrolls away; not sticky) ---------- */
+  .jumpnav{
+    margin:12px -20px 0;padding:8px 20px;background:var(--bg);border-bottom:1px solid var(--line);
+  }
+  .jumpnav[hidden]{display:none}
+  .jumpnav-row{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .jumpnav-row::-webkit-scrollbar{display:none}
+  .jn{
+    flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;box-sizing:border-box;
+    padding:8px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+    color:var(--ink);font:inherit;font-size:.84rem;font-weight:600;text-decoration:none;white-space:nowrap;
+  }
+  .jn .jn-n{font-size:.72rem;font-weight:700;color:var(--muted);background:var(--bg-soft);border-radius:999px;padding:1px 8px}
+  .jn-active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+  .jn-active .jn-n{color:var(--accent-strong);background:var(--accent-soft)}
+  @media (prefers-color-scheme: dark){.jn-active .jn-n{color:var(--accent)}}
+
+  /* ---------- Back-to-top button ---------- */
+  #toTop{
+    position:fixed;right:16px;bottom:16px;width:48px;height:48px;border-radius:50%;
+    background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);
+    color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;
+    z-index:60;opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .2s ease,transform .2s ease;
+  }
+  #toTop.show{opacity:1;pointer-events:auto;transform:none}
+  #toTop svg{width:20px;height:20px}
+
+  /* ---------- Sections ---------- */
+  .cat-section{padding-top:26px;scroll-margin-top:var(--scroll-mt,80px)}
+  /* The banner doubles as the collapse toggle: one big tap target per section. */
+  .banner{
+    display:block;position:relative;width:100%;height:190px;padding:0;overflow:hidden;
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-soft);
+    cursor:pointer;text-align:left;
+  }
+  .banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  /* A fixed warm shade keeps the white title legible in both color schemes. */
+  .banner-shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(26,17,8,.88) 0%,rgba(26,17,8,.58) 48%,rgba(26,17,8,.16) 100%)}
+  .banner-body{position:absolute;inset:0;display:flex;align-items:center;gap:14px;padding:18px 22px}
+  .banner-icon{
+    flex:none;width:48px;height:48px;border-radius:12px;background:rgba(255,253,247,.94);
+    display:flex;align-items:center;justify-content:center;color:#8a4d12;
+  }
+  .banner-icon svg{width:26px;height:26px}
+  .banner-text{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1}
+  .banner-title{font-family:"DM Serif Display",Georgia,serif;font-size:1.6rem;line-height:1.15;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+  .banner-blurb{font-size:.9rem;color:rgba(255,255,255,.88);max-width:62ch;text-shadow:0 1px 5px rgba(0,0,0,.45)}
+  .banner .cat-count{
+    flex:none;font-size:.78rem;font-weight:700;color:#241e14;background:rgba(255,253,247,.94);
+    border-radius:999px;padding:6px 13px;white-space:nowrap;
+  }
+  .banner-chev{
+    flex:none;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.45);color:#fff;
+    display:flex;align-items:center;justify-content:center;transition:transform .25s ease;
+  }
+  .banner-chev svg{width:16px;height:16px}
+  .cat-section:not(.collapsed) .banner-chev{transform:rotate(180deg)}
+  .cat-section .grid{margin-top:16px}
+  .cat-section.collapsed .grid{display:none}
+  .banner:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(315px,1fr));gap:14px}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 15px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--shadow);
+  }
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .town{font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-strong)}
+  @media (prefers-color-scheme: dark){.town{color:var(--accent)}}
+  .drive{font-size:.74rem;font-weight:700;color:var(--teal);background:var(--teal-soft);border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .card h3{margin:0;font-size:1.18rem;line-height:1.25}
+  .type-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .type-tag{font-size:.76rem;font-weight:600;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+  .hours{display:flex;gap:8px;align-items:flex-start;font-size:.86rem;color:var(--muted)}
+  .hours svg{flex:none;width:15px;height:15px;margin-top:3px}
+  .note{margin:0;font-size:.92rem}
+  /* One compact combined notice line per card: Seasonal + open-late + call-ahead. */
+  .warnline{
+    display:flex;gap:8px;align-items:flex-start;margin:0;font-size:.8rem;font-weight:600;
+    background:var(--caution-bg);border:1px solid var(--caution-line);color:var(--caution-ink);
+    border-radius:8px;padding:5px 10px;
+  }
+  .warnline svg{flex:none;width:13px;height:13px;margin-top:2px}
+  .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:7px}
+  .addr{font-size:.83rem;color:var(--muted);display:flex;gap:7px;align-items:flex-start}
+  .addr svg{flex:none;width:14px;height:14px;margin-top:3px}
+  .card-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .map-link{
+    display:inline-flex;align-items:center;font-size:.87rem;font-weight:700;
+    color:var(--accent-strong);text-decoration:none;
+    padding:10px 6px;min-height:44px;box-sizing:border-box;
+  }
+  .map-link .map-ul{
+    display:inline-flex;align-items:center;gap:6px;
+    border-bottom:2px solid var(--accent-soft);padding-bottom:1px;
+  }
+  @media (prefers-color-scheme: dark){.map-link{color:var(--accent)}}
+  .map-link:hover .map-ul{border-color:var(--accent)}
+  .map-link svg{width:14px;height:14px}
+  .phone-link{display:inline-flex;align-items:center;gap:6px;font-size:.87rem;font-weight:600;color:var(--muted);text-decoration:none}
+  .phone-link:hover{color:var(--ink);text-decoration:underline}
+  .phone-link svg{width:14px;height:14px}
+
+  .empty{display:none;text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty.show{display:block}
+  .empty h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;color:var(--ink);margin:0 0 8px}
+  .empty button{margin-top:14px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:.9rem;border-radius:10px;padding:10px 22px;cursor:pointer}
+  @media (prefers-color-scheme: dark){.empty button{color:#1a1310}}
+  /* Fri/Sat late-night badge: bold and unmissable. */
+  .latebadge{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;padding:9px 12px;border-radius:10px;background:var(--accent-soft);border:1px solid var(--accent);font-size:.87rem;line-height:1.45}
+  .latebadge svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--accent-strong)}
+  .latebadge strong{font-weight:700}
+
+  .price-row{display:flex;align-items:center;gap:8px;margin:2px 0 0}
+  .price-tier{font-weight:700;font-size:.8rem;color:var(--teal);background:var(--teal-soft);border-radius:999px;padding:2px 10px;white-space:nowrap}
+  .price-detail{font-size:.8rem;color:var(--muted)}
+  .report-link{font-size:.8rem;min-height:44px;display:inline-flex;align-items:center;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+  .report-link:hover{color:var(--ink)}
+
+  /* ---------- Footer ---------- */
+  footer{margin:52px 0 0;padding:30px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:.87rem}
+  footer p{margin:0 0 10px;max-width:70ch}
+  footer strong{color:var(--ink)}
+
+  @media (max-width:640px){
+    .topbar h1{font-size:1.9rem}
+    .subhead{font-size:.93rem}
+    .sr-row{gap:8px}
+    .filters-btn{padding:10px 13px}
+    .banner{height:132px}
+    .banner-body{padding:12px 14px;gap:10px}
+    .banner-icon{width:40px;height:40px}
+    .banner-icon svg{width:22px;height:22px}
+    .banner-title{font-size:1.22rem}
+    .banner-blurb{display:none}
+    .banner .cat-count{padding:5px 10px;font-size:.72rem}
+    .banner-chev{width:34px;height:34px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+
+  /* ---------- Tap-target pass: every interactive control >= 44px ---------- */
+  .seg button{min-height:44px;box-sizing:border-box}
+  .chip{min-height:44px;box-sizing:border-box}
+  .toggle{min-height:44px;box-sizing:border-box}
+  .clear-btn{min-height:44px;box-sizing:border-box}
+  .icon-btn{width:44px;height:44px}
+  .filters-btn{min-height:44px;box-sizing:border-box}
+  .text-btn{min-height:44px}
+  .empty button{min-height:44px;box-sizing:border-box}
+  .moreless{min-height:44px;display:inline-flex;align-items:center}
+  .phone-link{min-height:44px;display:inline-flex;align-items:center}
+  .site-link,.ticket-link{
+    display:inline-flex;align-items:center;gap:6px;min-height:44px;box-sizing:border-box;
+    padding:10px 6px;font-size:.87rem;font-weight:700;color:var(--accent-strong);text-decoration:none;
+  }
+  .site-link:hover .map-ul,.ticket-link:hover .map-ul{border-color:var(--accent)}
+  .site-link svg,.ticket-link svg{width:14px;height:14px}
+  @media (prefers-color-scheme: dark){.site-link,.ticket-link{color:var(--accent)}}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .kashrus{display:block;font-size:.78rem;color:var(--muted);font-style:italic;margin-top:2px}
+  /* ---------- Email signup ---------- */
+  .signup{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:26px 0 8px;box-shadow:var(--shadow)}
+  .signup h2{font-family:"DM Serif Display",serif;font-size:1.35rem;margin:0 0 6px}
+  .signup p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+  .signup form{display:flex;gap:8px;flex-wrap:wrap}
+  .signup input[type="email"]{flex:1 1 220px;min-height:48px;box-sizing:border-box;font:inherit;font-size:1rem;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+  .signup button[type="submit"]{min-height:48px;box-sizing:border-box;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:.95rem;padding:12px 22px;cursor:pointer}
+  @media (prefers-color-scheme: dark){.signup button[type="submit"]{color:#1a1310}}
+  .form-msg{min-height:1.4em;font-size:.88rem;margin:8px 0 0}
+  .email-sponsor{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--muted)}
+  /* ---------- Vouched section ---------- */
+  .vouched{margin:26px 0 8px}
+  .vouched h2{font-family:"DM Serif Display",serif;font-size:1.5rem;margin:0 0 4px}
+  .vouched .vouched-sub{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+  .vouched-cards .card{max-width:640px}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- DRAFT: owner to review and edit before publishing -->
+<p class="crumb"><a href="https://nepadatenights.com/">&larr; NEPA Date Nights</a></p>
+<article class="content-page">
+<!-- DRAFT: owner to review and edit before publishing -->
+<h1>Summer fairs &amp; outdoor nights in NEPA</h1>
+
+<p>Summer is the one season NEPA doesn't do quietly. Fairs, free concerts, drive-ins, and outdoor movies fill the calendar from June through September — plan around them, not around them being empty.</p>
+
+<h2>Fairs &amp; free outdoor series</h2>
+<p><a href="/venue/bloomsburg-fair-bloomsburg/">Bloomsburg Fair</a> is the heavyweight — Pennsylvania's largest agricultural fair, in its 171st year (Sept 25–Oct 3, 2026), $8 admission with kids 12 and under free. All summer long, <a href="/venue/party-on-the-patio-wilkes-barre/">Party on the Patio</a> at Mohegan Pennsylvania runs free weekly outdoor concerts — 19 weeks of live music, doors 6pm. And <a href="/venue/scranton-summer-movies-in-the-park-scranton/">Scranton Summer Movies in the Park</a> screens films free at 8:30pm in rotating city parks.</p>
+
+<h2>Drive-ins under the stars</h2>
+<ul>
+<li><a href="/venue/moonlite-drive-in-west-wyoming/">Moonlite Drive-In</a> (West Wyoming) — evening double features Fri–Sun, $8 adults / $5 kids</li>
+<li><a href="/venue/circle-drive-in-theater-scranton/">Circle Drive-In Theater</a> (Scranton) — classic drive-in on the Scranton–Carbondale highway, $9.50 adults</li>
+<li><a href="/venue/mahoning-drive-in-theatre-lehighton/">Mahoning Drive-In Theatre</a> (Lehighton) — a 1949 classic still running 35mm double features, ~$8</li>
+<li><a href="/venue/garden-drive-in-theater-hunlock-creek/">Garden Drive-In Theater</a> (Hunlock Creek) — $7 double features, kids 2 and under free</li>
+</ul>
+
+<h2>More warm-weather evenings</h2>
+<p>Round out a summer week with mini golf and karts at <a href="/venue/lahey-family-fun-park-clarks-summit/">Lahey Family Fun Park</a> (Clarks Summit) or <a href="/venue/940-golf-n-fun-pocono-lake/">940 Golf N' Fun</a> (Pocono Lake, open till 11pm nightly). Pair any of these with a free sunset stroll on the <a href="/venue/susquehanna-riverfront-levee-walk-wilkes-barre/">Susquehanna Riverfront levee walk</a> in Wilkes-Barre and you have a full evening for the price of ice cream.</p>
+
+<div class="email-slot"><section class="signup" id="signup" aria-label="Email signup">
+    <h2>Weekend picks, every Thursday</h2>
+    <p>One short email with the weekend&rsquo;s best date-night bets around NEPA.</p>
+    <form class="email-form" data-email-form novalidate>
+      <label class="sr-only" for="emailInput">Email address</label>
+      <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+      <button type="submit">Sign me up</button>
+    </form>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+    
+  </section>
+  <script>
+  (function(){
+    var f = document.querySelector('[data-email-form]');
+    if (!f || f.dataset.wired) return; f.dataset.wired = "1";
+    f.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      var input = f.querySelector('input[type="email"]');
+      var msg = f.parentElement.querySelector(".form-msg");
+      var email = input.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.textContent = "Please enter a valid email address."; input.focus(); return; }
+      var ep = "https://formspree.io/f/YOUR_FORM_ID";
+      if (!ep || ep.indexOf("YOUR_FORM_ID") !== -1){ msg.textContent = "Email signup isn\u2019t wired up yet \u2014 check back soon."; return; }
+      msg.textContent = "Signing you up\u2026";
+      fetch(ep, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body: JSON.stringify({email: email})})
+        .then(function(r){ if(!r.ok) throw new Error("bad"); return r.json().catch(function(){return {}}); })
+        .then(function(){ msg.textContent = "You\u2019re in \u2014 see you Thursday."; input.value=""; })
+        .catch(function(){ msg.textContent = "Something went wrong \u2014 please try again."; });
+    });
+  })();
+  </script></div>
+
+</article>
+<footer><p><a href="https://nepadatenights.com/">NEPA Date Nights</a> &mdash; hand-curated date-night spots across Northeastern Pennsylvania.</p></footer>
+</div>
+</body>
+</html>

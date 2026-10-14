@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Kosher dining filter &middot; NEPA Date Nights</title>
+<link rel="canonical" href="https://nepadatenights.com/" />
+</head>
+<body>
+<p>Turning dining listings off&hellip; <a id="go" href="../">Continue to NEPA Date Nights</a></p>
+<script>
+try { localStorage.setItem("nepa-dn-kosher", "off"); } catch (e) {}
+document.getElementById("go").href = "../?kosher=off";
+location.replace("../?kosher=off");
+</script>
+<noscript><p>JavaScript is required to remember this setting. <a href="../">Continue without it</a>.</p></noscript>
+</body>
+</html>
