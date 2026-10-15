@@ -3016,7 +3016,7 @@
    "hoursBuckets": [
     "evening"
    ],
-   "hours": "Sat–Sun 2–9pm · Mon–Fri 5–9pm, through Dec 23 · $6 (kids under 3 free)",
+   "hours": "2026 dates & hours not yet announced",
    "type": "Holiday light show",
    "season": {
     "s": [
@@ -3039,10 +3039,10 @@
     "tue": "5pm–9pm",
     "wed": "5pm–9pm"
    },
-   "seasonText": "Holiday season, through Dec 23, 2026",
+   "seasonText": "Holiday season (2026 dates TBA)",
    "priceTier": "$",
-   "priceDetail": "$6/person; kids under 3 free",
-   "hoursVerified": true,
+   "priceDetail": "2026 pricing TBA",
+   "hoursVerified": false,
    "dining": false,
    "website": "https://www.thewestendfair.com/",
    "ticket_url": "",

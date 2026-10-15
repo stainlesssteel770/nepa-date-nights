@@ -108,6 +108,34 @@
   .site-menu a:hover{background:var(--bg-soft)}
   .menu-head{margin:8px 12px 4px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .menu-head:first-child{margin-top:2px}
+  .venue-link{color:inherit;text-decoration:none}
+  .venue-link:hover{text-decoration:underline}
+  /* ---------- First-visit email popup ---------- */
+  .popup-scrim{
+    position:fixed;inset:0;z-index:200;background:rgba(20,16,10,.55);
+    display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;
+  }
+  .popup-scrim[hidden]{display:none}
+  .popup{
+    position:relative;background:var(--card);color:var(--ink);border:1px solid var(--line);
+    border-radius:18px;max-width:420px;width:100%;padding:28px 26px 24px;
+    box-shadow:0 24px 64px rgba(0,0,0,.3);text-align:center;
+  }
+  .popup h2{margin:0 0 8px;font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:1.5rem}
+  .popup p{margin:0 0 16px;color:var(--muted);font-size:.95rem}
+  .popup form{display:flex;gap:8px}
+  .popup input{
+    flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    font:inherit;min-height:44px;box-sizing:border-box;background:var(--bg);color:var(--ink);
+  }
+  .popup form button{
+    flex:none;border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;
+    background:var(--teal-btn);color:var(--teal-btn-ink);min-height:44px;box-sizing:border-box;
+  }
+  .popup .form-msg{min-height:1.2em;font-size:.85rem;margin:10px 0 0}
+  .popup-close{position:absolute;top:10px;right:10px}
+  .popup .text-btn{margin-top:6px}
+  @media (max-width:420px){ .popup form{flex-direction:column} }
   .result-line{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.86rem;margin:4px 0 0}
   .result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .clear-btn{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;font-weight:600;border-radius:8px;padding:5px 12px;cursor:pointer}
@@ -402,7 +430,7 @@
 <!-- SEASONAL ROTATION: this page swaps content each season. Winter 2026 below. When rotating, replace the sections below and update the title/meta. -->
 <h1>Winter date nights in NEPA</h1>
 
-<p>Winter date night doesn't have to mean the couch. Between light trails, night skiing, and warm bars after, NEPA has a real cold-weather rotation — here's the short list. Publish only confirmed 2026 dates and hours; verify before you drive.</p>
+<p>Winter date night doesn't have to mean the couch. Between light trails, night skiing, and warm bars after, NEPA has a real cold-weather rotation — here's the short list. Light displays are seasonal and hours shift year to year — confirm dates and times before you drive.</p>
 
 <h2>Holiday lights</h2>
 <p>Start with the full rundown: <a href="/holiday-lights/">Holiday lights in NEPA</a>. The headliner is <a href="/venue/west-end-festival-of-lights-and-kris-kringle-gilbert/">West End Festival of Lights &amp; Kris Kringle</a> in Gilbert — a walk-around light trail set to music with fire pits and a craft market. Check its venue page for this year's dates before you go, and pair a 5–7pm lights visit with dinner or a nightcap somewhere warm.</p>
