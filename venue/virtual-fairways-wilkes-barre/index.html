@@ -94,6 +94,20 @@
     box-shadow:0 1px 3px rgba(0,0,0,.25);
   }
   .filters-btn .badge[hidden]{display:none}
+  .menu-wrap{position:relative;flex:none}
+  .site-menu{
+    position:absolute;top:calc(100% + 8px);right:0;z-index:70;min-width:272px;max-width:86vw;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 12px 32px rgba(0,0,0,.18);padding:10px;
+  }
+  .site-menu[hidden]{display:none}
+  .site-menu a{
+    display:flex;align-items:center;min-height:44px;padding:10px 12px;border-radius:10px;
+    color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;box-sizing:border-box;
+  }
+  .site-menu a:hover{background:var(--bg-soft)}
+  .menu-head{margin:8px 12px 4px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .menu-head:first-child{margin-top:2px}
   .result-line{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.86rem;margin:4px 0 0}
   .result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .clear-btn{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;font-weight:600;border-radius:8px;padding:5px 12px;cursor:pointer}

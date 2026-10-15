@@ -99,6 +99,20 @@
     box-shadow:0 1px 3px rgba(0,0,0,.25);
   }
   .filters-btn .badge[hidden]{display:none}
+  .menu-wrap{position:relative;flex:none}
+  .site-menu{
+    position:absolute;top:calc(100% + 8px);right:0;z-index:70;min-width:272px;max-width:86vw;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 12px 32px rgba(0,0,0,.18);padding:10px;
+  }
+  .site-menu[hidden]{display:none}
+  .site-menu a{
+    display:flex;align-items:center;min-height:44px;padding:10px 12px;border-radius:10px;
+    color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;box-sizing:border-box;
+  }
+  .site-menu a:hover{background:var(--bg-soft)}
+  .menu-head{margin:8px 12px 4px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .menu-head:first-child{margin-top:2px}
   .result-line{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.86rem;margin:4px 0 0}
   .result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .clear-btn{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8rem;font-weight:600;border-radius:8px;padding:5px 12px;cursor:pointer}
@@ -414,6 +428,25 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8.2V19l-4 2v-7.8L3 5z"/></svg>
           Filters<span class="badge" id="filterBadge" hidden>0</span>
         </button>
+        <div class="menu-wrap">
+          <button class="filters-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="siteMenu" aria-label="Date night guides menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            Guides
+          </button>
+          <nav class="site-menu" id="siteMenu" hidden aria-label="Date night guides">
+            <p class="menu-head">Date night guides</p>
+            <a href="/scranton-date-night-ideas/">Scranton date night ideas</a>
+            <a href="/wilkes-barre-date-night-ideas/">Wilkes-Barre date night ideas</a>
+            <a href="/things-to-do-in-nepa-tonight/">Things to do in NEPA tonight</a>
+            <a href="/rainy-day-indoor-dates/">Rainy-day &amp; indoor dates</a>
+            <a href="/under-20-date-ideas/">Under $20 date ideas</a>
+            <a href="/free-and-cheap-dates/">Free &amp; cheap dates</a>
+            <p class="menu-head">Seasonal</p>
+            <a href="/winter-date-nights/">Winter date nights</a>
+            <a href="/holiday-lights/">Holiday lights</a>
+            <a href="/summer-fairs/">Summer fairs</a>
+          </nav>
+        </div>
       </div>
       <div class="result-line">
         <span id="resultLine">Showing 111 of 111</span>
@@ -1293,6 +1326,20 @@ $("clearBtn").addEventListener("click", clearAll);
 $("panelClear").addEventListener("click", clearAll);
 $("emptyClear").addEventListener("click", clearAll);
 $("filtersBtn").addEventListener("click", openPanel);
+function toggleMenu(force){
+  var m = $("siteMenu"), b = $("menuBtn");
+  var open = force !== undefined ? force : m.hidden;
+  m.hidden = !open;
+  b.setAttribute("aria-expanded", open ? "true" : "false");
+}
+$("menuBtn").addEventListener("click", function(e){ e.stopPropagation(); toggleMenu(); });
+document.addEventListener("click", function(e){
+  var m = $("siteMenu");
+  if (!m.hidden && !e.target.closest(".menu-wrap")) toggleMenu(false);
+});
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape" && !$("siteMenu").hidden){ toggleMenu(false); $("menuBtn").focus(); }
+});
 $("panelClose").addEventListener("click", closePanel);
 $("scrim").addEventListener("click", closePanel);
 $("panelShow").addEventListener("click", closePanel);
